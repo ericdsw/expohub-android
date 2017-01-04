@@ -1,0 +1,382 @@
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "name": "foo",
+      "username": "bar",
+      "email": "baz"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/users/1"
+    },
+    "relationships": {
+      "fairs": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/users/1/relationships/fairs",
+          "related": "http://expo-hub.local/api/v1/users/1/fairs"
+        },
+        "data": [
+          {
+            "type": "fairs",
+            "id": "26"
+          },
+          {
+            "type": "fairs",
+            "id": "33"
+          },
+          {
+            "type": "fairs",
+            "id": "67"
+          },
+          {
+            "type": "fairs",
+            "id": "80"
+          },
+          {
+            "type": "fairs",
+            "id": "92"
+          }
+        ]
+      },
+      "bannedFairs": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/users/1/relationships/bannedFairs",
+          "related": "http://expo-hub.local/api/v1/users/1/bannedFairs"
+        },
+        "data": [
+          {
+            "type": "fairs",
+            "id": "92"
+          },
+          {
+            "type": "fairs",
+            "id": "80"
+          }
+        ]
+      },
+      "helpingFairs": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/users/1/relationships/helpingFairs",
+          "related": "http://expo-hub.local/api/v1/users/1/helpingFairs"
+        },
+        "data": [
+          {
+            "type": "fairs",
+            "id": "92"
+          },
+          {
+            "type": "fairs",
+            "id": "80"
+          },
+          {
+            "type": "fairs",
+            "id": "33"
+          }
+        ]
+      },
+      "attendingFairEvents": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/users/1/relationships/attendingFairEvents",
+          "related": "http://expo-hub.local/api/v1/users/1/attendingFairEvents"
+        },
+        "data": [
+          {
+            "type": "fairEvents",
+            "id": "5"
+          },
+          {
+            "type": "fairEvents",
+            "id": "35"
+          },
+          {
+            "type": "fairEvents",
+            "id": "46"
+          }
+        ]
+      },
+      "comments": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/users/1/relationships/comments",
+          "related": "http://expo-hub.local/api/v1/users/1/comments"
+        },
+        "data": [
+          {
+            "type": "comments",
+            "id": "4"
+          },
+          {
+            "type": "comments",
+            "id": "19"
+          },
+          {
+            "type": "comments",
+            "id": "43"
+          },
+          {
+            "type": "comments",
+            "id": "45"
+          },
+          {
+            "type": "comments",
+            "id": "76"
+          },
+          {
+            "type": "comments",
+            "id": "79"
+          },
+          {
+            "type": "comments",
+            "id": "111"
+          },
+          {
+            "type": "comments",
+            "id": "118"
+          },
+          {
+            "type": "comments",
+            "id": "126"
+          },
+          {
+            "type": "comments",
+            "id": "161"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "26",
+      "attributes": {
+        "name": "Diverse interactive software",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?25166",
+        "description": "Eaque enim quos modi ut ipsum. Ipsam quibusdam dicta est et voluptatem ut occaecati. Tempora similique veritatis sunt quod assumenda. Voluptas sunt in numquam corporis.",
+        "website": "http://www.hegmann.biz/fugit-aliquid-voluptatum-illo-sequi-ex-eius-ut",
+        "starting_date": "2016-11-25 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "molestiae",
+        "latitude": "-60.182502",
+        "longitude": "35.296565"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/26"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "33",
+      "attributes": {
+        "name": "Secured grid-enabled knowledgebase",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?66371",
+        "description": "Omnis delectus quia ea consectetur error nisi. Perspiciatis non ad molestiae molestiae autem doloremque. Vel est enim fugiat expedita.",
+        "website": "https://anderson.com/necessitatibus-cumque-ipsa-quo-illo-ut-nihil-suscipit-adipisci.html",
+        "starting_date": "2016-11-25 19:56:41",
+        "ending_date": "2016-12-03 19:56:41",
+        "address": "quisquam",
+        "latitude": "-29.393836",
+        "longitude": "-130.610715"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/33"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "67",
+      "attributes": {
+        "name": "Enhanced human-resource info-mediaries",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?19184",
+        "description": "Sit sit tempore et architecto. A quis vel ipsa porro. Pariatur nemo explicabo sit et distinctio. Porro hic ut rerum cum officiis ullam.",
+        "website": "http://www.legros.com/",
+        "starting_date": "2016-11-27 19:56:41",
+        "ending_date": "2016-11-30 19:56:41",
+        "address": "aliquid",
+        "latitude": "57.758689",
+        "longitude": "-51.957735"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/67"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "80",
+      "attributes": {
+        "name": "Total radical forecast",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?52717",
+        "description": "Est quam nihil id facilis. Laudantium voluptatem praesentium unde veniam. Facilis voluptas officia dicta molestiae. Aliquam dolores ab magnam necessitatibus sit vitae nemo.",
+        "website": "http://block.com/quibusdam-est-et-dolorem-nesciunt",
+        "starting_date": "2016-11-28 19:56:41",
+        "ending_date": "2016-12-03 19:56:41",
+        "address": "est",
+        "latitude": "-89.468117",
+        "longitude": "-122.969044"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/80"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "92",
+      "attributes": {
+        "name": "Diverse fault-tolerant approach",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?41857",
+        "description": "Officia quo laborum voluptas. Quas et saepe non quam. Et hic dignissimos explicabo. Provident dolores aperiam quam maiores expedita.",
+        "website": "http://volkman.com/ut-consectetur-consectetur-eligendi",
+        "starting_date": "2016-11-28 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "iste",
+        "latitude": "26.559999",
+        "longitude": "-1.941501"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/92"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "5",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?81881",
+        "description": "Recusandae omnis delectus culpa vel velit velit. Nemo excepturi doloremque qui velit. Inventore ut voluptatem distinctio rerum rerum rerum consectetur perspiciatis.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Minima rerum est ut quos nihil nihil maxime."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/5"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "35",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?31811",
+        "description": "Magnam soluta et qui eos consequatur quaerat. Aspernatur architecto illo laborum explicabo ea voluptatem beatae. Atque distinctio aut optio ut at ipsum.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Qui enim explicabo vero id quae tempore sint est."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/35"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "46",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?69760",
+        "description": "Qui numquam voluptas assumenda aut repudiandae. Odio ut et voluptatem quia consequatur blanditiis doloremque. Aut quas occaecati sint qui vero.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Consequuntur consequuntur corporis sed et enim."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/46"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "4",
+      "attributes": {
+        "text": "Recusandae mollitia porro ipsa ab hic id accusamus magni. Placeat ipsam magni sit mollitia cumque. Fugiat quis quia enim cumque sed voluptas. Culpa eligendi fugiat et quod molestias similique."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/4"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "19",
+      "attributes": {
+        "text": "Adipisci quidem qui magnam accusantium soluta reprehenderit. Soluta eaque in nisi voluptatibus ut est. Aut dolorem ea assumenda rem. Recusandae repellat cum perferendis earum est. Id maxime consequuntur id aliquid possimus."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/19"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "43",
+      "attributes": {
+        "text": "Animi cupiditate itaque voluptatem commodi delectus. Ut laborum magnam velit iusto ducimus dolorem. Voluptatem consectetur quae ratione distinctio qui ut quod. Hic beatae qui qui laboriosam."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/43"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "45",
+      "attributes": {
+        "text": "At ut voluptatem amet eos facere. Non non dolorem autem sapiente quidem. Numquam veniam repudiandae veniam ut modi omnis. Et aliquid perferendis aperiam quo modi. Ut vel ut consequatur temporibus alias dolor."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/45"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "76",
+      "attributes": {
+        "text": "Esse quam aperiam maiores delectus quis. Aperiam placeat quibusdam fugiat est enim est. Amet repellat odit est eos culpa sunt voluptas."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/76"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "79",
+      "attributes": {
+        "text": "Tenetur deleniti omnis ducimus minima. Aliquam sunt libero provident fugit doloribus nostrum odit. Qui necessitatibus temporibus inventore consequatur officiis."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/79"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "111",
+      "attributes": {
+        "text": "Reiciendis velit quisquam deserunt a sequi ad. Sed quam veritatis dolor debitis pariatur sed. Necessitatibus possimus omnis laboriosam dolor. Ullam expedita maiores rerum accusantium velit saepe."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/111"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "118",
+      "attributes": {
+        "text": "Molestiae consequatur vitae consequuntur maiores quia. Explicabo aut eum eveniet omnis qui. Velit ex placeat voluptatibus ex."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/118"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "126",
+      "attributes": {
+        "text": "Adipisci ratione consequatur maxime hic. Non explicabo laudantium quis atque dolores. Qui cupiditate fugiat molestiae."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/126"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "161",
+      "attributes": {
+        "text": "Est amet incidunt et dolorem animi. Quia qui repudiandae esse asperiores. Consequatur est error odit qui id est et. Dolores vel voluptatibus provident voluptatem atque sunt error. Quis id assumenda et repellat et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/161"
+      }
+    }
+  ]
+}

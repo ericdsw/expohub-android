@@ -1,0 +1,67 @@
+{
+  "data": {
+    "type": "sponsors",
+    "id": "1",
+    "attributes": {
+      "name": "foo",
+      "logo": "bar",
+      "slogan": "baz",
+      "website": "qux"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/sponsors/1"
+    },
+    "relationships": {
+      "fair": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/sponsors/1/relationships/fair",
+          "related": "http://expo-hub.local/api/v1/sponsors/1/fair"
+        },
+        "data": {
+          "type": "fairs",
+          "id": "59"
+        }
+      },
+      "sponsorRank": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/sponsors/1/relationships/sponsorRank",
+          "related": "http://expo-hub.local/api/v1/sponsors/1/sponsorRank"
+        },
+        "data": {
+          "type": "sponsorRanks",
+          "id": "1"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "59",
+      "attributes": {
+        "name": "Customer-focused empowering localareanetwork",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?51131",
+        "description": "Nisi non qui ad voluptatem totam placeat sequi. Enim iste vel nisi doloribus ut. Fugit et nemo excepturi eius rerum ratione corrupti. Asperiores deserunt quia deleniti asperiores ab odit sequi.",
+        "website": "http://hermiston.biz/",
+        "starting_date": "2016-11-26 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "rerum",
+        "latitude": "-1.110194",
+        "longitude": "93.727599"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/59"
+      }
+    },
+    {
+      "type": "sponsorRanks",
+      "id": "1",
+      "attributes": {
+        "name": "laboriosam"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsorRanks/1"
+      }
+    }
+  ]
+}

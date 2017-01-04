@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "type": "fairs",
+      "id": "1",
+      "attributes": {
+        "name": "Streamlined zerotolerance neural-net",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?32457",
+        "description": "Est earum ipsa sequi quibusdam. Blanditiis officiis et rem et quidem est ea. Fugit provident et voluptatem ullam numquam. In ut est nobis sit error vel.",
+        "website": "http://www.kuhic.com/nihil-tempora-ex-illo-ratione-aut-enim.html",
+        "starting_date": "2016-11-25 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "asperiores",
+        "latitude": "-7.041151",
+        "longitude": "-152.516429"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/1"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "2",
+      "attributes": {
+        "name": "Fully-configurable holistic emulation",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?31040",
+        "description": "Aliquid enim ad eum nisi ut sint mollitia. Sapiente eius quia vel distinctio illum et. Rerum voluptas eaque et veritatis dolorem ipsam odio. Doloremque eius aut in eos.",
+        "website": "https://brown.com/qui-cumque-omnis-sint-sunt.html",
+        "starting_date": "2016-11-27 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "nostrum",
+        "latitude": "-31.645837",
+        "longitude": "-161.163940"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/2"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "3",
+      "attributes": {
+        "name": "Distributed demand-driven openarchitecture",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?96964",
+        "description": "Qui laboriosam et harum error tenetur. Adipisci earum asperiores animi tempore rerum. Aut est perferendis doloribus repellat autem possimus. Similique beatae molestiae hic tempore cum quia iusto.",
+        "website": "http://www.wuckert.biz/reiciendis-dignissimos-cum-neque-voluptas-quae-natus-deleniti",
+        "starting_date": "2016-11-27 19:56:41",
+        "ending_date": "2016-11-30 19:56:41",
+        "address": "sint",
+        "latitude": "-6.810575",
+        "longitude": "-44.038277"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/3"
+      }
+    },
+    {
+      "type": "fairs",
+      "id": "4",
+      "attributes": {
+        "name": "Robust well-modulated emulation",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?33395",
+        "description": "Sit eum doloremque sit et sed quia id. Blanditiis occaecati nostrum quidem minima eveniet.",
+        "website": "http://www.hamill.com/",
+        "starting_date": "2016-11-25 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "eaque",
+        "latitude": "-0.855723",
+        "longitude": "62.902662"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/4"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 4
+    }
+  }
+}

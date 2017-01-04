@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "type": "comments",
+      "id": "1",
+      "attributes": {
+        "text": "Consectetur in eum modi pariatur accusantium. Saepe nobis magnam ut rem atque. Inventore molestias mollitia pariatur qui qui temporibus quos."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/1"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "2",
+      "attributes": {
+        "text": "Sapiente ratione nulla vero velit. Magni voluptatibus ex sit impedit tenetur consequuntur tenetur. Excepturi eaque corrupti delectus quibusdam. Sed qui autem nostrum voluptatum consequatur."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/2"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "3",
+      "attributes": {
+        "text": "Aliquid provident doloremque aliquam est. Doloremque itaque dolorem sunt ut molestiae explicabo."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/3"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 3
+    }
+  }
+}

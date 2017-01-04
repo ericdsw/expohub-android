@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "type": "eventTypes",
+      "id": "1",
+      "attributes": {
+        "name": "aut"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/eventTypes/1"
+      }
+    },
+    {
+      "type": "eventTypes",
+      "id": "2",
+      "attributes": {
+        "name": "voluptate"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/eventTypes/2"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 2
+    }
+  }
+}

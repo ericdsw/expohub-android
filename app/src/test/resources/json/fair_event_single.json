@@ -1,0 +1,154 @@
+{
+  "data": {
+    "type": "fairEvents",
+    "id": "1",
+    "attributes": {
+      "title": "foo",
+      "image": "bar",
+      "description": "baz",
+      "date": "qux",
+      "location": "fooBar"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/fairEvents/1"
+    },
+    "relationships": {
+      "fair": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairEvents/1/relationships/fair",
+          "related": "http://expo-hub.local/api/v1/fairEvents/1/fair"
+        },
+        "data": {
+          "type": "fairs",
+          "id": "77"
+        }
+      },
+      "eventType": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairEvents/1/relationships/eventType",
+          "related": "http://expo-hub.local/api/v1/fairEvents/1/eventType"
+        },
+        "data": {
+          "type": "eventTypes",
+          "id": "2"
+        }
+      },
+      "speakers": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairEvents/1/relationships/speakers",
+          "related": "http://expo-hub.local/api/v1/fairEvents/1/speakers"
+        },
+        "data": [
+          {
+            "type": "speakers",
+            "id": "31"
+          },
+          {
+            "type": "speakers",
+            "id": "47"
+          }
+        ]
+      },
+      "attendingUsers": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairEvents/1/relationships/attendingUsers",
+          "related": "http://expo-hub.local/api/v1/fairEvents/1/attendingUsers"
+        },
+        "data": [
+          {
+            "type": "users",
+            "id": "11"
+          }
+        ]
+      },
+      "categories": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairEvents/1/relationships/categories",
+          "related": "http://expo-hub.local/api/v1/fairEvents/1/categories"
+        },
+        "data": [
+          {
+            "type": "categories",
+            "id": "13"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "77",
+      "attributes": {
+        "name": "Stand-alone explicit toolset",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?52206",
+        "description": "In qui reiciendis minima aut quisquam officiis laborum. Qui quibusdam rem explicabo et. Ipsam voluptas aspernatur rerum voluptatem dolore accusantium in.",
+        "website": "http://schuster.com/",
+        "starting_date": "2016-11-28 19:56:41",
+        "ending_date": "2016-11-30 19:56:41",
+        "address": "doloribus",
+        "latitude": "-5.404803",
+        "longitude": "58.210250"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/77"
+      }
+    },
+    {
+      "type": "eventTypes",
+      "id": "2",
+      "attributes": {
+        "name": "voluptate"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/eventTypes/2"
+      }
+    },
+    {
+      "type": "speakers",
+      "id": "31",
+      "attributes": {
+        "name": "Modesta Brekke II",
+        "picture": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?53825",
+        "description": "Libero nihil incidunt eligendi inventore id reiciendis repellendus. Exercitationem rerum saepe beatae praesentium eum. Maiores doloribus facilis tempore nam veritatis."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/speakers/31"
+      }
+    },
+    {
+      "type": "speakers",
+      "id": "47",
+      "attributes": {
+        "name": "Lyric Doyle Jr.",
+        "picture": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?83409",
+        "description": "Porro atque quibusdam est perspiciatis assumenda laborum sit. Dignissimos nostrum quia voluptatum voluptates sed accusamus assumenda. Suscipit sit provident eaque et omnis. Tempore perferendis ipsum voluptates. Rem sit ut inventore quia doloremque."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/speakers/47"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "13",
+      "attributes": {
+        "name": "ut"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/categories/13"
+      }
+    },
+    {
+      "type": "users",
+      "id": "11",
+      "attributes": {
+        "name": "Arturo Marvin",
+        "username": "occaecati",
+        "email": "zkeeling@rodriguez.com"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/users/11"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "data": {
+    "type": "speakers",
+    "id": "1",
+    "attributes": {
+      "name": "foo",
+      "picture": "bar",
+      "description": "baz"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/speakers/1"
+    },
+    "relationships": {
+      "fairEvent": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/speakers/1/relationships/fairEvent",
+          "related": "http://expo-hub.local/api/v1/speakers/1/fairEvent"
+        },
+        "data": {
+          "type": "fairEvents",
+          "id": "38"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairEvents",
+      "id": "38",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?29172",
+        "description": "Non repudiandae possimus quod ea eaque quos blanditiis quisquam. Sint voluptatem laboriosam reprehenderit neque quam qui nostrum eum. Earum temporibus ipsam rerum ut delectus. Ut quaerat pariatur dolore facilis omnis at occaecati deleniti. Quaerat in consectetur quis omnis nemo reprehenderit harum.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Quas est id recusandae aut cumque neque."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/38"
+      }
+    }
+  ]
+}

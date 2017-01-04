@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "type": "news",
+      "id": "1",
+      "attributes": {
+        "title": "Mr.",
+        "content": "Repellendus minima ad est omnis aut et consectetur. Vero veniam deleniti asperiores nihil id delectus. Ipsam minus delectus dolorem beatae doloremque iure. Nobis occaecati ipsa alias voluptate nemo officiis dolore accusantium.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?19166"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/1"
+      }
+    },
+    {
+      "type": "news",
+      "id": "2",
+      "attributes": {
+        "title": "Miss",
+        "content": "Perferendis ex esse doloremque distinctio dolorem et quia. Dignissimos veniam consectetur illo iusto iusto illum et voluptatem. Non et accusamus eos.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?37540"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/2"
+      }
+    },
+    {
+      "type": "news",
+      "id": "3",
+      "attributes": {
+        "title": "Mrs.",
+        "content": "Animi perferendis asperiores reprehenderit maxime libero quae quidem. Adipisci quia temporibus excepturi unde molestiae quia blanditiis ratione. Minima dicta ipsum cupiditate officiis qui esse ipsa. Harum rerum architecto odio veniam non corporis consequatur omnis. Qui magnam earum sint repellendus et voluptatem esse.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?74514"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/3"
+      }
+    },
+    {
+      "type": "news",
+      "id": "4",
+      "attributes": {
+        "title": "Miss",
+        "content": "Voluptate esse maiores iusto blanditiis sunt non rem. Beatae consequuntur et ipsam nam laborum magni. Vitae placeat iure rerum facere velit rerum eos. Dolores dolorem porro illum quasi a et similique. Voluptatem voluptatem suscipit qui hic doloremque ab tenetur.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?48510"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/4"
+      }
+    },
+    {
+      "type": "news",
+      "id": "5",
+      "attributes": {
+        "title": "Prof.",
+        "content": "Inventore labore similique quia quia. Consequuntur atque corporis aut suscipit est. Pariatur doloremque quia non voluptatem.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?71919"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/5"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 5
+    }
+  }
+}

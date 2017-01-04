@@ -1,0 +1,46 @@
+{
+  "data": {
+    "type": "stands",
+    "id": "1",
+    "attributes": {
+      "name": "foo",
+      "description": "bar",
+      "image": "baz"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/stands/1"
+    },
+    "relationships": {
+      "fair": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/stands/1/relationships/fair",
+          "related": "http://expo-hub.local/api/v1/stands/1/fair"
+        },
+        "data": {
+          "type": "fairs",
+          "id": "73"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "73",
+      "attributes": {
+        "name": "Innovative neutral synergy",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?22431",
+        "description": "Tenetur enim dolores accusamus non aut quia. Est dignissimos non et facilis quos assumenda ipsum. Dicta ducimus excepturi sunt ratione quia cumque. Recusandae voluptas porro doloribus omnis ipsum sed occaecati. Veritatis aut sunt esse quo sit.",
+        "website": "http://abernathy.org/",
+        "starting_date": "2016-11-28 19:56:41",
+        "ending_date": "2016-11-30 19:56:41",
+        "address": "voluptate",
+        "latitude": "-1.365824",
+        "longitude": "60.687207"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/73"
+      }
+    }
+  ]
+}

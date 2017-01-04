@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "type": "stands",
+      "id": "1",
+      "attributes": {
+        "name": "ipsa",
+        "description": "Neque molestiae id quo voluptatem. Odit quibusdam voluptatem sapiente molestiae quam rem. Ut dolorum et repellat ipsam ut. Qui ut dicta nihil quidem magni velit sit.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?88505"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/stands/1"
+      }
+    },
+    {
+      "type": "stands",
+      "id": "2",
+      "attributes": {
+        "name": "a",
+        "description": "Ea autem eius voluptas quasi laborum consectetur et eligendi. Iste rerum architecto labore est laudantium incidunt fugiat. Dolor quis ut aspernatur necessitatibus corporis quis cumque. Corporis quod pariatur fuga fugit iste nam.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?26643"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/stands/2"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 2
+    }
+  }
+}

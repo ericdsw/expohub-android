@@ -1,0 +1,62 @@
+<resources>
+
+    <!-- Base Application Theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Buttons -->
+    <style name="ButtonTheme" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Title Text -->
+    <style name="TitleTextStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Card Title Text -->
+    <style name="CardTitleTextStyle" parent="TitleTextStyle">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <!-- Tag Text -->
+    <style name="TagText" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <!-- SubTitle Text -->
+    <style name="SubTitleTextView" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorSubTitleText</item>
+    </style>
+
+    <!-- Main Body Text -->
+    <style name="BodyTextStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorBodyText</item>
+        <item name="android:lineSpacingMultiplier">1.4</item>
+    </style>
+
+    <!-- Main Card Body Text -->
+    <style name="CardBodyTextStyle" parent="BodyTextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <!-- List Option Text -->
+    <style name="OptionTextStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+</resources>

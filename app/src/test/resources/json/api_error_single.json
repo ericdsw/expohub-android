@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "title": "foo",
+      "message": "bar",
+      "status": 400
+    }
+  ]
+}

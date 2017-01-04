@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "type": "speakers",
+      "id": "1",
+      "attributes": {
+        "name": "Macy Lubowitz",
+        "picture": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?76472",
+        "description": "Nemo natus doloremque nemo consequatur. Alias mollitia nostrum incidunt quod aspernatur laudantium facere impedit. Assumenda commodi omnis omnis. Non enim voluptate autem rerum sint. Quis et sed voluptas aut et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/speakers/1"
+      }
+    },
+    {
+      "type": "speakers",
+      "id": "2",
+      "attributes": {
+        "name": "Dr. Dino Schultz III",
+        "picture": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?59148",
+        "description": "Odio dicta expedita eaque pariatur sequi. Nemo recusandae hic maiores eligendi expedita provident. Voluptatum id vitae rerum qui dignissimos nisi accusamus. Suscipit nihil sit et voluptas sed deleniti."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/speakers/2"
+      }
+    },
+    {
+      "type": "speakers",
+      "id": "3",
+      "attributes": {
+        "name": "Misty Reichel",
+        "picture": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?40576",
+        "description": "Aperiam sit magnam repudiandae. Quae provident commodi architecto magnam voluptas deserunt provident. Placeat porro maxime esse amet culpa facilis. Suscipit fugit incidunt distinctio cum. Sit amet ut sapiente eum."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/speakers/3"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 3
+    }
+  }
+}

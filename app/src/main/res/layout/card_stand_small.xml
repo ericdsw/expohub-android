@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/stand_image"
+        android:layout_width="@dimen/circle_image_size"
+        android:layout_height="@dimen/circle_image_size"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
+        android:background="@drawable/gray_circle"/>
+
+    <TextView
+        android:id="@+id/stand_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/CardTitleTextStyle"
+        android:textSize="15sp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/large_element_gap"
+        android:layout_marginStart="@dimen/large_element_gap"
+        tools:text="This is a random stand name"/>
+
+</LinearLayout>

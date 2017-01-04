@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "type": "sponsorRanks",
+      "id": "1",
+      "attributes": {
+        "name": "laboriosam"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsorRanks/1"
+      }
+    },
+    {
+      "type": "sponsorRanks",
+      "id": "2",
+      "attributes": {
+        "name": "dolores"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsorRanks/2"
+      }
+    },
+    {
+      "type": "sponsorRanks",
+      "id": "3",
+      "attributes": {
+        "name": "qui"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsorRanks/3"
+      }
+    },
+    {
+      "type": "sponsorRanks",
+      "id": "4",
+      "attributes": {
+        "name": "voluptates"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsorRanks/4"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 4
+    }
+  }
+}

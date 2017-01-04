@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "type": "sponsors",
+      "id": "1",
+      "attributes": {
+        "name": "Dr. Kaylee Bradtke",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?20131",
+        "slogan": "Aut cupiditate ea rerum molestiae nemo.",
+        "website": "http://gutkowski.com/quasi-non-similique-quo-neque-aut.html"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/1"
+      }
+    },
+    {
+      "type": "sponsors",
+      "id": "2",
+      "attributes": {
+        "name": "Lenny Champlin MD",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?19684",
+        "slogan": "Ea velit neque distinctio animi dolores unde.",
+        "website": "http://erdman.com/ea-quisquam-praesentium-consequatur-voluptas-ex-dolore-voluptas"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/2"
+      }
+    },
+    {
+      "type": "sponsors",
+      "id": "3",
+      "attributes": {
+        "name": "Harvey Heidenreich",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?75091",
+        "slogan": "Non molestias sed voluptatem.",
+        "website": "https://www.ferry.org/aut-officia-quo-quo-accusantium-quas-aut-iure"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/3"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 3
+    }
+  }
+}

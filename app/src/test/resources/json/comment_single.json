@@ -1,0 +1,60 @@
+{
+  "data": {
+    "type": "comments",
+    "id": "1",
+    "attributes": {
+      "text": "foo"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/comments/1"
+    },
+    "relationships": {
+      "user": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/comments/1/relationships/user",
+          "related": "http://expo-hub.local/api/v1/comments/1/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "20"
+        }
+      },
+      "ownerNews": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/comments/1/relationships/ownerNews",
+          "related": "http://expo-hub.local/api/v1/comments/1/ownerNews"
+        },
+        "data": {
+          "type": "news",
+          "id": "20"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "users",
+      "id": "20",
+      "attributes": {
+        "name": "Maci Hirthe",
+        "username": "eveniet",
+        "email": "xgutmann@yahoo.com"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/users/20"
+      }
+    },
+    {
+      "type": "news",
+      "id": "20",
+      "attributes": {
+        "title": "Mr.",
+        "content": "Error nesciunt architecto sed aut. Nostrum in eveniet quos molestiae placeat quia facilis voluptatum. Dolores neque itaque totam et voluptatem est.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?74550"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/20"
+      }
+    }
+  ]
+}

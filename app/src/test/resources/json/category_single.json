@@ -1,0 +1,88 @@
+{
+  "data": {
+    "type": "categories",
+    "id": "1",
+    "attributes": {
+      "name": "foo"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/categories/1"
+    },
+    "relationships": {
+      "fair": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/categories/1/relationships/fair",
+          "related": "http://expo-hub.local/api/v1/categories/1/fair"
+        },
+        "data": {
+          "type": "fairs",
+          "id": "4"
+        }
+      },
+      "fairEvents": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/categories/1/relationships/fairEvents",
+          "related": "http://expo-hub.local/api/v1/categories/1/fairEvents"
+        },
+        "data": [
+          {
+            "type": "fairEvents",
+            "id": "42"
+          },
+          {
+            "type": "fairEvents",
+            "id": "48"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "4",
+      "attributes": {
+        "name": "Robust well-modulated emulation",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?33395",
+        "description": "Sit eum doloremque sit et sed quia id. Blanditiis occaecati nostrum quidem minima eveniet.",
+        "website": "http://www.hamill.com/",
+        "starting_date": "2016-11-25 19:56:41",
+        "ending_date": "2016-12-01 19:56:41",
+        "address": "eaque",
+        "latitude": "-0.855723",
+        "longitude": "62.902662"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/4"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "42",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?12928",
+        "description": "Ut consequatur consectetur rerum non. Sit est est rerum quae. Omnis ducimus iusto ab. Neque et totam et dolores.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ut inventore earum nostrum deserunt libero."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/42"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "48",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?11346",
+        "description": "Esse alias est numquam placeat et aperiam. Soluta at asperiores nulla minima quod aut. Quo quos consectetur fuga voluptatem.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Eos eius molestias minus consectetur delectus."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/48"
+      }
+    }
+  ]
+}

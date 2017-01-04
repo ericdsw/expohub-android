@@ -1,0 +1,75 @@
+{
+  "data": {
+    "type": "sponsorRanks",
+    "id": "1",
+    "attributes": {
+      "name": "foo"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/sponsorRanks/1"
+    },
+    "relationships": {
+      "sponsors": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/sponsorRanks/1/relationships/sponsors",
+          "related": "http://expo-hub.local/api/v1/sponsorRanks/1/sponsors"
+        },
+        "data": [
+          {
+            "type": "sponsors",
+            "id": "1"
+          },
+          {
+            "type": "sponsors",
+            "id": "2"
+          },
+          {
+            "type": "sponsors",
+            "id": "9"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "sponsors",
+      "id": "1",
+      "attributes": {
+        "name": "Dr. Kaylee Bradtke",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?20131",
+        "slogan": "Aut cupiditate ea rerum molestiae nemo.",
+        "website": "http://gutkowski.com/quasi-non-similique-quo-neque-aut.html"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/1"
+      }
+    },
+    {
+      "type": "sponsors",
+      "id": "2",
+      "attributes": {
+        "name": "Lenny Champlin MD",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?19684",
+        "slogan": "Ea velit neque distinctio animi dolores unde.",
+        "website": "http://erdman.com/ea-quisquam-praesentium-consequatur-voluptas-ex-dolore-voluptas"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/2"
+      }
+    },
+    {
+      "type": "sponsors",
+      "id": "9",
+      "attributes": {
+        "name": "Mr. Jarvis Crooks",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?43410",
+        "slogan": "Placeat sit dolor officia et fugiat vitae nisi.",
+        "website": "http://prosacco.com/et-tempora-mollitia-nihil-unde-est"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/9"
+      }
+    }
+  ]
+}

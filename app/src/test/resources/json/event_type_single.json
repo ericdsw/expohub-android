@@ -1,0 +1,474 @@
+{
+  "data": {
+    "type": "eventTypes",
+    "id": "1",
+    "attributes": {
+      "name": "aut"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/eventTypes/1"
+    },
+    "relationships": {
+      "events": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/eventTypes/1/relationships/events",
+          "related": "http://expo-hub.local/api/v1/eventTypes/1/events"
+        },
+        "data": [
+          {
+            "type": "fairEvents",
+            "id": "3"
+          },
+          {
+            "type": "fairEvents",
+            "id": "4"
+          },
+          {
+            "type": "fairEvents",
+            "id": "10"
+          },
+          {
+            "type": "fairEvents",
+            "id": "11"
+          },
+          {
+            "type": "fairEvents",
+            "id": "14"
+          },
+          {
+            "type": "fairEvents",
+            "id": "15"
+          },
+          {
+            "type": "fairEvents",
+            "id": "17"
+          },
+          {
+            "type": "fairEvents",
+            "id": "20"
+          },
+          {
+            "type": "fairEvents",
+            "id": "21"
+          },
+          {
+            "type": "fairEvents",
+            "id": "23"
+          },
+          {
+            "type": "fairEvents",
+            "id": "25"
+          },
+          {
+            "type": "fairEvents",
+            "id": "26"
+          },
+          {
+            "type": "fairEvents",
+            "id": "30"
+          },
+          {
+            "type": "fairEvents",
+            "id": "32"
+          },
+          {
+            "type": "fairEvents",
+            "id": "33"
+          },
+          {
+            "type": "fairEvents",
+            "id": "35"
+          },
+          {
+            "type": "fairEvents",
+            "id": "40"
+          },
+          {
+            "type": "fairEvents",
+            "id": "41"
+          },
+          {
+            "type": "fairEvents",
+            "id": "42"
+          },
+          {
+            "type": "fairEvents",
+            "id": "45"
+          },
+          {
+            "type": "fairEvents",
+            "id": "46"
+          },
+          {
+            "type": "fairEvents",
+            "id": "47"
+          },
+          {
+            "type": "fairEvents",
+            "id": "48"
+          },
+          {
+            "type": "fairEvents",
+            "id": "49"
+          },
+          {
+            "type": "fairEvents",
+            "id": "50"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairEvents",
+      "id": "3",
+      "attributes": {
+        "title": "Mrs.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?59501",
+        "description": "Adipisci suscipit aut omnis iste. Velit quo magnam molestiae expedita maiores quia. Alias nam suscipit consectetur dolorum.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Autem quo laborum ipsa."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/3"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "4",
+      "attributes": {
+        "title": "Miss",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?79000",
+        "description": "Vel ut accusamus nisi sint beatae qui natus. Perferendis quo blanditiis sunt repudiandae dolor architecto. Magni nihil quos et.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Reiciendis itaque a nam nesciunt esse reprehenderit."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/4"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "10",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?13298",
+        "description": "Et quaerat asperiores corrupti sapiente necessitatibus rerum. Nemo pariatur aliquam suscipit quis sit.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Id debitis ab rerum veniam."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/10"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "11",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?55454",
+        "description": "Qui ex expedita illo deserunt rerum laborum cum. Quo assumenda dolorem et quos unde enim pariatur. Dolore repellendus quasi fugit. Cupiditate doloremque aperiam eos quidem.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Tempore dignissimos non minus perspiciatis aliquam veniam sed."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/11"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "14",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?74455",
+        "description": "Omnis excepturi quia aut ut velit et pariatur. Ut aut sunt et omnis. Natus temporibus voluptate placeat. Ratione quas necessitatibus harum nulla cupiditate.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Temporibus nostrum aspernatur sed ad amet et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/14"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "15",
+      "attributes": {
+        "title": "Ms.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?68523",
+        "description": "Minima qui quasi quia odit. Aut consequatur maxime repellendus laboriosam. Aut veritatis pariatur a sint expedita accusantium recusandae. Veritatis voluptatibus itaque doloremque ducimus dolor recusandae possimus eos.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ducimus enim perferendis possimus sunt rerum et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/15"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "17",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?91388",
+        "description": "Dicta consequatur quo numquam corrupti. Qui ullam dolores voluptatem repudiandae.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Aut cumque qui rerum."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/17"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "20",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?98709",
+        "description": "Architecto saepe quos sit consequuntur sit. Quia rerum possimus commodi. Reprehenderit doloremque ut repudiandae ut quos aut deserunt.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Itaque excepturi possimus nobis est nihil cumque nostrum impedit."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/20"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "21",
+      "attributes": {
+        "title": "Ms.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?12638",
+        "description": "Ea dicta quis in laborum totam sint totam. Doloremque non ut consectetur ut libero. Dolores error rerum ut rerum ullam quam ut.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Est ullam qui eveniet et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/21"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "23",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?85261",
+        "description": "Iure veritatis incidunt ab consequatur explicabo amet eum. Dolores atque velit optio dolores vero. Saepe nihil reprehenderit consequuntur qui voluptas non.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ut deleniti repudiandae architecto est aut corporis expedita."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/23"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "25",
+      "attributes": {
+        "title": "Ms.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?54202",
+        "description": "Voluptas est blanditiis quia. Praesentium dolorem aut et fuga aut ratione. Nostrum omnis nostrum blanditiis quo harum. Perspiciatis saepe expedita veniam qui rerum.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Distinctio quas necessitatibus consequatur quia perspiciatis velit."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/25"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "26",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?33742",
+        "description": "Laborum rerum ea perspiciatis voluptatem molestiae qui voluptatem dignissimos. Qui non fugit natus rerum nesciunt nemo perspiciatis.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Rerum sed iste harum ut maxime iusto."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/26"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "30",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?23726",
+        "description": "Et nostrum officia corrupti voluptatibus occaecati rem. Ipsum est quae porro. Cupiditate numquam eum aut quo quia consequatur.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Repudiandae deserunt atque ducimus omnis nulla."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/30"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "32",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?46072",
+        "description": "Voluptas eos iusto eaque aut. Unde maiores harum alias inventore quia qui. Ut optio doloribus inventore voluptates.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Excepturi accusamus est sit voluptatem et repellat nemo."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/32"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "33",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?23577",
+        "description": "Quia dolorem autem enim necessitatibus esse. Sed cupiditate quod ut molestiae ducimus eum ad.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Iure mollitia ut tenetur temporibus."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/33"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "35",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?31811",
+        "description": "Magnam soluta et qui eos consequatur quaerat. Aspernatur architecto illo laborum explicabo ea voluptatem beatae. Atque distinctio aut optio ut at ipsum.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Qui enim explicabo vero id quae tempore sint est."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/35"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "40",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?61471",
+        "description": "Cumque esse voluptatem inventore cumque. Voluptas sint quaerat illo ipsa rerum rerum fuga. Sed eligendi itaque illum voluptate. Voluptatem impedit tempore vel aliquid aut rerum repudiandae.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Hic doloremque quam qui dolore consectetur enim et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/40"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "41",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?45098",
+        "description": "Voluptatem enim ut eos rerum illum aut. Et quod quia cupiditate sunt pariatur. Sit praesentium distinctio sit quia quos qui sed.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Amet voluptate est magni."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/41"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "42",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?12928",
+        "description": "Ut consequatur consectetur rerum non. Sit est est rerum quae. Omnis ducimus iusto ab. Neque et totam et dolores.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ut inventore earum nostrum deserunt libero."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/42"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "45",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?23178",
+        "description": "Deserunt repellendus mollitia ipsa animi omnis deserunt. Facere distinctio aspernatur vel sed dolorum molestias. Fuga temporibus laboriosam natus labore. Iste et pariatur atque voluptatum qui natus.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ipsum qui vel fuga commodi non doloremque magnam."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/45"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "46",
+      "attributes": {
+        "title": "Prof.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?69760",
+        "description": "Qui numquam voluptas assumenda aut repudiandae. Odio ut et voluptatem quia consequatur blanditiis doloremque. Aut quas occaecati sint qui vero.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Consequuntur consequuntur corporis sed et enim."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/46"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "47",
+      "attributes": {
+        "title": "Mrs.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?51190",
+        "description": "Iusto ullam qui voluptate minima repellendus repellendus. Quis repudiandae consequatur eum. Eligendi impedit recusandae voluptatem laboriosam cupiditate tenetur. Sunt sed quisquam quidem qui voluptates.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ut possimus consequatur sed dolor tempora."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/47"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "48",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?11346",
+        "description": "Esse alias est numquam placeat et aperiam. Soluta at asperiores nulla minima quod aut. Quo quos consectetur fuga voluptatem.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Eos eius molestias minus consectetur delectus."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/48"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "49",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?42150",
+        "description": "Officiis numquam fugiat aut minima magnam quas omnis. Repellat in velit iste quod autem doloremque. Sint consequatur quaerat porro repudiandae est. Consectetur rerum eos suscipit dolores molestias dignissimos odit.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Ut inventore dolorem et aliquid voluptate sapiente sed et."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/49"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "50",
+      "attributes": {
+        "title": "Mr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?24598",
+        "description": "Aut iste esse in qui soluta et. Et non aut dolore quidem et voluptatem possimus. Ipsum exercitationem quod voluptas odit et aperiam est. Explicabo eum sint consequatur sunt laudantium dicta.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Quaerat inventore hic cupiditate incidunt."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/50"
+      }
+    }
+  ]
+}

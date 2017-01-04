@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "type": "maps",
+      "id": "1",
+      "attributes": {
+        "name": "reprehenderit",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?97388"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/maps/1"
+      }
+    },
+    {
+      "type": "maps",
+      "id": "2",
+      "attributes": {
+        "name": "ullam",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?48086"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/maps/2"
+      }
+    },
+    {
+      "type": "maps",
+      "id": "3",
+      "attributes": {
+        "name": "minima",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?26605"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/maps/3"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 3
+    }
+  }
+}

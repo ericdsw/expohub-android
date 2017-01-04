@@ -1,0 +1,311 @@
+{
+  "data": {
+    "type": "fairs",
+    "id": "1",
+    "attributes": {
+      "name": "foo",
+      "image": "bar",
+      "description": "baz",
+      "website": "qux",
+      "starting_date": "fooBar",
+      "ending_date": "barFoo",
+      "address": "bazBaz",
+      "latitude": "9.0",
+      "longitude": "10.0"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/fairs/1"
+    },
+    "relationships": {
+      "user": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/user",
+          "related": "http://expo-hub.local/api/v1/fairs/1/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "11"
+        }
+      },
+      "bannedUsers": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/bannedUsers",
+          "related": "http://expo-hub.local/api/v1/fairs/1/bannedUsers"
+        },
+        "data": [
+          {
+            "type": "users",
+            "id": "11"
+          }
+        ]
+      },
+      "helperUsers": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/helperUsers",
+          "related": "http://expo-hub.local/api/v1/fairs/1/helperUsers"
+        },
+        "data": [
+          {
+            "type": "users",
+            "id": "11"
+          }
+        ]
+      },
+      "sponsors": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/sponsors",
+          "related": "http://expo-hub.local/api/v1/fairs/1/sponsors"
+        },
+        "data": [
+          {
+            "type": "sponsors",
+            "id": "1"
+          },
+          {
+            "type": "sponsors",
+            "id": "2"
+          }
+        ]
+      },
+      "maps": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/maps",
+          "related": "http://expo-hub.local/api/v1/fairs/1/maps"
+        },
+        "data": [
+          {
+            "type": "maps",
+            "id": "1"
+          },
+          {
+            "type": "maps",
+            "id": "2"
+          },
+          {
+            "type": "maps",
+            "id": "3"
+          }
+        ]
+      },
+      "categories": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/categories",
+          "related": "http://expo-hub.local/api/v1/fairs/1/categories"
+        },
+        "data": [
+          {
+            "type": "categories",
+            "id": "1"
+          }
+        ]
+      },
+      "fairEvents": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/fairEvents",
+          "related": "http://expo-hub.local/api/v1/fairs/1/fairEvents"
+        },
+        "data": [
+          {
+            "type": "fairEvents",
+            "id": "1"
+          },
+          {
+            "type": "fairEvents",
+            "id": "2"
+          }
+        ]
+      },
+      "news": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/news",
+          "related": "http://expo-hub.local/api/v1/fairs/1/news"
+        },
+        "data": [
+          {
+            "type": "news",
+            "id": "24"
+          },
+          {
+            "type": "news",
+            "id": "52"
+          }
+        ]
+      },
+      "stands": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/fairs/1/relationships/stands",
+          "related": "http://expo-hub.local/api/v1/fairs/1/stands"
+        },
+        "data": [
+          {
+            "type": "stands",
+            "id": "60"
+          },
+          {
+            "type": "stands",
+            "id": "155"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "users",
+      "id": "11",
+      "attributes": {
+        "name": "Arturo Marvin",
+        "username": "occaecati",
+        "email": "zkeeling@rodriguez.com"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/users/11"
+      }
+    },
+    {
+      "type": "news",
+      "id": "24",
+      "attributes": {
+        "title": "Ms.",
+        "content": "Aut dicta consequatur nulla. Iste ea harum voluptatem necessitatibus corporis eos. Itaque molestiae quidem sed sunt ratione repellat.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?47825"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/24"
+      }
+    },
+    {
+      "type": "news",
+      "id": "52",
+      "attributes": {
+        "title": "Dr.",
+        "content": "Perspiciatis optio ut ipsum architecto soluta accusamus. Asperiores est sed ut reiciendis officiis. Consequatur quis atque ea asperiores nemo commodi iusto. Placeat saepe id tempora debitis. Quod velit amet expedita voluptate perspiciatis ratione aut.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?46421"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/news/52"
+      }
+    },
+    {
+      "type": "stands",
+      "id": "60",
+      "attributes": {
+        "name": "amet",
+        "description": "Ut nihil nam consequatur deserunt tempore ea. Doloribus tempora explicabo necessitatibus aliquam illum iusto. Minus veritatis error laborum et.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?90393"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/stands/60"
+      }
+    },
+    {
+      "type": "stands",
+      "id": "155",
+      "attributes": {
+        "name": "tenetur",
+        "description": "Fugiat perferendis natus ipsum dolores error. Eos ea non illo est quo. Earum et voluptas sit. Repudiandae soluta omnis sit culpa nisi dolorum.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?99698"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/stands/155"
+      }
+    },
+    {
+      "type": "sponsors",
+      "id": "1",
+      "attributes": {
+        "name": "Dr. Kaylee Bradtke",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?20131",
+        "slogan": "Aut cupiditate ea rerum molestiae nemo.",
+        "website": "http://gutkowski.com/quasi-non-similique-quo-neque-aut.html"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/1"
+      }
+    },
+    {
+      "type": "sponsors",
+      "id": "2",
+      "attributes": {
+        "name": "Lenny Champlin MD",
+        "logo": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?19684",
+        "slogan": "Ea velit neque distinctio animi dolores unde.",
+        "website": "http://erdman.com/ea-quisquam-praesentium-consequatur-voluptas-ex-dolore-voluptas"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/sponsors/2"
+      }
+    },
+    {
+      "type": "maps",
+      "id": "1",
+      "attributes": {
+        "name": "reprehenderit",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?97388"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/maps/1"
+      }
+    },
+    {
+      "type": "maps",
+      "id": "2",
+      "attributes": {
+        "name": "ullam",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?48086"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/maps/2"
+      }
+    },
+    {
+      "type": "maps",
+      "id": "3",
+      "attributes": {
+        "name": "minima",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?26605"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/maps/3"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "1",
+      "attributes": {
+        "name": "nesciunt"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/categories/1"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "1",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?69036",
+        "description": "Sit expedita qui similique et facilis. Corrupti laborum illum inventore temporibus aspernatur voluptatem. Suscipit id nihil aliquam necessitatibus provident.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Quis at corrupti ipsam occaecati nobis ut culpa."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/1"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "2",
+      "attributes": {
+        "title": "Ms.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?63754",
+        "description": "Qui error sed natus aspernatur nemo ut. Error animi consequatur sequi dolores vel omnis. Assumenda molestias veritatis et dolorem et ut eos. Pariatur iure aperiam omnis architecto aperiam suscipit. Aut quia sint consequuntur eos commodi dolores.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Non eveniet aut in."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/2"
+      }
+    }
+  ]
+}

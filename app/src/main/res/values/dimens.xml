@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- General -->
+    <dimen name="default_element_gap">8dp</dimen>
+    <dimen name="large_element_gap">12dp</dimen>
+    <dimen name="circle_image_size">48dp</dimen>
+
+    <!-- Card Dimens -->
+    <dimen name="card_detail_top_margin">22dp</dimen>
+    <dimen name="card_detail_left_margin">16dp</dimen>
+    <dimen name="card_detail_right_margin">16dp</dimen>
+
+</resources>

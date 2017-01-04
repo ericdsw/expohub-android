@@ -1,0 +1,45 @@
+{
+  "data": {
+    "type": "maps",
+    "id": "1",
+    "attributes": {
+      "name": "foo",
+      "image": "bar"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/maps/1"
+    },
+    "relationships": {
+      "fair": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/maps/1/relationships/fair",
+          "related": "http://expo-hub.local/api/v1/maps/1/fair"
+        },
+        "data": {
+          "type": "fairs",
+          "id": "100"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "100",
+      "attributes": {
+        "name": "Triple-buffered empowering function",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?29302",
+        "description": "Saepe magni ut modi tempora repellat ut rerum. Sapiente et id eveniet consequatur quibusdam non vel. Non quis facilis consequuntur illum necessitatibus est et. Perferendis laudantium a sint excepturi assumenda quia.",
+        "website": "https://www.larkin.com/perspiciatis-dolor-id-tenetur-praesentium-consequatur",
+        "starting_date": "2016-11-28 19:56:41",
+        "ending_date": "2016-12-02 19:56:41",
+        "address": "aliquam",
+        "latitude": "14.039919",
+        "longitude": "169.291266"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/100"
+      }
+    }
+  ]
+}

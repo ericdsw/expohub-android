@@ -1,0 +1,82 @@
+{
+  "data": {
+    "type": "news",
+    "id": "1",
+    "attributes": {
+      "title": "foo",
+      "content": "bar",
+      "image": "baz"
+    },
+    "links": {
+      "self": "http://expo-hub.local/api/v1/news/1"
+    },
+    "relationships": {
+      "fair": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/news/1/relationships/fair",
+          "related": "http://expo-hub.local/api/v1/news/1/fair"
+        },
+        "data": {
+          "type": "fairs",
+          "id": "97"
+        }
+      },
+      "comments": {
+        "links": {
+          "self": "http://expo-hub.local/api/v1/news/1/relationships/comments",
+          "related": "http://expo-hub.local/api/v1/news/1/comments"
+        },
+        "data": [
+          {
+            "type": "comments",
+            "id": "86"
+          },
+          {
+            "type": "comments",
+            "id": "194"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "fairs",
+      "id": "97",
+      "attributes": {
+        "name": "Cross-group systemic website",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?43076",
+        "description": "Excepturi tempore et et ut similique est quo. Minima omnis ea laborum est qui rerum qui.",
+        "website": "http://crona.com/voluptatem-repellat-hic-explicabo-tempore-eos-animi-totam-nobis",
+        "starting_date": "2016-11-25 19:56:41",
+        "ending_date": "2016-11-30 19:56:41",
+        "address": "vero",
+        "latitude": "78.937869",
+        "longitude": "-130.053026"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairs/97"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "86",
+      "attributes": {
+        "text": "Consequuntur rerum facilis quidem ipsa consequuntur et. Quas ducimus praesentium ut labore delectus ullam asperiores. Quas fugit architecto consequatur placeat et voluptas veniam."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/86"
+      }
+    },
+    {
+      "type": "comments",
+      "id": "194",
+      "attributes": {
+        "text": "Laborum quaerat et placeat ut est neque amet magni. Deserunt expedita quia velit praesentium laboriosam accusantium. Recusandae vel officia ex dignissimos doloremque inventore. Omnis ducimus id quos non odio fuga adipisci."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/comments/194"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Application Theme -->
+    <string name="app_name">ExpoHub</string>
+
+    <!-- Titles -->
+    <string name="title_fairs_fragment">Fairs</string>
+    <string name="title_my_events_fragment">My Events</string>
+    <string name="title_drawer_open">Opened</string>
+    <string name="title_drawer_closed">Closed</string>
+
+    <!-- Actions -->
+    <string name="action_retry">Retry</string>
+    <string name="action_maps">Maps</string>
+    <string name="action_login">Login</string>
+
+    <!-- Labels -->
+    <string name="label_dates">%1$s - %2$s</string>
+    <string name="label_sponsors">Sponsors</string>
+    <string name="label_event_type">Type: %1$s</string>
+    <string name="label_events">Events</string>
+    <string name="label_news">News</string>
+    <string name="label_stands">Stands</string>
+
+    <!-- Messages -->
+    <string name="login_call_to_action">Nothing to see here\n Login to view your saved events</string>
+
+    <!-- Errors -->
+    <string name="generic_network_error">Network Error</string>
+    <string name="empty_fairs_error">No fairs found</string>
+    <string name="empty_events_error">No events found</string>
+    <string name="empty_news_error">No news found</string>
+    <string name="empty_stands_error">No stands found</string>
+
+    <!-- Below this line there should only be meta-data defined -->
+    <!-- Transition Names -->
+    <string name="transition_fair_card_image">transition:fair_card_image</string>
+    <string name="transition_fair_card_content">transition:fair_card_content</string>
+
+</resources>

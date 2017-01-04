@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "type": "fairEvents",
+      "id": "1",
+      "attributes": {
+        "title": "Dr.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?69036",
+        "description": "Sit expedita qui similique et facilis. Corrupti laborum illum inventore temporibus aspernatur voluptatem. Suscipit id nihil aliquam necessitatibus provident.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Quis at corrupti ipsam occaecati nobis ut culpa."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/1"
+      }
+    },
+    {
+      "type": "fairEvents",
+      "id": "2",
+      "attributes": {
+        "title": "Ms.",
+        "image": "https://s3.amazonaws.com/expo-hub/http://lorempixel.com/640/480/?63754",
+        "description": "Qui error sed natus aspernatur nemo ut. Error animi consequatur sequi dolores vel omnis. Assumenda molestias veritatis et dolorem et ut eos. Pariatur iure aperiam omnis architecto aperiam suscipit. Aut quia sint consequuntur eos commodi dolores.",
+        "date": "2016-11-29 19:56:42",
+        "location": "Non eveniet aut in."
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/fairEvents/2"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 2
+    }
+  }
+}

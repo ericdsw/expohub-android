@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "type": "users",
+      "id": "1",
+      "attributes": {
+        "name": "Prof. Alison Romaguera II",
+        "username": "dolor",
+        "email": "wschowalter@shanahan.info"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/users/1"
+      }
+    },
+    {
+      "type": "users",
+      "id": "2",
+      "attributes": {
+        "name": "Dr. Lydia Rowe I",
+        "username": "ratione",
+        "email": "mallie48@yahoo.com"
+      },
+      "links": {
+        "self": "http://expo-hub.local/api/v1/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "cursor": {
+      "current": 0,
+      "prev": null,
+      "next": null,
+      "count": 2
+    }
+  }
+}
