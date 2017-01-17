@@ -105,7 +105,9 @@ public class FairListAdapter extends RecyclerView.Adapter<FairListAdapter.FairVi
             fairShortDescription.setText(fair.getShortDescription());
 
             fairDates.setText(String.format(context.getString(R.string.label_dates), fair.parsedStartingDate(), fair.parsedEndingDate()));
-            imageDownloader.setMaxImageSize(500).setImage(fair.getImage(), fairImage);
+
+            imageDownloader.setMaxImageSize(500)
+                    .setImage(fair.getImage(), fairImage);
         }
 
         @OnClick(R.id.card_view)

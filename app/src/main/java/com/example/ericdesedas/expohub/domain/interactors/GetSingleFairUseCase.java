@@ -18,7 +18,8 @@ public class GetSingleFairUseCase extends ApiUseCase<Fair> {
 
     /**
      * Fetches a single fair
-     * @param id
+     *
+     * @param id a {@link String} instance containing the desired fair id
      */
     public void executeRequest(String id) {
         apiClient.getFair(id, apiParameters).enqueue(callback);

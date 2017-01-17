@@ -36,18 +36,15 @@ public class EventsByFairActivity extends BaseActivity implements
     @BindView(R.id.network_progress)        ProgressBar networkProgressBar;
     @BindView(R.id.error_text)              TextView errorText;
 
-    String fairId;
-    String fairName;
-    EventListAdapter adapter;
+    @Inject RecyclerAdapterFactory recyclerAdapterFactory;
+    @Inject EventsByFairPresenter presenter;
 
-    @Inject
-    RecyclerAdapterFactory recyclerAdapterFactory;
-
-    @Inject
-    EventsByFairPresenter presenter;
+    private String fairId;
+    private String fairName;
+    private EventListAdapter adapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fair_events);

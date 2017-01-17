@@ -15,13 +15,17 @@ import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.helpers.FileReaderHelper;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import com.squareup.moshi.Types;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 
+import moe.banana.jsonapi2.Document;
 import moe.banana.jsonapi2.ResourceAdapterFactory;
+import moe.banana.jsonapi2.ResourceIdentifier;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -49,7 +53,6 @@ public class JsonApiConverterTest {
                 .add(SponsorRank.class)
                 .add(Stand.class)
                 .add(User.class)
-                .strict()
                 .build();
 
         moshi = new Moshi.Builder()
@@ -64,12 +67,12 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/category_single.json");
 
-        Category category = moshi.adapter(Category.class).fromJson(jsonString);
+        Category category = parseToDocument(jsonString, Category.class).get();
 
         assertThat("Checking that category id is correct", category.getId(), is("1"));
         assertThat("Checking that category name is correct", category.name, is("foo"));
-        assertThat("Checking that category's fair parsed correctly", category.fair.get(), is(not(nullValue())));
-        assertThat("Checking that category contains correct amount of fairEvents", category.fairEvents.getAll().length, is(2));
+        assertThat("Checking that category's fair parsed correctly", category.getFair(), is(not(nullValue())));
+        assertThat("Checking that category contains correct amount of fairEvents", category.getFairEvents().size(), is(2));
     }
 
     @Test
@@ -77,9 +80,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/category_list.json");
 
-        Category[] categories = moshi.adapter(Category[].class).fromJson(jsonString);
+        Document<Category> categoryDocument = parseToDocument(jsonString, Category.class);
 
-        assertThat("Checking that category list has the correct size", categories.length, is(2));
+        assertThat("Checking that category list has the correct size", categoryDocument.size(), is(2));
     }
 
     @Test
@@ -87,12 +90,12 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/comment_single.json");
 
-        Comment comment = moshi.adapter(Comment.class).fromJson(jsonString);
+        Comment comment = parseToDocument(jsonString, Comment.class).get();
 
         assertThat("Checking that comment id is correct", comment.getId(), is("1"));
         assertThat("Checking that comment text is correct", comment.text, is("foo"));
-        assertThat("Checking that comment's user parsed correctly", comment.user.get(), is(not(nullValue())));
-        assertThat("Checking that comment's ownerNews parsed correctly", comment.ownerNews.get(), is(not(nullValue())));
+        assertThat("Checking that comment's user parsed correctly", comment.getUser(), is(not(nullValue())));
+        assertThat("Checking that comment's ownerNews parsed correctly", comment.getOwnerNews(), is(not(nullValue())));
     }
 
     @Test
@@ -100,9 +103,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/comment_list.json");
 
-        Comment[] comments = moshi.adapter(Comment[].class).fromJson(jsonString);
+        Document<Comment> commentsDocument = parseToDocument(jsonString, Comment.class);
 
-        assertThat("Checking that comment list has the correct size", comments.length, is(3));
+        assertThat("Checking that comment list has the correct size", commentsDocument.size(), is(3));
     }
 
     @Test
@@ -110,27 +113,29 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/event_type_single.json");
 
-        EventType eventType = moshi.adapter(EventType.class).fromJson(jsonString);
+        EventType eventType = parseToDocument(jsonString, EventType.class).get();
 
         assertThat("Checking that event type id is correct", eventType.getId(), is("1"));
         assertThat("Checking that event type name is correct", eventType.name, is("aut"));
-        assertThat("Checking that event type contains the correct amount of fairEvents", eventType.fairEvents.getAll().length, is(25));
+        assertThat("Checking that event type contains the correct amount of fairEvents", eventType.getFairEvent().size(), is(25));
     }
 
     @Test
     public void it_parses_event_types_json_to_event_type_array() throws IOException {
 
         String jsonString = fileReader.readFile("json/event_type_list.json");
-        EventType[] eventTypes = moshi.adapter(EventType[].class).fromJson(jsonString);
 
-        assertThat("Checking that event type array has the correct size", eventTypes.length, is(2));
+        Document<EventType> eventTypesDocument = parseToDocument(jsonString, EventType.class);
+
+        assertThat("Checking that event type array has the correct size", eventTypesDocument.size(), is(2));
     }
 
     @Test
     public void it_parses_fair_json_to_single_fair() throws IOException {
 
         String jsonString = fileReader.readFile("json/fair_single.json");
-        Fair fair = moshi.adapter(Fair.class).fromJson(jsonString);
+
+        Fair fair = parseToDocument(jsonString, Fair.class).get();
 
         assertThat("Checking that fair id is correct", fair.getId(), is("1"));
         assertThat("Checking that fair name is correct", fair.name, is("foo"));
@@ -142,31 +147,33 @@ public class JsonApiConverterTest {
         assertThat("Checking that fair address is correct", fair.address, is("bazBaz"));
         assertThat("Checking that fair latitude is correct", fair.latitude, is(9.0));
         assertThat("Checking that fair longitude is correct", fair.longitude, is(10.0));
-        assertThat("Checking that fair's user parsed correctly", fair.user.get(), is(not(nullValue())));
-        assertThat("Checking that fair contains the correct amount of helperUsers", fair.helperUsers.getAll().length, is(1));
-        assertThat("Checking that fair contains the correct amount of bannedUsers", fair.bannedUsers.getAll().length, is(1));
-        assertThat("Checking that fair contains the correct amount of sponsors", fair.sponsors.getAll().length, is(2));
-        assertThat("Checking that fair contains the correct amount of maps", fair.maps.getAll().length, is(3));
-        assertThat("Checking that fair contains the correct amount of categories", fair.categories.getAll().length, is(1));
-        assertThat("Checking that fair contains the correct amount of fairEvents", fair.fairEvents.getAll().length, is(2));
-        assertThat("Checking that fair contains the correct amount of news", fair.news.getAll().length, is(2));
-        assertThat("Checking that fair contains the correct amount of stands", fair.stands.getAll().length, is(2));
+        assertThat("Checking that fair's user parsed correctly", fair.getUser(), is(not(nullValue())));
+        assertThat("Checking that fair contains the correct amount of helperUsers", fair.getHelperUsers().size(), is(1));
+        assertThat("Checking that fair contains the correct amount of bannedUsers", fair.getBannedUsers().size(), is(1));
+        assertThat("Checking that fair contains the correct amount of sponsors", fair.getSponsors().size(), is(2));
+        assertThat("Checking that fair contains the correct amount of maps", fair.getMaps().size(), is(3));
+        assertThat("Checking that fair contains the correct amount of categories", fair.getCategories().size(), is(1));
+        assertThat("Checking that fair contains the correct amount of fairEvents", fair.getFairEvents().size(), is(2));
+        assertThat("Checking that fair contains the correct amount of news", fair.getNewses().size(), is(2));
+        assertThat("Checking that fair contains the correct amount of stands", fair.getStands().size(), is(2));
     }
 
     @Test
     public void it_parses_fairs_json_to_fair_array() throws IOException {
 
         String jsonString = fileReader.readFile("json/fair_list.json");
-        Fair[] fairs = moshi.adapter(Fair[].class).fromJson(jsonString);
 
-        assertThat("Checking that fair array has the correct size", fairs.length, is(4));
+        Document<Fair> fairsDocument = parseToDocument(jsonString, Fair.class);
+
+        assertThat("Checking that fair array has the correct size", fairsDocument.size(), is(4));
     }
 
     @Test
     public void it_parses_fair_event_json_to_single_fair_event() throws IOException {
 
         String jsonString = fileReader.readFile("json/fair_event_single.json");
-        FairEvent fairEvent = moshi.adapter(FairEvent.class).fromJson(jsonString);
+
+        FairEvent fairEvent = parseToDocument(jsonString, FairEvent.class).get();
 
         assertThat("Checking that fairEvent id is correct", fairEvent.getId(), is("1"));
         assertThat("Checking that fairEvent title is correct", fairEvent.title, is("foo"));
@@ -174,11 +181,11 @@ public class JsonApiConverterTest {
         assertThat("Checking that fairEvent description is correct", fairEvent.description, is("baz"));
         assertThat("Checking that fairEvent date is correct", fairEvent.date, is("qux"));
         assertThat("Checking that fairEvent location is correct", fairEvent.location, is("fooBar"));
-        assertThat("Checking that fairEvent's fair parsed correctly", fairEvent.fair.get(), is(not(nullValue())));
-        assertThat("Checking that fairEvent's eventType parsed correctly", fairEvent.eventType, is(not(nullValue())));
-        assertThat("Checking that fairEvent contains correct amount of speakers", fairEvent.speakers.getAll().length, is(2));
-        assertThat("Checking that fairEvent contains correct amount of attending users", fairEvent.attendingUsers.getAll().length, is(1));
-        assertThat("Checking that fairEvent contains correct amount of categories", fairEvent.categories.getAll().length, is(1));
+        assertThat("Checking that fairEvent's fair parsed correctly", fairEvent.getFair(), is(not(nullValue())));
+        assertThat("Checking that fairEvent's eventType parsed correctly", fairEvent.getEventType(), is(not(nullValue())));
+        assertThat("Checking that fairEvent contains correct amount of speakers", fairEvent.getSpeakers().size(), is(2));
+        assertThat("Checking that fairEvent contains correct amount of attending users", fairEvent.getAttendingUsers().size(), is(1));
+        assertThat("Checking that fairEvent contains correct amount of categories", fairEvent.getCategories().size(), is(1));
     }
 
     @Test
@@ -186,9 +193,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/fair_event_list.json");
 
-        FairEvent[] fairEvents = moshi.adapter(FairEvent[].class).fromJson(jsonString);
+        Document<FairEvent> fairEventsDocument = parseToDocument(jsonString, FairEvent.class);
 
-        assertThat("Checking that fairEvent array has the correct size", fairEvents.length, is(2));
+        assertThat("Checking that fairEvent array has the correct size", fairEventsDocument.size(), is(2));
     }
 
     @Test
@@ -196,7 +203,7 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/map_single.json");
 
-        Map map = moshi.adapter(Map.class).fromJson(jsonString);
+        Map map = parseToDocument(jsonString, Map.class).get();
 
         assertThat("Checking that map id is correct", map.getId(), is("1"));
         assertThat("Checking that map name is correct", map.name, is("foo"));
@@ -209,9 +216,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/map_list.json");
 
-        Map[] maps = moshi.adapter(Map[].class).fromJson(jsonString);
+        Document<Map> mapsDocument = parseToDocument(jsonString, Map.class);
 
-        assertThat("Checking that map array has the correct size", maps.length, is(3));
+        assertThat("Checking that map array has the correct size", mapsDocument.size(), is(3));
     }
 
     @Test
@@ -219,14 +226,14 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/news_single.json");
 
-        News news = moshi.adapter(News.class).fromJson(jsonString);
+        News news = parseToDocument(jsonString, News.class).get();
 
         assertThat("Checking that news id is correct", news.getId(), is("1"));
         assertThat("Checking that news title is correct", news.title, is("foo"));
         assertThat("Checking that news content is correct", news.content, is("bar"));
         assertThat("Checking that news image is correct", news.image, is("baz"));
         assertThat("Checking that news' fair parsed correctly", news.fair.get(), is(not(nullValue())));
-        assertThat("Checking that news contains correct amount of comments", news.comments.getAll().length, is(2));
+        assertThat("Checking that news contains correct amount of comments", news.getComments().size(), is(2));
     }
 
     @Test
@@ -234,9 +241,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/news_list.json");
 
-        News[] news = moshi.adapter(News[].class).fromJson(jsonString);
+        Document<News> newsDocument = parseToDocument(jsonString, News.class);
 
-        assertThat("Checking that news array has the correct size", news.length, is(5));
+        assertThat("Checking that news array has the correct size", newsDocument.size(), is(5));
     }
 
     @Test
@@ -244,13 +251,13 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/speaker_single.json");
 
-        Speaker speaker = moshi.adapter(Speaker.class).fromJson(jsonString);
+        Speaker speaker = parseToDocument(jsonString, Speaker.class).get();
 
         assertThat("Checking that speaker has correct id", speaker.getId(), is("1"));
         assertThat("Checking that speaker has correct name", speaker.name, is("foo"));
         assertThat("Checking that speaker has correct picture", speaker.picture, is("bar"));
         assertThat("Checking that speaker has correct description", speaker.description, is("baz"));
-        assertThat("Checking that speaker's fairEvent parsed correctly", speaker.fairEvent, is(not(nullValue())));
+        assertThat("Checking that speaker's fairEvent parsed correctly", speaker.getFairEvent(), is(not(nullValue())));
     }
 
     @Test
@@ -258,9 +265,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/speaker_list.json");
 
-        Speaker[] speakers = moshi.adapter(Speaker[].class).fromJson(jsonString);
+        Document<Speaker> speakersDocument = parseToDocument(jsonString, Speaker.class);
 
-        assertThat("Checking that speakers array has the correct size", speakers.length, is(3));
+        assertThat("Checking that speakers array has the correct size", speakersDocument.size(), is(3));
     }
 
     @Test
@@ -268,15 +275,15 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/sponsor_single.json");
 
-        Sponsor sponsor = moshi.adapter(Sponsor.class).fromJson(jsonString);
+        Sponsor sponsor = parseToDocument(jsonString, Sponsor.class).get();
 
         assertThat("Checking that sponsor has correct id", sponsor.getId(), is("1"));
         assertThat("Checking that sponsor has correct name", sponsor.name, is("foo"));
         assertThat("Checking that sponsor has correct logo", sponsor.logo, is("bar"));
         assertThat("Checking that sponsor has correct slogan", sponsor.slogan, is("baz"));
         assertThat("Checking that sponsor has correct website", sponsor.website, is ("qux"));
-        assertThat("Checking that sponsor's fair parsed correctly", sponsor.fair.get(), is(not(nullValue())));
-        assertThat("Checking that sponsor's sponsorRank parsed correctly", sponsor.sponsorRank.get(), is(not(nullValue())));
+        assertThat("Checking that sponsor's fair parsed correctly", sponsor.getFair(), is(not(nullValue())));
+        assertThat("Checking that sponsor's sponsorRank parsed correctly", sponsor.getSponsorRank(), is(not(nullValue())));
     }
 
     @Test
@@ -284,9 +291,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/sponsor_list.json");
 
-        Sponsor[] sponsors = moshi.adapter(Sponsor[].class).fromJson(jsonString);
+        Document<Sponsor> sponsorsDocument = parseToDocument(jsonString, Sponsor.class);
 
-        assertThat("Checking that sponsor array has the correct size", sponsors.length, is(3));
+        assertThat("Checking that sponsor array has the correct size", sponsorsDocument.size(), is(3));
     }
 
     @Test
@@ -294,11 +301,11 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/sponsor_rank_single.json");
 
-        SponsorRank sponsorRank = moshi.adapter(SponsorRank.class).fromJson(jsonString);
+        SponsorRank sponsorRank = parseToDocument(jsonString, SponsorRank.class).get();
 
         assertThat("Checking that sponsorRank has correct id", sponsorRank.getId(), is("1"));
         assertThat("Checking that sponsorRank has correct name", sponsorRank.name, is("foo"));
-        assertThat("Checking that sponsorRank contains correct amount of sponsors", sponsorRank.sponsors.getAll().length, is(3));
+        assertThat("Checking that sponsorRank contains correct amount of sponsors", sponsorRank.getSponsors().size(), is(3));
     }
 
     @Test
@@ -306,9 +313,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/sponsor_rank_list.json");
 
-        SponsorRank[] sponsorRanks = moshi.adapter(SponsorRank[].class).fromJson(jsonString);
+        Document<SponsorRank> sponsorRanksDocument = parseToDocument(jsonString, SponsorRank.class);
 
-        assertThat("Checking that sponsorRank array has the correct size", sponsorRanks.length, is(4));
+        assertThat("Checking that sponsorRank array has the correct size", sponsorRanksDocument.size(), is(4));
     }
 
     @Test
@@ -316,13 +323,13 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/stand_single.json");
 
-        Stand stand = moshi.adapter(Stand.class).fromJson(jsonString);
+        Stand stand = parseToDocument(jsonString, Stand.class).get();
 
         assertThat("Checking that stand id is correct", stand.getId(), is("1"));
         assertThat("Checking that stand name is correct", stand.name, is("foo"));
         assertThat("Checking that stand description is correct", stand.description, is("bar"));
         assertThat("Checking that stand image is correct", stand.image, is("baz"));
-        assertThat("Checking that stand's fair parsed correctly", stand.fair.get(), is(not(nullValue())));
+        assertThat("Checking that stand's fair parsed correctly", stand.getFair(), is(not(nullValue())));
     }
 
     @Test
@@ -330,9 +337,9 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/stand_list.json");
 
-        Stand[] stands = moshi.adapter(Stand[].class).fromJson(jsonString);
+        Document<Stand> standsDocument = parseToDocument(jsonString, Stand.class);
 
-        assertThat("Checking that stand array has the correct size", stands.length, is(2));
+        assertThat("Checking that stand array has the correct size", standsDocument.size(), is(2));
     }
 
     @Test
@@ -340,17 +347,17 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/user_single.json");
 
-        User user = moshi.adapter(User.class).fromJson(jsonString);
+        User user = parseToDocument(jsonString, User.class).get();
 
         assertThat("Checking that user id is correct", user.getId(), is("1"));
         assertThat("Checking that user name is correct", user.name, is("foo"));
         assertThat("Checking that user username is correct", user.username, is("bar"));
         assertThat("Checking that user email is correct", user.email, is("baz"));
-        assertThat("Checking that user contains correct amount of fairs", user.fairs.getAll().length, is(5));
-        assertThat("Checking that user contains correct amount of helpingFairs", user.helpingFairs.getAll().length, is(3));
-        assertThat("Checking that user contains correct amount of bannedFairs", user.bannedFairs.getAll().length, is(2));
-        assertThat("Checking that user contains correct amount of attendingFairEvents", user.attendingFairEvents.getAll().length, is(3));
-        assertThat("Checking that user contains correct amount of comments", user.comments.getAll().length, is(10));
+        assertThat("Checking that user contains correct amount of fairs", user.getFairs().size(), is(5));
+        assertThat("Checking that user contains correct amount of helpingFairs", user.getHelpingFairs().size(), is(3));
+        assertThat("Checking that user contains correct amount of bannedFairs", user.getBannedFairs().size(), is(2));
+        assertThat("Checking that user contains correct amount of attendingFairEvents", user.getAttendingFairEvents().size(), is(3));
+        assertThat("Checking that user contains correct amount of comments", user.getComments().size(), is(10));
     }
 
     @Test
@@ -358,8 +365,14 @@ public class JsonApiConverterTest {
 
         String jsonString = fileReader.readFile("json/user_list.json");
 
-        User[] users = moshi.adapter(User[].class).fromJson(jsonString);
+        Document<User> usersDocument = parseToDocument(jsonString, User.class);
 
-        assertThat("Checking that user array has the correct size", users.length, is(2));
+        assertThat("Checking that user array has the correct size", usersDocument.size(), is(2));
+    }
+
+    private <T extends ResourceIdentifier> Document<T> parseToDocument(String json, Class<T> tClass) throws IOException {
+        Type type = Types.newParameterizedType(Document.class, tClass);
+        JsonAdapter<Document<T>> adapter = moshi.adapter(type);
+        return adapter.fromJson(json);
     }
 }

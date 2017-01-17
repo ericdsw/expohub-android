@@ -33,8 +33,7 @@ public class PicassoImageDownloader implements ImageDownloader {
 					.into(imageView);
 		}
 		catch (IllegalArgumentException exception) {
-//			prepareParameters(picasso.load(R.drawable.downloader_placeholder))
-//					.into(imageView);
+
 		}
 
 		// Reset resizing
@@ -49,9 +48,7 @@ public class PicassoImageDownloader implements ImageDownloader {
 					.into(imageView);
 		}
 		catch (IllegalArgumentException exception) {
-//			prepareParameters(picasso.load(R.drawable.downloader_placeholder))
-//					.transform(new CircleTransform())
-//					.into(imageView);
+
 		}
 
 		// Reset resizing
@@ -68,9 +65,7 @@ public class PicassoImageDownloader implements ImageDownloader {
 					.into(imageView);
 		}
 		catch (IllegalArgumentException exception) {
-//			prepareParameters(picasso.load(R.drawable.downloader_placeholder))
-//					.transform(new CircleTransform())
-//					.into(imageView);
+
 		}
 
 		// Reset resizing
@@ -86,9 +81,7 @@ public class PicassoImageDownloader implements ImageDownloader {
 					.into(imageView);
 		}
 		catch (IllegalArgumentException exception) {
-//			prepareParameters(picasso.load(R.drawable.downloader_placeholder))
-//					.transform(new CircleTransform())
-//					.into(imageView);
+
 		}
 
 		// Reset resizing
@@ -129,10 +122,10 @@ public class PicassoImageDownloader implements ImageDownloader {
 
 	/**
 	 * Appends common parameters to picasso's request creator
-	 * @param requestCreator
-	 * @return
+	 * @param requestCreator a {@link RequestCreator} instance
+	 * @return a configured {@link RequestCreator}
 	 */
-	public RequestCreator prepareParameters(RequestCreator requestCreator) {
+	private RequestCreator prepareParameters(RequestCreator requestCreator) {
 
 		if(shouldResizeImage) {
 			requestCreator = requestCreator.resize(maxImageSize, maxImageSize)

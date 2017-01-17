@@ -66,11 +66,9 @@ dependencies {
     compile 'frankiesardo:icepick:3.2.0'
     provided 'frankiesardo:icepick-processor:3.2.0'
 
-    // Moshi
-    compile 'moe.banana:moshi-jsonapi:2.2.1'
+    // Moshi / Retrofit
+    compile 'moe.banana:moshi-jsonapi:3.0.4'
     compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
-
-    // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
 
     // Picasso

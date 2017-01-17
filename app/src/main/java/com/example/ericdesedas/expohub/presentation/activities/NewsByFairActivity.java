@@ -35,15 +35,12 @@ public class NewsByFairActivity extends BaseActivity implements
     @BindView(R.id.network_progress)        ProgressBar networkProgressBar;
     @BindView(R.id.error_text)              TextView errorText;
 
-    String fairId;
-    String fairName;
-    NewsListAdapter adapter;
+    @Inject RecyclerAdapterFactory adapterFactory;
+    @Inject NewsByFairPresenter presenter;
 
-    @Inject
-    RecyclerAdapterFactory adapterFactory;
-
-    @Inject
-    NewsByFairPresenter presenter;
+    private String fairId;
+    private String fairName;
+    private NewsListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

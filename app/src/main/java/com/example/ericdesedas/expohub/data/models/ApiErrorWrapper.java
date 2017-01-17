@@ -5,10 +5,15 @@ import com.squareup.moshi.Json;
 import java.util.ArrayList;
 import java.util.List;
 
+import moe.banana.jsonapi2.Error;
+
 public class ApiErrorWrapper {
 
     @Json(name = "errors") public List<Error> errorList;
 
+    /**
+     * Constructor
+     */
     public ApiErrorWrapper() {
         errorList = new ArrayList<>();
     }
@@ -21,12 +26,25 @@ public class ApiErrorWrapper {
     }
 
     /**
-     * Gets single first error
+     * Gets a single error from the list
+     * Used to abstract cases where it is expected that only one error will be generated
      *
      * @return the first {@link Error} on the list
      */
     public Error getUniqueError() {
         return errorList.get(0);
+    }
+
+    public void addError(Error error) {
+        errorList.add(error);
+    }
+
+    public List<Error> getErrorList() {
+        return errorList;
+    }
+
+    public void setErrorList(List<Error> errorList) {
+        this.errorList = errorList;
     }
 
     /**
@@ -38,27 +56,10 @@ public class ApiErrorWrapper {
     public boolean containsErrorForTitle(String title) {
         
         for (Error error : errorList) {
-            if (error.title.equals(title)) {
+            if (error.getTitle().equals(title)) {
                 return true;
             }
         }
         return false;
-    }
-
-    public static class Error {
-
-        @Json(name = "title")       public String title;
-        @Json(name = "message")     public String message;
-        @Json(name = "status")      public int status;
-
-        public Error() {
-            //
-        }
-
-        public Error(String title, String message, int status) {
-            this.title      = title;
-            this.message    = message;
-            this.status     = status;
-        }
     }
 }

@@ -12,8 +12,6 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
 
-import org.joda.time.format.DateTimeFormat;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -101,7 +99,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
             eventTitle.setText(this.fairEvent.title);
             eventDate.setText(this.fairEvent.parsedDate());
-            eventTypeName.setText(String.format(context.getString(R.string.label_event_type), this.fairEvent.eventType.get().name));
+            eventTypeName.setText(String.format(context.getString(R.string.label_event_type), this.fairEvent.getEventType().name));
 
             imageDownloader.setMaxImageSize(500)
                     .setImage(this.fairEvent.image, eventImage);

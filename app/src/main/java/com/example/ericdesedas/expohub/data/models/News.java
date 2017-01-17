@@ -4,6 +4,8 @@ import com.squareup.moshi.Json;
 
 import org.joda.time.format.DateTimeFormat;
 
+import java.util.List;
+
 import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;
@@ -21,6 +23,14 @@ public class News extends Resource {
     // Relationships
     @Json(name = "fair")        public HasOne<Fair> fair;
     @Json(name = "comments")    public HasMany<Comment> comments;
+
+    public Fair getFair() {
+        return fair.get(getContext());
+    }
+
+    public List<Comment> getComments() {
+        return comments.get(getContext());
+    }
 
     public String formattedCreatedAt() {
         return DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")

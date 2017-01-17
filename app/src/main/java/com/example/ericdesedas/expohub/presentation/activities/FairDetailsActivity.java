@@ -55,20 +55,15 @@ public class FairDetailsActivity extends BaseActivity implements
     @BindView(R.id.error_wrapper)       View errorWrapper;
     @BindView(R.id.content_options)     View contentOptionsWrapper;
 
-    String fairId;
-    SupportMapFragment mapFragment;
-    Fair currentFair;
+    @Inject FairDetailsPresenter presenter;
+    @Inject ImageDownloader imageDownloader;
+    @Inject Navigator navigator;
 
-    boolean isMapReady = false;
+    private String fairId;
+    private SupportMapFragment mapFragment;
+    private Fair currentFair;
 
-    @Inject
-    FairDetailsPresenter presenter;
-
-    @Inject
-    ImageDownloader imageDownloader;
-
-    @Inject
-    Navigator navigator;
+    private boolean isMapReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

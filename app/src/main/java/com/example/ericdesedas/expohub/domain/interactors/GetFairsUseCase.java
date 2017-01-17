@@ -4,7 +4,7 @@ import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetFairsUseCase extends ApiUseCase<Fair[]> {
+public class GetFairsUseCase extends ApiUseCase<Fair> {
 
     /**
      * Constructor

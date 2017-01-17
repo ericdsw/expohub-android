@@ -6,6 +6,7 @@ import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.LoginUseCase;
 import com.squareup.moshi.Moshi;
 
 import dagger.Module;
@@ -37,5 +38,10 @@ public class UseCaseModule {
     @Provides
     GetStandsByFairUseCase providesGetStandsByFairUseCase(ApiClient apiClient, Moshi moshi) {
         return new GetStandsByFairUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    LoginUseCase providesLoginUseCase(ApiClient apiClient, Moshi moshi) {
+        return new LoginUseCase(apiClient, moshi);
     }
 }

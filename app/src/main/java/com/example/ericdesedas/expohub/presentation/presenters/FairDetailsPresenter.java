@@ -5,25 +5,29 @@ import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
 
+import java.util.List;
+
+import moe.banana.jsonapi2.Document;
+
 public class FairDetailsPresenter extends Presenter {
 
     private GetSingleFairUseCase getSingleFairUseCase;
     private View view;
 
-    private ApiUseCase.Listener<Fair> getSingleFairsUseCaseListener = new ApiUseCase.Listener<Fair>() {
+    private ApiUseCase.Listener<Document<Fair>> getSingleFairsUseCaseListener = new ApiUseCase.Listener<Document<Fair>>() {
         @Override
-        public void onResponse(int statusCode, Fair result) {
+        public void onResponse(int statusCode, Document<Fair> result) {
             view.toggleLoading(false);
-            view.updateFair(result);
+            view.updateFair(result.get());
         }
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
             view.toggleLoading(false);
             if (apiError.hasUniqueError()) {
-                view.showError(statusCode, apiError.getUniqueError().message);
+                view.showError(statusCode, apiError.getUniqueError().getDetail());
             } else {
-                String errorString = concatenateErrorString(apiError.errorList);
+                String errorString = concatenateErrorString(apiError.getErrorList());
                 view.showError(statusCode, errorString);
             }
         }

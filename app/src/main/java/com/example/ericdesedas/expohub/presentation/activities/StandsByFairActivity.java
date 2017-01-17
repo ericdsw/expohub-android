@@ -35,15 +35,12 @@ public class StandsByFairActivity extends BaseActivity implements
     @BindView(R.id.network_progress)        ProgressBar networkProgressBar;
     @BindView(R.id.error_text)              TextView errorText;
 
-    String fairId;
-    String fairName;
-    StandListAdapter adapter;
+    @Inject RecyclerAdapterFactory adapterFactory;
+    @Inject StandsByFairPresenter presenter;
 
-    @Inject
-    RecyclerAdapterFactory adapterFactory;
-
-    @Inject
-    StandsByFairPresenter presenter;
+    private String fairId;
+    private String fairName;
+    private StandListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

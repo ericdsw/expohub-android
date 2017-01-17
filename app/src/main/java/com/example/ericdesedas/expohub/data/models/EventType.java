@@ -2,6 +2,8 @@ package com.example.ericdesedas.expohub.data.models;
 
 import com.squareup.moshi.Json;
 
+import java.util.List;
+
 import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.JsonApi;
 import moe.banana.jsonapi2.Resource;
@@ -14,4 +16,8 @@ public class EventType extends Resource {
 
     // Relationships
     @Json(name = "events") public HasMany<FairEvent> fairEvents;
+
+    public List<FairEvent> getFairEvent() {
+        return fairEvents.get(getContext());
+    }
 }

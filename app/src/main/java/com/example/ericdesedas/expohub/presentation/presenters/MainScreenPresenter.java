@@ -5,6 +5,10 @@ import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 
+import java.util.List;
+
+import moe.banana.jsonapi2.Document;
+
 public class MainScreenPresenter extends Presenter {
 
     private GetFairsUseCase getFairsUseCase;
@@ -12,20 +16,24 @@ public class MainScreenPresenter extends Presenter {
 
     // Listeners
 
-    private ApiUseCase.Listener<Fair[]> getFairUseCaseListener = new ApiUseCase.Listener<Fair[]>() {
+    private ApiUseCase.Listener<Document<Fair>> getFairUseCaseListener = new ApiUseCase.Listener<Document<Fair>>() {
         @Override
-        public void onResponse(int statusCode, Fair[] result) {
+        public void onResponse(int statusCode, Document<Fair> result) {
+
+            List<Fair> fairsList = generateArrayFromDocument(result);
+            Fair[] fairsArray = fairsList.toArray(new Fair[fairsList.size()]);
+
             view.toggleLoading(false);
-            view.updateFairList(result);
+            view.updateFairList(fairsArray);
         }
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
             view.toggleLoading(false);
             if (apiError.hasUniqueError()) {
-                view.showError(statusCode, apiError.getUniqueError().message);
+                view.showError(statusCode, apiError.getUniqueError().getDetail());
             } else {
-                String errorString = concatenateErrorString(apiError.errorList);
+                String errorString = concatenateErrorString(apiError.getErrorList());
                 view.showError(statusCode, errorString);
             }
         }

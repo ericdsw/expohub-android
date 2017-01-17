@@ -4,6 +4,8 @@ import com.squareup.moshi.Json;
 
 import org.joda.time.format.DateTimeFormat;
 
+import java.util.List;
+
 import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;
@@ -25,6 +27,26 @@ public class FairEvent extends Resource {
     @Json(name = "speakers")        public HasMany<Speaker> speakers;
     @Json(name = "attendingUsers")  public HasMany<User> attendingUsers;
     @Json(name = "categories")      public HasMany<Category> categories;
+
+    public Fair getFair() {
+        return fair.get(getContext());
+    }
+
+    public EventType getEventType() {
+        return eventType.get(getContext());
+    }
+
+    public List<Speaker> getSpeakers() {
+        return speakers.get(getContext());
+    }
+
+    public List<User> getAttendingUsers() {
+        return attendingUsers.get(getContext());
+    }
+
+    public List<Category> getCategories() {
+        return categories.get(getContext());
+    }
 
     public String parsedDate() {
         return DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")

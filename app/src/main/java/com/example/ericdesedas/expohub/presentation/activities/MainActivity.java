@@ -1,9 +1,15 @@
 package com.example.ericdesedas.expohub.presentation.activities;
 
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.FairListClickEvent;
@@ -23,51 +29,35 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-/**
- * Application's main activity
- */
 public class MainActivity extends BaseActivity implements
     MainScreenPresenter.View {
 
-    // UI References
     @BindView(R.id.toolbar)         Toolbar toolbar;
     @BindView(R.id.tab_layout)      TabLayout tabLayout;
     @BindView(R.id.view_pager)      ViewPager viewPager;
+    @BindView(R.id.add_fair_button) FloatingActionButton addFairButton;
+    @BindView(R.id.navigation_view) NavigationView navigationView;
+    @BindView(R.id.drawer_layout)   DrawerLayout drawerLayout;
 
-    // Adapters
-    TabAdapter tabAdapter;
-
-    // Injected Dependencies
-
-    @Inject
-    MainScreenPresenter presenter;
-
-    @Inject
-    RecyclerAdapterFactory adapterFactory;
-
-    @Inject
-    EventBus eventBus;
-
-    @Inject
-    Navigator navigator;
+    @Inject MainScreenPresenter presenter;
+    @Inject RecyclerAdapterFactory adapterFactory;
+    @Inject EventBus eventBus;
+    @Inject Navigator navigator;
 
     private FairListFragment fairListFragment;
-
-    // Lifecycle
+    private TabAdapter tabAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // Setup
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        // Injection
         getActivityComponent().inject(this);
 
-        // UI Setup
         setSupportActionBar(toolbar);
         tabAdapter = new TabAdapter(getSupportFragmentManager());
         setupUI();
@@ -78,11 +68,6 @@ public class MainActivity extends BaseActivity implements
         super.onStart();
         eventBus.register(this);
         presenter.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -107,6 +92,13 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void showError(int statusCode, String error) {
         fairListFragment.showError(statusCode, error);
+    }
+
+    // Clicks
+
+    @OnClick(R.id.add_fair_button)
+    public void onAddFairClick() {
+        Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
     }
 
     // Events
@@ -142,5 +134,58 @@ public class MainActivity extends BaseActivity implements
         tabLayout.setupWithViewPager(viewPager);
 
         presenter.onLoadFairsCommand();
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                if (position == 0) {
+                    addFairButton.animate().scaleX(1).scaleY(1).start();
+                } else {
+                    addFairButton.animate().scaleX(0).scaleY(0).start();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
+        });
+
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+
+//                if (item.isChecked())   { item.setChecked(false); }
+//                else                    { item.setChecked(true); }
+
+                drawerLayout.closeDrawers();
+                handleDrawerSelection(item);
+
+                return false;
+            }
+        });
+    }
+
+    /**
+     * Handles menu selection
+     * @param menuItem the selected {@link MenuItem} instance
+     */
+    private void handleDrawerSelection(MenuItem menuItem) {
+
+        switch (menuItem.getItemId()) {
+
+            case R.id.action_settings:
+                break;
+
+            default:
+                break;
+        }
     }
 }
