@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.domain.interactors;
 
-import android.util.Log;
-
 import com.example.ericdesedas.expohub.data.models.ApiMeta;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
@@ -11,7 +9,7 @@ import com.squareup.moshi.Moshi;
 import moe.banana.jsonapi2.Document;
 import moe.banana.jsonapi2.JsonBuffer;
 
-public class LoginUseCase extends ApiUseCase<User> {
+public class RegisterUseCase extends ApiUseCase<User> {
 
     private SessionManager sessionManager;
 
@@ -22,7 +20,7 @@ public class LoginUseCase extends ApiUseCase<User> {
      * @param moshi             the {@link Moshi} moshi instance
      * @param sessionManager    the {@link SessionManager} instance
      */
-    public LoginUseCase(ApiClient apiClient, Moshi moshi, SessionManager sessionManager) {
+    public RegisterUseCase(ApiClient apiClient, Moshi moshi, SessionManager sessionManager) {
         super(apiClient, moshi);
         this.sessionManager = sessionManager;
     }
@@ -30,11 +28,13 @@ public class LoginUseCase extends ApiUseCase<User> {
     /**
      * Executes the request
      *
-     * @param loginParam    a {@link String} instance containing the loginParam (either email or username) field
-     * @param password      a {@link String} instance containing the password field
+     * @param name      a {@link String} instance with the provided name
+     * @param username  a {@link String} instance with the provided username
+     * @param email     a {@link String} instance with the provided email
+     * @param password  a {@link String} instance with the provided password
      */
-    public void executeRequest(String loginParam, String password) {
-        apiClient.login(loginParam, password).enqueue(callback);
+    public void executeRequest(String name, String username, String email, String password) {
+        apiClient.register(name, username, email, password).enqueue(callback);
     }
 
     @Override
@@ -42,12 +42,10 @@ public class LoginUseCase extends ApiUseCase<User> {
 
         super.processResponseData(document);
 
-        JsonBuffer<ApiMeta> buffer = (JsonBuffer<ApiMeta>) document.getMeta();
+        JsonBuffer<ApiMeta> buffer = document.getMeta();
 
         User user       = document.get();
         ApiMeta apiMeta = buffer.get(new ApiMeta.Adapter());
-
-        Log.d("LoginUseCase", "got this token: " + apiMeta.metaElements.get("token"));
 
         this.sessionManager.login(user, apiMeta.metaElements.get("token"));
     }

@@ -54,9 +54,19 @@ public interface ApiClient {
     @GET("fairs/{fairId}/stands")
     Call<Document<Stand>>getStandsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
 
-    // =========================================== Auth ===================-================== //
+    // =========================================== Auth ====================================== //
 
     @FormUrlEncoded
     @POST("login")
     Call<Document<User>> login(@Field("login_param") String loginParam, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<Document<User>> register(@Field("name") String name, @Field("username") String username,
+                                  @Field("email") String email, @Field("password") String password);
+
+    // =========================================== User ====================================== //
+
+    @GET("users/{id}")
+    Call<Document<User>> getUser(@Path("id") String id);
 }

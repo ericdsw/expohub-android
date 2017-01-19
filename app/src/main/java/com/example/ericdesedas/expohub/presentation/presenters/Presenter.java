@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.presentation.presenters;
 
-import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,11 +1,15 @@
 package com.example.ericdesedas.expohub.buildsystem.components;
 
+import android.content.SharedPreferences;
+
 import com.example.ericdesedas.expohub.buildsystem.modules.AppModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.EventModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.ImageDownloaderModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.NetworkModule;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
+import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
+import com.example.ericdesedas.expohub.helpers.preferences.PreferenceHelper;
 import com.squareup.moshi.Moshi;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,4 +31,6 @@ public interface ApplicationComponent {
     ImageDownloader imageDownloader();
     Moshi moshi();
     EventBus eventBus();
+    PreferenceHelper preferenceHelper();
+    SessionManager sessionManager();
 }

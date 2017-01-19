@@ -24,9 +24,16 @@
     <string name="label_events">Events</string>
     <string name="label_news">News</string>
     <string name="label_stands">Stands</string>
+    <string name="label_email_username">Email / Username</string>
+    <string name="label_password">Password</string>
 
     <!-- Messages -->
     <string name="login_call_to_action">Nothing to see here\n Login to view your saved events</string>
+    <string name="drawer_login_call_to_action">Login to see your profile</string>
+    <string name="login_process_message">Authenticating&#8230;</string>
+    <string name="register_process_message">Creating Account&#8230;</string>
+    <string name="welcome_back_message">Welcome back, %1$s</string>
+    <string name="welcome_message">Welcome, %1$s</string>
 
     <!-- Errors -->
     <string name="generic_network_error">Network Error</string>
@@ -34,6 +41,8 @@
     <string name="empty_events_error">No events found</string>
     <string name="empty_news_error">No news found</string>
     <string name="empty_stands_error">No stands found</string>
+    <string name="empty_login_param">Please provide either your email or your username</string>
+    <string name="empty_password_param">Please provide your password</string>
 
     <!-- Drawer Layout toggle titles -->
     <string name="drawer_open">Open Drawer</string>

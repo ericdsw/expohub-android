@@ -8,19 +8,23 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.FairListClickEvent;
 import com.example.ericdesedas.expohub.data.events.FairListRefreshEvent;
+import com.example.ericdesedas.expohub.data.events.SuccessfulAuthEvent;
 import com.example.ericdesedas.expohub.data.models.Fair;
+import com.example.ericdesedas.expohub.data.models.Session;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
 import com.example.ericdesedas.expohub.presentation.adapters.TabAdapter;
 import com.example.ericdesedas.expohub.presentation.fragments.FairListFragment;
 import com.example.ericdesedas.expohub.presentation.fragments.MyEventsFragment;
 import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.MainScreenPresenter;
+import com.example.ericdesedas.expohub.presentation.viewmodels.ProfileDrawerViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -32,7 +36,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements
-    MainScreenPresenter.View {
+    MainScreenPresenter.View,
+    ProfileDrawerViewModel.Listener {
 
     @BindView(R.id.toolbar)         Toolbar toolbar;
     @BindView(R.id.tab_layout)      TabLayout tabLayout;
@@ -48,6 +53,7 @@ public class MainActivity extends BaseActivity implements
 
     private FairListFragment fairListFragment;
     private TabAdapter tabAdapter;
+    private ProfileDrawerViewModel profileDrawerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +65,8 @@ public class MainActivity extends BaseActivity implements
         getActivityComponent().inject(this);
 
         setSupportActionBar(toolbar);
-        tabAdapter = new TabAdapter(getSupportFragmentManager());
+        tabAdapter              = new TabAdapter(getSupportFragmentManager());
+        profileDrawerViewModel  = new ProfileDrawerViewModel(navigationView.getHeaderView(0), this);
         setupUI();
     }
 
@@ -68,6 +75,7 @@ public class MainActivity extends BaseActivity implements
         super.onStart();
         eventBus.register(this);
         presenter.onStart();
+        presenter.onRefreshUserDataCommand();
     }
 
     @Override
@@ -92,6 +100,16 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void showError(int statusCode, String error) {
         fairListFragment.showError(statusCode, error);
+    }
+
+    @Override
+    public void showUnidentifiedUser() {
+        profileDrawerViewModel.formatUnidentified();
+    }
+
+    @Override
+    public void showIdentifiedUser(Session session) {
+        profileDrawerViewModel.showSessionData(session);
     }
 
     // Clicks
@@ -162,9 +180,6 @@ public class MainActivity extends BaseActivity implements
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
 
-//                if (item.isChecked())   { item.setChecked(false); }
-//                else                    { item.setChecked(true); }
-
                 drawerLayout.closeDrawers();
                 handleDrawerSelection(item);
 
@@ -181,11 +196,27 @@ public class MainActivity extends BaseActivity implements
 
         switch (menuItem.getItemId()) {
 
+            case R.id.action_trending:
+                break;
+
             case R.id.action_settings:
+                break;
+
+            case R.id.action_about:
                 break;
 
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onProfileClick() {
+
+    }
+
+    @Override
+    public void onLoginButtonClick() {
+        navigator.navigateToLoginRegisterActivity();
     }
 }

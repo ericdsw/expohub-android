@@ -4,11 +4,15 @@ import android.content.Context;
 
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.data.network.ApiTokenRequestInterceptor;
+import com.example.ericdesedas.expohub.data.network.AuthRequestInterceptor;
+import com.example.ericdesedas.expohub.data.network.SessionManagerImpl;
+import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.data.network.factories.ApiClientFactory;
 import com.example.ericdesedas.expohub.data.network.factories.MoshiFactory;
 import com.example.ericdesedas.expohub.data.network.factories.OkHttpClientFactory;
 import com.example.ericdesedas.expohub.data.network.factories.RetrofitFactory;
 import com.example.ericdesedas.expohub.helpers.preferences.NetworkPreferenceHelper;
+import com.example.ericdesedas.expohub.helpers.preferences.PreferenceHelper;
 import com.squareup.moshi.Moshi;
 
 import javax.inject.Singleton;
@@ -55,6 +59,12 @@ public class NetworkModule {
 
     @Provides
     @Singleton
+    AuthRequestInterceptor providesAuthRequestInterceptor(SessionManager sessionManager) {
+        return new AuthRequestInterceptor(sessionManager);
+    }
+
+    @Provides
+    @Singleton
     NetworkPreferenceHelper providesNetworkPreferenceHelper() {
         return new NetworkPreferenceHelper(context);
     }
@@ -87,5 +97,11 @@ public class NetworkModule {
     @Singleton
     ApiClient providesApiClient(ApiClientFactory apiClientFactory) {
         return apiClientFactory.create();
+    }
+
+    @Provides
+    @Singleton
+    SessionManager providesSessionHelper(PreferenceHelper helper, Moshi moshi) {
+        return new SessionManagerImpl(helper, moshi);
     }
 }

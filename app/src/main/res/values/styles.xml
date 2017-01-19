@@ -15,6 +15,10 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
+    <style name="AltButtonTheme" parent="ButtonTheme">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
     <!-- Title Text -->
     <style name="TitleTextStyle" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:fontFamily">serif</item>

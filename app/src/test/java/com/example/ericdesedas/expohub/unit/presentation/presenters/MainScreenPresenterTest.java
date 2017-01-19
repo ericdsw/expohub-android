@@ -28,7 +28,7 @@ public class MainScreenPresenterTest extends BasePresenterTest {
 
     @Before
     public void setUp() {
-        mainScreenPresenter = new MainScreenPresenter(getFairsUseCase);
+//        mainScreenPresenter = new MainScreenPresenter(getFairsUseCase);
     }
 
 //    @Test

@@ -55,9 +55,12 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
                     }
                 } else {
                     try {
-                        ApiErrorWrapper apiErrorWrapper = ApiUseCase.this.moshi
-                                .adapter(ApiErrorWrapper.class)
-                                .fromJson(response.errorBody().string());
+                        Document<T> document = ApiUseCase.this.moshi.adapter(Document.class)
+                                .fromJson(response.errorBody().source());
+
+                        ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
+                        apiErrorWrapper.setErrorList(document.errors());
+
                         for (Listener listener : listeners) {
                             listener.onError(response.code(), apiErrorWrapper);
                         }
@@ -92,7 +95,7 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
         }
     }
 
-    public void processResponseData(Document documentResponse) {
+    public void processResponseData(Document<T> documentResponse) {
         // Empty, should be overwritten by children that want to process document data
     }
 

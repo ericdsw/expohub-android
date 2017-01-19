@@ -14,15 +14,18 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        // String Parameters
+        // Google Api Key
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+
+        // General Api Parameters
         resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
         resValue "string", "base_url", (project.findProperty("BASE_URL") ?: "")
         resValue "string", "api_base_url", (project.findProperty("API_BASE_URL") ?: "")
-        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
-
-        // Integer Parameters
         resValue "integer", "read_timeout", (project.findProperty("READ_TIMEOUT") ?: "")
         resValue "integer", "write_timeout", (project.findProperty("WRITE_TIMEOUT") ?: "")
+
+        // App Specific Parameters
+        resValue "string", "shared_pref_file", (project.findProperty("SHARED_PREF_FILE") ?: "")
     }
 
     buildTypes {

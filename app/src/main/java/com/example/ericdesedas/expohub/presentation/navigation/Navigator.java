@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.example.ericdesedas.expohub.presentation.activities.EventsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivity;
+import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
@@ -23,7 +24,6 @@ import java.util.List;
 public class Navigator {
 
     private Activity activity;
-
     private List<Pair<View, String>> transitioningElements;
 
     /**
@@ -35,7 +35,7 @@ public class Navigator {
         this.transitioningElements = new ArrayList<>();
     }
 
-    // Navigation Endpoints
+    // ======================================== Navigation ======================================== //
 
     public void navigateToFairDetailsActivity(String fairId) {
 
@@ -72,7 +72,13 @@ public class Navigator {
         executeNavigation(intent);
     }
 
-    // Transition logic
+    public void navigateToLoginRegisterActivity() {
+
+        Intent intent = new Intent(activity, LoginRegisterActivity.class);
+        executeNavigation(intent);
+    }
+
+    // ======================================== Transition ======================================== //
 
     /**
      * Adds an element to the transition animation logic
