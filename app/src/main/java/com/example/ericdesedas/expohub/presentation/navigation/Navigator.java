@@ -11,6 +11,7 @@ import com.example.ericdesedas.expohub.presentation.activities.EventsByFairActiv
 import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivity;
 import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
+import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
@@ -75,6 +76,12 @@ public class Navigator {
     public void navigateToLoginRegisterActivity() {
 
         Intent intent = new Intent(activity, LoginRegisterActivity.class);
+        executeNavigation(intent);
+    }
+
+    public void navigateToProfileActivity() {
+
+        Intent intent = new Intent(activity, ProfileActivity.class);
         executeNavigation(intent);
     }
 

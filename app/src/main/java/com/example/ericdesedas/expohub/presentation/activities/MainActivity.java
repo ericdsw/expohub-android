@@ -85,6 +85,12 @@ public class MainActivity extends BaseActivity implements
         presenter.onStop();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        profileDrawerViewModel.releaseViews();
+    }
+
     // Interface callbacks
 
     @Override
@@ -212,7 +218,8 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onProfileClick() {
-
+        navigator.setTransitioningElements(profileDrawerViewModel.getTransitioningElements())
+                .navigateToProfileActivity();
     }
 
     @Override

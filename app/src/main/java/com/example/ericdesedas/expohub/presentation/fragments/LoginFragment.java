@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.LoginEvent;
+import com.example.ericdesedas.expohub.data.events.SwapToRegisterEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -64,6 +65,11 @@ public class LoginFragment extends Fragment {
         loginEvent.password     = passwordField.getText().toString();
 
         eventBus.post(loginEvent);
+    }
+
+    @OnClick(R.id.go_to_register_text)
+    public void onGoToRegisterTextClick() {
+        eventBus.post(new SwapToRegisterEvent());
     }
 
     public void setEventBus(EventBus eventBus) {

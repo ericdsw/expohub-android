@@ -7,8 +7,11 @@ import android.widget.Toast;
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.LoginEvent;
 import com.example.ericdesedas.expohub.data.events.RegisterEvent;
+import com.example.ericdesedas.expohub.data.events.SwapToLoginEvent;
+import com.example.ericdesedas.expohub.data.events.SwapToRegisterEvent;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.presentation.fragments.LoginFragment;
+import com.example.ericdesedas.expohub.presentation.fragments.RegisterFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.LoginRegisterPresenter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,6 +24,7 @@ import butterknife.ButterKnife;
 public class LoginRegisterActivity extends BaseActivity implements
     LoginRegisterPresenter.View {
 
+    private RegisterFragment registerFragment;
     private LoginFragment loginFragment;
     private ProgressDialog loginProgressDialog;
     private ProgressDialog registerProgressDialog;
@@ -39,7 +43,8 @@ public class LoginRegisterActivity extends BaseActivity implements
         getActivityComponent().inject(this);
 
         // Fragments
-        loginFragment = LoginFragment.newInstance(eventBus);
+        loginFragment       = LoginFragment.newInstance(eventBus);
+        registerFragment    = RegisterFragment.newInstance(eventBus);
 
         // Login Dialog
         loginProgressDialog = new ProgressDialog(this);
@@ -77,6 +82,16 @@ public class LoginRegisterActivity extends BaseActivity implements
     @Subscribe
     public void onRegisterEvent(RegisterEvent event) {
         presenter.onRegisterCommand(event.name, event.username, event.email, event.password);
+    }
+
+    @Subscribe
+    public void onSwapToRegisterEvent(SwapToRegisterEvent event) {
+        displayRegisterFragment();
+    }
+
+    @Subscribe
+    public void onSwapToLoginEvent(SwapToLoginEvent event) {
+        displayLoginFragment();
     }
 
     // View methods
@@ -132,6 +147,8 @@ public class LoginRegisterActivity extends BaseActivity implements
     }
 
     private void displayRegisterFragment() {
-
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.root_view, registerFragment)
+                .commit();
     }
 }

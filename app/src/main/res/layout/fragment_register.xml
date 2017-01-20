@@ -29,13 +29,45 @@
             android:layout_marginBottom="4dp">
 
             <EditText
-                android:id="@+id/login_param_field"
+                android:id="@+id/name_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:hint="@string/label_email_username"/>
+                android:hint="@string/label_name"/>
 
         </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="4dp">
+
+            <EditText
+                android:id="@+id/username_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="@string/label_username"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+            <EditText
+                android:id="@+id/email_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="@string/label_email"/>
+
+        </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -54,22 +86,22 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ButtonTheme"
             android:layout_marginTop="24dp"
-            android:text="@string/action_login"/>
+            android:text="@string/action_register"/>
 
         <TextView
-            android:id="@+id/go_to_register_text"
+            android:id="@+id/go_to_login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:textColor="@color/colorTextButton"
             android:padding="8dp"
-            android:text="@string/register_from_login"/>
+            android:text="@string/login_from_register"/>
 
     </LinearLayout>
 
