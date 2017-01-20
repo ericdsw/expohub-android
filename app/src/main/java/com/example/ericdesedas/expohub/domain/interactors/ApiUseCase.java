@@ -47,7 +47,7 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
             @Override
             public void onResponse(Call<Document<T>> call, Response<Document<T>> response) {
 
-                processResponseData(response.body());
+                processResponseData(response);
 
                 if (response.isSuccessful()) {
                     for (Listener<Document<T>> listener : listeners) {
@@ -95,7 +95,7 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
         }
     }
 
-    public void processResponseData(Document<T> documentResponse) {
+    public void processResponseData(Response<Document<T>> response) {
         // Empty, should be overwritten by children that want to process document data
     }
 

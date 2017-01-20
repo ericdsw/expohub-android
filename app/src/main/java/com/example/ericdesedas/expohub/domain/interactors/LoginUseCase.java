@@ -10,6 +10,7 @@ import com.squareup.moshi.Moshi;
 
 import moe.banana.jsonapi2.Document;
 import moe.banana.jsonapi2.JsonBuffer;
+import retrofit2.Response;
 
 public class LoginUseCase extends ApiUseCase<User> {
 
@@ -38,17 +39,19 @@ public class LoginUseCase extends ApiUseCase<User> {
     }
 
     @Override
-    public void processResponseData(Document<User> document) {
+    public void processResponseData(Response<Document<User>> response) {
 
-        super.processResponseData(document);
+        super.processResponseData(response);
 
-        JsonBuffer<ApiMeta> buffer = (JsonBuffer<ApiMeta>) document.getMeta();
+        if (response.isSuccessful()) {
 
-        User user       = document.get();
-        ApiMeta apiMeta = buffer.get(new ApiMeta.Adapter());
+            Document<User> document     = response.body();
+            JsonBuffer<ApiMeta> buffer  = (JsonBuffer<ApiMeta>) document.getMeta();
 
-        Log.d("LoginUseCase", "got this token: " + apiMeta.metaElements.get("token"));
+            User user       = document.get();
+            ApiMeta apiMeta = buffer.get(new ApiMeta.Adapter());
 
-        this.sessionManager.login(user, apiMeta.metaElements.get("token"));
+            this.sessionManager.login(user, apiMeta.metaElements.get("token"));
+        }
     }
 }

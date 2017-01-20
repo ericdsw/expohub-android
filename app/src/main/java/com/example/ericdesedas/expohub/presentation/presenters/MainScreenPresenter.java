@@ -4,10 +4,12 @@ import android.util.Log;
 
 import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
 import com.example.ericdesedas.expohub.data.models.Fair;
+import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.models.Session;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 
@@ -20,6 +22,7 @@ public class MainScreenPresenter extends Presenter {
 
     private GetFairsUseCase getFairsUseCase;
     private GetSingleUserUseCase getSingleUserUseCase;
+    private GetFairEventsUseCase getFairEventsUseCase;
     private SessionManager sessionManager;
     private View view;
 
@@ -62,11 +65,9 @@ public class MainScreenPresenter extends Presenter {
             try {
                 sessionManager.refreshUserData(user);
                 view.showIdentifiedUser(sessionManager.getLoggedUser());
-                Log.d("MainScreenPresenter", "updated user data");
             } catch (IOException e) {
                 sessionManager.logout();
                 view.showUnidentifiedUser();
-                Log.d("MainScreenPresenter", "could not update user data");
             }
         }
 
@@ -81,6 +82,36 @@ public class MainScreenPresenter extends Presenter {
         }
     };
 
+    private ApiUseCase.Listener<Document<FairEvent>> getTrendingEventsListener = new ApiUseCase.Listener<Document<FairEvent>>() {
+        @Override
+        public void onResponse(int statusCode, Document<FairEvent> result) {
+
+            view.toggleFairEventsLoading(false);
+
+            List<FairEvent> fairEventsList = generateArrayFromDocument(result);
+            FairEvent[] fairEvents = fairEventsList.toArray(new FairEvent[fairEventsList.size()]);
+
+            view.showTrendingFairEvents(fairEvents);
+        }
+
+        @Override
+        public void onError(int statusCode, ApiErrorWrapper apiError) {
+            view.toggleFairEventsLoading(false);
+            if (apiError.hasUniqueError()) {
+                view.showFairEventsError(statusCode, apiError.getUniqueError().getDetail());
+            } else {
+                String errorString = concatenateErrorString(apiError.getErrorList());
+                view.showFairEventsError(statusCode, errorString);
+            }
+        }
+
+        @Override
+        public void onFailure(Throwable throwable) {
+            view.toggleFairEventsLoading(false);
+            view.showFairEventsError(500, "");
+        }
+    };
+
     // ================================================== General ================================================== //
 
     /**
@@ -88,12 +119,15 @@ public class MainScreenPresenter extends Presenter {
      *
      * @param getFairsUseCase       the {@link GetFairsUseCase} reference
      * @param getSingleUserUseCase  the {@link GetSingleUserUseCase} reference
+     * @param getFairEventsUseCase  the {@link GetFairEventsUseCase} reference
      * @param sessionManager        the {@link SessionManager} reference
      */
-    public MainScreenPresenter(GetFairsUseCase getFairsUseCase, GetSingleUserUseCase getSingleUserUseCase, SessionManager sessionManager) {
+    public MainScreenPresenter(GetFairsUseCase getFairsUseCase, GetSingleUserUseCase getSingleUserUseCase,
+                               GetFairEventsUseCase getFairEventsUseCase, SessionManager sessionManager) {
 
         this.getFairsUseCase        = getFairsUseCase;
         this.getSingleUserUseCase   = getSingleUserUseCase;
+        this.getFairEventsUseCase   = getFairEventsUseCase;
         this.sessionManager         = sessionManager;
         this.view                   = null;
     }
@@ -113,6 +147,12 @@ public class MainScreenPresenter extends Presenter {
         } else {
             view.showUnidentifiedUser();
         }
+
+        // Trending event formatting
+        getFairEventsUseCase.addParameter("sort", "-attendance");
+        getFairEventsUseCase.addParameter("include", "eventType");
+        getFairEventsUseCase.addParameter("page[cursor]", "0");
+        getFairEventsUseCase.addParameter("page[limit]", "7");
     }
 
     @Override
@@ -122,6 +162,7 @@ public class MainScreenPresenter extends Presenter {
 
         getFairsUseCase.registerListener(getFairUseCaseListener);
         getSingleUserUseCase.registerListener(getSingleUserUseCaseListener);
+        getFairEventsUseCase.registerListener(getTrendingEventsListener);
     }
 
     @Override
@@ -131,6 +172,7 @@ public class MainScreenPresenter extends Presenter {
 
         getFairsUseCase.unregisterListener(getFairUseCaseListener);
         getSingleUserUseCase.unregisterListener(getSingleUserUseCaseListener);
+        getFairEventsUseCase.registerListener(getTrendingEventsListener);
     }
 
     /**
@@ -151,34 +193,26 @@ public class MainScreenPresenter extends Presenter {
         getFairsUseCase.executeRequest();
     }
 
+    public void onLoadTrendingEventsCommand() {
+        view.toggleFairEventsLoading(true);
+        getFairEventsUseCase.executeRequest();
+    }
+
     /**
      * Refreshes logged user data
      */
     public void onRefreshUserDataCommand() {
 
-        Log.d("MainScreenPresenter", "called onRefreshUserCommand");
-
         if (sessionManager.isLoggedIn()) {
-
-            Log.d("MainScreenPresenter", "user was logged in");
-
             try {
                 Session session = sessionManager.getLoggedUser();
                 getSingleUserUseCase.executeRequest(session.id);
 
-                Log.d("MainScreenPresenter", "executed the use case");
-
             } catch (IOException e) {
-
-                Log.d("MainScreenPresenter", "got exception");
-
                 sessionManager.logout();
                 view.showUnidentifiedUser();
             }
         } else {
-
-            Log.d("MainScreenPresenter", "user was NOT logged in");
-
             view.showUnidentifiedUser();
         }
     }
@@ -187,9 +221,12 @@ public class MainScreenPresenter extends Presenter {
 
     public interface View {
         void toggleLoading(boolean showLoading);
+        void toggleFairEventsLoading(boolean showLoading);
         void updateFairList(Fair[] fairs);
         void showError(int code, String error);
+        void showFairEventsError(int code, String error);
         void showUnidentifiedUser();
         void showIdentifiedUser(Session session);
+        void showTrendingFairEvents(FairEvent[] fairEvents);
     }
 }

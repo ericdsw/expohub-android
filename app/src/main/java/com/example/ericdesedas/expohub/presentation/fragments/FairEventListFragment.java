@@ -3,7 +3,6 @@ package com.example.ericdesedas.expohub.presentation.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,21 +14,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ericdesedas.expohub.R;
-import com.example.ericdesedas.expohub.data.events.FairListClickEvent;
-import com.example.ericdesedas.expohub.data.events.FairListRefreshEvent;
-import com.example.ericdesedas.expohub.data.models.Fair;
-import com.example.ericdesedas.expohub.presentation.adapters.FairListAdapter;
+import com.example.ericdesedas.expohub.data.events.FairEventListRefreshEvent;
+import com.example.ericdesedas.expohub.data.models.FairEvent;
+import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class FairListFragment extends Fragment implements
-    FairListAdapter.Listener {
+public class FairEventListFragment extends Fragment implements
+        EventListAdapter.Listener {
 
     @BindView(R.id.swipe_refresh_layout)    SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.recycler_view)           RecyclerView recyclerView;
@@ -37,35 +33,26 @@ public class FairListFragment extends Fragment implements
     @BindView(R.id.error_text)              TextView errorText;
 
     private Unbinder unbinder;
-    private FairListAdapter adapter;
+    private EventListAdapter adapter;
     private EventBus eventBus;
 
-    private boolean canUpdate   = false;
-    private int adapterViewType = FairListAdapter.VIEW_TYPE_LARGE;
+    private boolean canUpdate = false;
 
-    public FairListFragment() {
+    public static FairEventListFragment newInstance(EventListAdapter adapter, EventBus eventBus) {
+        FairEventListFragment fragment = new FairEventListFragment();
+        fragment.setAdapter(adapter);
+        fragment.setEventBus(eventBus);
+        return fragment;
+    }
+
+    public FairEventListFragment() {
         // Required empty constructor
     }
 
-    public static FairListFragment newInstance(FairListAdapter adapter, EventBus eventBus) {
-        FairListFragment fragment = new FairListFragment();
-        fragment.setAdapter(adapter);
-        fragment.setEventBus(eventBus);
-        return fragment;
-    }
-
-    public static FairListFragment newInstance(FairListAdapter adapter, EventBus eventBus, int adapterViewType) {
-        FairListFragment fragment = new FairListFragment();
-        fragment.setAdapter(adapter);
-        fragment.setEventBus(eventBus);
-        fragment.setAdapterViewType(adapterViewType);
-        return fragment;
-    }
-
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view   = inflater.inflate(R.layout.fragment_fair_list, container, false);
+        View view   = inflater.inflate(R.layout.fragment_fair_event_list, container, false);
         unbinder    = ButterKnife.bind(this, view);
 
         return view;
@@ -95,18 +82,14 @@ public class FairListFragment extends Fragment implements
         unbinder.unbind();
     }
 
-    // Public Methods
+    // Public methods
 
-    public void setAdapter(FairListAdapter adapter) {
-        this.adapter = adapter;
+    public void setAdapter(EventListAdapter eventListAdapter) {
+        this.adapter = eventListAdapter;
     }
 
     public void setEventBus(EventBus eventBus) {
         this.eventBus = eventBus;
-    }
-
-    public void setAdapterViewType(int adapterViewType) {
-        this.adapterViewType = adapterViewType;
     }
 
     public void toggleLoading(boolean showLoading) {
@@ -117,20 +100,20 @@ public class FairListFragment extends Fragment implements
                 if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
-            } else if (! adapter.hasFairs()) {
+            } else if (! adapter.hasFairEvents()) {
                 networkProgress.setVisibility(View.VISIBLE);
             }
         }
     }
 
-    public void updateList(Fair[] fairs) {
+    public void updateList(FairEvent[] fairEvents) {
 
-        adapter.updateFairList(fairs);
+        adapter.swapList(fairEvents);
         adapter.notifyDataSetChanged();
 
-        if (fairs.length <= 0) {
+        if (fairEvents.length <= 0) {
             errorText.setVisibility(View.VISIBLE);
-            errorText.setText(getString(R.string.empty_fairs_error));
+            errorText.setText(getString(R.string.empty_events_error));
         }
     }
 
@@ -144,37 +127,27 @@ public class FairListFragment extends Fragment implements
         }
     }
 
-    // Private Methods
+    // Adapter Listener
+
+    @Override
+    public void onEventCellClick(FairEvent fairEvent) {
+
+    }
 
     private void setupUI() {
 
         adapter.setListener(this);
-        adapter.setViewSize(this.adapterViewType);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        if (adapterViewType == FairListAdapter.VIEW_TYPE_CONDENSED) {
-            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        }
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                eventBus.post(new FairListRefreshEvent());
+                eventBus.post(new FairEventListRefreshEvent());
                 errorText.setVisibility(View.GONE);
             }
         });
-    }
-
-    @Override
-    public void onFairCardClick(Fair fair, List<Pair<View, String>> transitioningElements) {
-
-        FairListClickEvent event = new FairListClickEvent();
-
-        event.fairId                = fair.getId();
-        event.transitioningElements = transitioningElements;
-
-        eventBus.post(event);
     }
 }

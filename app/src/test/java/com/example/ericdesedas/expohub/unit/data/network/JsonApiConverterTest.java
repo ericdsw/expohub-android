@@ -11,6 +11,7 @@ import com.example.ericdesedas.expohub.data.models.Speaker;
 import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.data.models.SponsorRank;
 import com.example.ericdesedas.expohub.data.models.Stand;
+import com.example.ericdesedas.expohub.data.models.Unknown;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.helpers.FileReaderHelper;
 import com.squareup.moshi.JsonAdapter;
@@ -53,6 +54,7 @@ public class JsonApiConverterTest {
                 .add(SponsorRank.class)
                 .add(Stand.class)
                 .add(User.class)
+                .add(Unknown.class)
                 .build();
 
         moshi = new Moshi.Builder()
@@ -368,6 +370,16 @@ public class JsonApiConverterTest {
         Document<User> usersDocument = parseToDocument(jsonString, User.class);
 
         assertThat("Checking that user array has the correct size", usersDocument.size(), is(2));
+    }
+
+    @Test
+    public void it_parses_null_to_unknown() throws IOException {
+
+        String jsonString = fileReader.readFile("json/empty_response.json");
+
+        Document<Unknown> randomDocument = parseToDocument(jsonString, Unknown.class);
+
+        assertThat("Checking that conversion returned null", randomDocument.get(), is(nullValue()));
     }
 
     private <T extends ResourceIdentifier> Document<T> parseToDocument(String json, Class<T> tClass) throws IOException {

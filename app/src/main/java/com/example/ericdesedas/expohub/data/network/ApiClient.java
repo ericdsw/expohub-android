@@ -4,6 +4,7 @@ import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.models.News;
 import com.example.ericdesedas.expohub.data.models.Stand;
+import com.example.ericdesedas.expohub.data.models.Unknown;
 import com.example.ericdesedas.expohub.data.models.User;
 
 import java.util.Map;
@@ -33,6 +34,9 @@ public interface ApiClient {
     @GET("fairs/{id}")
     Call<Document<Fair>> getFair(@Path("id") String id, @QueryMap Map<String, String> parameters);
 
+    @GET("users/{userId}/fairs")
+    Call<Document<Fair>> getFairsByUser(@Path("userId") String userId, @QueryMap Map<String, String> parameters);
+
     // ======================================= FairEvents =================================== //
 
     @GET("fairEvents")
@@ -43,6 +47,9 @@ public interface ApiClient {
 
     @GET("fairs/{fairId}/fairEvents")
     Call<Document<FairEvent>> getFairEventsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+
+    @GET("users/{userId}/attendingFairEvents")
+    Call<Document<FairEvent>> getFairEventsByAttendingUser(@Path("userId") String userId, @QueryMap Map<String, String> parameters);
 
     // ========================================== News ====================================== //
 
@@ -64,6 +71,9 @@ public interface ApiClient {
     @POST("register")
     Call<Document<User>> register(@Field("name") String name, @Field("username") String username,
                                   @Field("email") String email, @Field("password") String password);
+
+    @POST("logout")
+    Call<Document<Unknown>> logout();
 
     // =========================================== User ====================================== //
 

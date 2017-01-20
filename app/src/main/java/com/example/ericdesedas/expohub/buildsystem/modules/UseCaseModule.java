@@ -1,14 +1,19 @@
 package com.example.ericdesedas.expohub.buildsystem.modules;
 
+import com.example.ericdesedas.expohub.data.models.Session;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairsByUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LoginUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.RegisterUseCase;
 import com.squareup.moshi.Moshi;
 
@@ -26,6 +31,11 @@ public class UseCaseModule {
     @Provides
     GetSingleFairUseCase providesGetSingleFairUseCase(ApiClient apiClient, Moshi moshi) {
         return new GetSingleFairUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    GetFairEventsUseCase providesGetFairEventsUseCase(ApiClient apiClient, Moshi moshi) {
+        return new GetFairEventsUseCase(apiClient, moshi);
     }
 
     @Provides
@@ -54,7 +64,22 @@ public class UseCaseModule {
     }
 
     @Provides
+    LogoutUseCase providesLogoutUseCase(ApiClient apiClient, Moshi moshi, SessionManager sessionManager) {
+        return new LogoutUseCase(apiClient, moshi, sessionManager);
+    }
+
+    @Provides
     GetSingleUserUseCase providesSingleUserUseCase(ApiClient apiClient, Moshi moshi) {
         return new GetSingleUserUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    GetFairsByUserUseCase providesGetFairsByUserUseCase(ApiClient apiClient, Moshi moshi) {
+        return new GetFairsByUserUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    GetFairEventsByAttendingUserUseCase providesGetFairEventsByAttendingUserUseCase(ApiClient apiClient, Moshi moshi) {
+        return new GetFairEventsByAttendingUserUseCase(apiClient, moshi);
     }
 }

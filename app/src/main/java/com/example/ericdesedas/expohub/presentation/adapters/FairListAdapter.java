@@ -22,9 +22,13 @@ import butterknife.OnClick;
 
 public class FairListAdapter extends RecyclerView.Adapter<FairListAdapter.FairViewHolder> {
 
+    public static final int VIEW_TYPE_LARGE     = 0;
+    public static final int VIEW_TYPE_CONDENSED = 1;
+
     private Fair[] fairs;
     private ImageDownloader imageDownloader;
     private Listener listener;
+    private int viewSize = VIEW_TYPE_LARGE;
 
     /**
      * Constructor
@@ -40,8 +44,13 @@ public class FairListAdapter extends RecyclerView.Adapter<FairListAdapter.FairVi
 
     @Override
     public FairViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_fair, parent, false);
-        return new FairViewHolder(view);
+        if (viewSize == VIEW_TYPE_LARGE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_fair, parent, false);
+            return new FairViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_fair_condensed, parent, false);
+            return new FairViewHolder(view);
+        }
     }
 
     @Override
@@ -62,6 +71,10 @@ public class FairListAdapter extends RecyclerView.Adapter<FairListAdapter.FairVi
 
     public void setListener(Listener listener) {
         this.listener = listener;
+    }
+
+    public void setViewSize(int viewSize) {
+        this.viewSize = viewSize;
     }
 
     public boolean hasFairs() {

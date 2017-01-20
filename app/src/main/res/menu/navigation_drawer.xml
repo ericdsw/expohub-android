@@ -4,11 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_trending"
-        android:title="@string/action_trending"
-        android:icon="@drawable/ic_whatshot_black_24dp" />
-
-    <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:icon="@drawable/ic_settings_black_24dp" />

@@ -11,6 +11,7 @@ import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivi
 import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.MainActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
+import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
 
 import dagger.Component;
@@ -31,4 +32,5 @@ public interface ActivityComponent {
     void inject(NewsByFairActivity activity);
     void inject(StandsByFairActivity activity);
     void inject(LoginRegisterActivity activity);
+    void inject(ProfileActivity activity);
 }

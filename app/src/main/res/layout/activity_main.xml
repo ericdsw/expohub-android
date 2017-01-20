@@ -53,17 +53,6 @@
 
         </RelativeLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_fair_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_add_white_24dp"
-            app:layout_anchor="@id/view_pager"
-            app:layout_anchorGravity="bottom|right|end"
-            app:fabSize="normal"/>
-
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView

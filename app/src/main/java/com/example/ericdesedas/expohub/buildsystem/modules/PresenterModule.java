@@ -3,18 +3,23 @@ package com.example.ericdesedas.expohub.buildsystem.modules;
 import com.example.ericdesedas.expohub.buildsystem.scopes.PerActivity;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetFairsByUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LoginUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.RegisterUseCase;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.FairDetailsPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.LoginRegisterPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.MainScreenPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsByFairPresenter;
+import com.example.ericdesedas.expohub.presentation.presenters.ProfilePresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
 import dagger.Module;
@@ -25,8 +30,9 @@ public class PresenterModule {
 
     @Provides
     @PerActivity
-    MainScreenPresenter providesMainScreenPresenter(GetFairsUseCase useCase, GetSingleUserUseCase userUseCase, SessionManager sessionManager) {
-        return new MainScreenPresenter(useCase, userUseCase, sessionManager);
+    MainScreenPresenter providesMainScreenPresenter(GetFairsUseCase useCase, GetSingleUserUseCase userUseCase,
+                                                    GetFairEventsUseCase getFairEventsUseCase, SessionManager sessionManager) {
+        return new MainScreenPresenter(useCase, userUseCase, getFairEventsUseCase, sessionManager);
     }
 
     @Provides
@@ -57,5 +63,16 @@ public class PresenterModule {
     @PerActivity
     LoginRegisterPresenter providesLoginRegisterPresenter(LoginUseCase loginUseCase, RegisterUseCase registerUseCase) {
         return new LoginRegisterPresenter(loginUseCase, registerUseCase);
+    }
+
+    @Provides
+    @PerActivity
+    ProfilePresenter providesProfilePresenter(GetSingleUserUseCase userUseCase,
+                                              GetFairsByUserUseCase fairsByUserUseCase,
+                                              GetFairEventsByAttendingUserUseCase getFairEventsByAttendingUserUseCase,
+                                              LogoutUseCase logoutUseCase,
+                                              SessionManager sessionManager) {
+
+        return new ProfilePresenter(userUseCase, fairsByUserUseCase, getFairEventsByAttendingUserUseCase, logoutUseCase, sessionManager);
     }
 }

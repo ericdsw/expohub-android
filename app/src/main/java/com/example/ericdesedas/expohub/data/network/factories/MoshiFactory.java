@@ -12,6 +12,7 @@ import com.example.ericdesedas.expohub.data.models.Speaker;
 import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.data.models.SponsorRank;
 import com.example.ericdesedas.expohub.data.models.Stand;
+import com.example.ericdesedas.expohub.data.models.Unknown;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.data.network.JsonApiConverterFactory;
 import com.squareup.moshi.JsonAdapter;
@@ -46,6 +47,7 @@ public class MoshiFactory {
                 .add(SponsorRank.class)
                 .add(Stand.class)
                 .add(User.class)
+                .add(Unknown.class)
                 .build();
 
         Moshi moshi = moshiBuilder.add(factory)
