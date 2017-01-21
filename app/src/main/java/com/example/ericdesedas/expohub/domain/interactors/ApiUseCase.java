@@ -89,6 +89,15 @@ public abstract class ApiUseCase<T> {
     }
 
     /**
+     * Registers a set of parameters
+     *
+     * @param apiParameters a {@link Map<String, String>} instance containing the required parameters
+     */
+    public void addParameters(Map<String, String> apiParameters) {
+        this.apiParameters = apiParameters;
+    }
+
+    /**
      * Registers a new listener to the array
      *
      * @param listener a {@link Listener<T>} reference containing the server's response
