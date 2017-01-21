@@ -16,14 +16,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public abstract class ApiUseCase<T extends ResourceIdentifier> {
+public abstract class ApiUseCase<T> {
 
     protected ApiClient apiClient;
     protected Moshi moshi;
     protected Map<String, String> apiParameters;
-    protected Callback<Document<T>> callback;
+    protected Callback<T> callback;
 
-    private List<Listener<Document<T>>> listeners;
+    private List<Listener<T>> listeners;
 
     /**
      * Constructor
@@ -42,24 +42,21 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
         listeners       = new ArrayList<>();
 
         // Callback Initialization
-        callback = new Callback<Document<T>>() {
+        callback = new Callback<T>() {
 
             @Override
-            public void onResponse(Call<Document<T>> call, Response<Document<T>> response) {
+            public void onResponse(Call<T> call, Response<T> response) {
 
                 processResponseData(response);
 
                 if (response.isSuccessful()) {
-                    for (Listener<Document<T>> listener : listeners) {
+                    for (Listener<T> listener : listeners) {
                         listener.onResponse(response.code(), response.body());
                     }
                 } else {
                     try {
-                        Document<T> document = ApiUseCase.this.moshi.adapter(Document.class)
-                                .fromJson(response.errorBody().source());
-
-                        ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
-                        apiErrorWrapper.setErrorList(document.errors());
+                        ApiErrorWrapper apiErrorWrapper = ApiUseCase.this.moshi.adapter(ApiErrorWrapper.class)
+                                .fromJson(response.errorBody().string());
 
                         for (Listener listener : listeners) {
                             listener.onError(response.code(), apiErrorWrapper);
@@ -73,7 +70,7 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
             }
 
             @Override
-            public void onFailure(Call<Document<T>> call, Throwable t) {
+            public void onFailure(Call<T> call, Throwable t) {
                 for (Listener listener : listeners) {
                     listener.onFailure(t);
                 }
@@ -81,21 +78,42 @@ public abstract class ApiUseCase<T extends ResourceIdentifier> {
         };
     }
 
+    /**
+     * Registers a new parameter for the api calls
+     *
+     * @param key   a {@link String} instance containing the parameter key
+     * @param value a {@link String} instance containing the parameter value
+     */
     public void addParameter(String key, String value) {
         apiParameters.put(key, value);
     }
 
-    public void registerListener(Listener<Document<T>> listener) {
+    /**
+     * Registers a new listener to the array
+     *
+     * @param listener a {@link Listener<T>} reference containing the server's response
+     */
+    public void registerListener(Listener<T> listener) {
         listeners.add(listener);
     }
 
-    public void unregisterListener(Listener<Document<T>> listener) {
+    /**
+     * Unregisters specified listener to the array
+     *
+     * @param listener the {@link Listener<T>} reference to remove
+     */
+    public void unregisterListener(Listener<T> listener) {
         if (listeners.contains(listener)) {
             listeners.remove(listener);
         }
     }
 
-    public void processResponseData(Response<Document<T>> response) {
+    /**
+     * Performs additional processing on the response data
+     *
+     * @param response the {@link Response<T>}
+     */
+    public void processResponseData(Response<T> response) {
         // Empty, should be overwritten by children that want to process document data
     }
 

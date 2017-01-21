@@ -1,14 +1,13 @@
 package com.example.ericdesedas.expohub.domain.interactors;
 
-import com.example.ericdesedas.expohub.data.models.Unknown;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.squareup.moshi.Moshi;
 
-import moe.banana.jsonapi2.Document;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 
-public class LogoutUseCase extends ApiUseCase<Unknown> {
+public class LogoutUseCase extends ApiUseCase<ResponseBody> {
 
     private SessionManager sessionManager;
 
@@ -29,7 +28,7 @@ public class LogoutUseCase extends ApiUseCase<Unknown> {
     }
 
     @Override
-    public void processResponseData(Response<Document<Unknown>> response) {
+    public void processResponseData(Response<ResponseBody> response) {
 
         super.processResponseData(response);
 

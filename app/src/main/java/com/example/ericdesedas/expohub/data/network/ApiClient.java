@@ -10,6 +10,7 @@ import com.example.ericdesedas.expohub.data.models.User;
 import java.util.Map;
 
 import moe.banana.jsonapi2.Document;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -73,7 +74,7 @@ public interface ApiClient {
                                   @Field("email") String email, @Field("password") String password);
 
     @POST("logout")
-    Call<Document<Unknown>> logout();
+    Call<ResponseBody> logout();
 
     // =========================================== User ====================================== //
 

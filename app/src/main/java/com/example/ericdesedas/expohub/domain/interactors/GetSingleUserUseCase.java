@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetSingleUserUseCase extends ApiUseCase<User> {
+import moe.banana.jsonapi2.Document;
+
+public class GetSingleUserUseCase extends ApiUseCase<Document<User>> {
 
     /**
      * Constructor

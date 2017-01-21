@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetFairEventsUseCase extends ApiUseCase<FairEvent> {
+import moe.banana.jsonapi2.Document;
+
+public class GetFairEventsUseCase extends ApiUseCase<Document<FairEvent>> {
 
     /**
      * Constructor

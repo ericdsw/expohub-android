@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.News;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetNewsByFairUseCase extends ApiUseCase<News> {
+import moe.banana.jsonapi2.Document;
+
+public class GetNewsByFairUseCase extends ApiUseCase<Document<News>> {
 
     /**
      * Constructor
