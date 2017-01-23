@@ -193,6 +193,9 @@ public class MainScreenPresenter extends Presenter {
         getFairsUseCase.executeRequest();
     }
 
+    /**
+     * Loads trending events
+     */
     public void onLoadTrendingEventsCommand() {
         view.toggleFairEventsLoading(true);
         getFairEventsUseCase.executeRequest();

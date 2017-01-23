@@ -39,7 +39,7 @@ public class MainScreenPresenterTest extends BasePresenterTest {
     }
 
     @Test
-    public void it_updates_view_on_success() {
+    public void it_updates_view_on_fairs_success() {
 
         Document<Fair> document = new Document<>();
         int statusCode  = 200;
@@ -67,7 +67,7 @@ public class MainScreenPresenterTest extends BasePresenterTest {
     }
 
     @Test
-    public void it_updates_view_on_single_error() {
+    public void it_updates_view_on_fairs_single_error() {
 
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
         apiErrorWrapper.addError(createError("fooTitle", "fooDetail", "fooCode", "400"));
@@ -92,7 +92,7 @@ public class MainScreenPresenterTest extends BasePresenterTest {
     }
 
     @Test
-    public void it_updates_view_on_multiple_errors() {
+    public void it_updates_view_on_fairs_multiple_errors() {
 
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
         apiErrorWrapper.addError(createError("fooTitle", "fooDetail", "fooCode", "400"));
@@ -118,7 +118,7 @@ public class MainScreenPresenterTest extends BasePresenterTest {
     }
 
     @Test
-    public void it_updates_view_on_failure() {
+    public void it_updates_view_on_fairs_failure() {
 
         Exception exception = new Exception();
 
@@ -139,5 +139,4 @@ public class MainScreenPresenterTest extends BasePresenterTest {
 
         verify(view).toggleLoading(false);
     }
-
 }
