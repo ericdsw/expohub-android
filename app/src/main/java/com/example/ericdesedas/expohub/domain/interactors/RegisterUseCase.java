@@ -10,7 +10,7 @@ import moe.banana.jsonapi2.Document;
 import moe.banana.jsonapi2.JsonBuffer;
 import retrofit2.Response;
 
-public class RegisterUseCase extends ApiUseCase<User> {
+public class RegisterUseCase extends ApiUseCase<Document<User>> {
 
     private SessionManager sessionManager;
 

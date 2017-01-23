@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.domain.interactors;
 
-import android.util.Log;
-
 import com.example.ericdesedas.expohub.data.models.ApiMeta;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
@@ -12,7 +10,7 @@ import moe.banana.jsonapi2.Document;
 import moe.banana.jsonapi2.JsonBuffer;
 import retrofit2.Response;
 
-public class LoginUseCase extends ApiUseCase<User> {
+public class LoginUseCase extends ApiUseCase<Document<User>> {
 
     private SessionManager sessionManager;
 

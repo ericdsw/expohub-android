@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 import moe.banana.jsonapi2.Document;
+import okhttp3.ResponseBody;
 
 public class ProfilePresenter extends Presenter {
 
@@ -127,9 +128,9 @@ public class ProfilePresenter extends Presenter {
         }
     };
 
-    private ApiUseCase.Listener<Unknown> logoutUseCaseListener = new ApiUseCase.Listener<Unknown>() {
+    private ApiUseCase.Listener<ResponseBody> logoutUseCaseListener = new ApiUseCase.Listener<ResponseBody>() {
         @Override
-        public void onResponse(int statusCode, Unknown result) {
+        public void onResponse(int statusCode, ResponseBody result) {
             view.toggleLoggingOutLoading(false);
             view.loggedOut();
         }
@@ -173,6 +174,7 @@ public class ProfilePresenter extends Presenter {
         getSingleUserUseCase.registerListener(singleUserListener);
         getFairsByUserUseCase.registerListener(fairsByUserUseCaseListener);
         getFairEventsByAttendingUserUseCase.registerListener(getFairEventsByAttendingUseCase);
+        logoutUseCase.registerListener(logoutUseCaseListener);
     }
 
     @Override
@@ -181,6 +183,7 @@ public class ProfilePresenter extends Presenter {
         getSingleUserUseCase.unregisterListener(singleUserListener);
         getFairsByUserUseCase.unregisterListener(fairsByUserUseCaseListener);
         getFairEventsByAttendingUserUseCase.unregisterListener(getFairEventsByAttendingUseCase);
+        logoutUseCase.unregisterListener(logoutUseCaseListener);
     }
 
     public void setView(View view) {
