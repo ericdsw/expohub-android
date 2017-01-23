@@ -79,5 +79,5 @@ public interface ApiClient {
     // =========================================== User ====================================== //
 
     @GET("users/{id}")
-    Call<Document<User>> getUser(@Path("id") String id);
+    Call<Document<User>> getUser(@Path("id") String id, @QueryMap Map<String, String> parameters);
 }

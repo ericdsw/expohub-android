@@ -32,6 +32,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+//TODO: Refactor with new implementation
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( { Response.class, Moshi.class, ResponseBody.class, JsonAdapter.class })
 public class GetFairsUseCaseTest {

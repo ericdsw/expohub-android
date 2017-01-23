@@ -2,17 +2,17 @@
   "errors": [
     {
       "title": "not_found",
-      "message": "Requested data not found",
+      "detail": "Requested data not found",
       "status": 404
     },
     {
       "title": "not_found_2",
-      "message": "Requested data not found 2",
+      "detail": "Requested data not found 2",
       "status": 404
     },
     {
       "title": "not_found_3",
-      "message": "Requested data not found 3",
+      "detail": "Requested data not found 3",
       "status": 404
     }
   ]

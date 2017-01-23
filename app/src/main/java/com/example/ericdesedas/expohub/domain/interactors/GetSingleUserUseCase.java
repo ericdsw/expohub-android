@@ -24,6 +24,6 @@ public class GetSingleUserUseCase extends ApiUseCase<Document<User>> {
      * @param userId a {@link String} containing the user's id
      */
     public void executeRequest(String userId) {
-        apiClient.getUser(userId).enqueue(callback);
+        apiClient.getUser(userId, apiParameters).enqueue(callback);
     }
 }

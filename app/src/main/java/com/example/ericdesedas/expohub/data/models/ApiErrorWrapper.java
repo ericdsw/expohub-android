@@ -35,14 +35,29 @@ public class ApiErrorWrapper {
         return errorList.get(0);
     }
 
+    /**
+     * Adds a single error to the list
+     *
+     * @param error a {@link Error} instance to add to the array
+     */
     public void addError(Error error) {
         errorList.add(error);
     }
 
+    /**
+     * Fetches the current error list
+     *
+     * @return the {@link List<Error>} reference
+     */
     public List<Error> getErrorList() {
         return errorList;
     }
 
+    /**
+     * Replaces internal error list
+     *
+     * @param errorList the {@link List<Error>} that will replace the current one
+     */
     public void setErrorList(List<Error> errorList) {
         this.errorList = errorList;
     }

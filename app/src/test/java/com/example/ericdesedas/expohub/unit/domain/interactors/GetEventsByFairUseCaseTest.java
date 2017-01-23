@@ -1,186 +1,83 @@
 package com.example.ericdesedas.expohub.unit.domain.interactors;
 
-import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
-import com.example.ericdesedas.expohub.helpers.NetworkMockHelper;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import moe.banana.jsonapi2.Document;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-import static org.hamcrest.CoreMatchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( { Response.class, Moshi.class, ResponseBody.class, JsonAdapter.class })
-public class GetEventsByFairUseCaseTest {
+public class GetEventsByFairUseCaseTest extends BaseApiUseCaseTest {
 
-    @Mock
-    ApiClient apiClientMock;
+    @Mock ApiUseCase.Listener<Document<FairEvent>> listener;
 
-    @Mock
-    Moshi moshiMock;
-
-    @Mock
-    JsonAdapter<ApiErrorWrapper> errorApiJsonAdapterMock;
-
-    @Mock
-    ApiUseCase.Listener<Document<FairEvent>> listener;
-
-    private NetworkMockHelper networkMockHelper;
     private GetEventsByFairUseCase getEventsByFairUseCase;
+    private ApiClientRequestCallback<Document<FairEvent>, GetEventsByFairUseCase> genericCallback;
+    private String fairId = "1";
 
     @Before
     public void setUp() {
-        networkMockHelper       = new NetworkMockHelper();
+        super.setUp();
         getEventsByFairUseCase  = new GetEventsByFairUseCase(apiClientMock, moshiMock);
+        genericCallback         = new ApiClientRequestCallback<Document<FairEvent>, GetEventsByFairUseCase>() {
+            @Override
+            public void setupExecutedApiRequest(ApiClient apiClient, Map<String, String> parameters, Call<Document<FairEvent>> call) {
+                when(apiClient.getFairEventsByFair(fairId, parameters)).thenReturn(call);
+            }
+
+            @Override
+            public void triggerRequest(GetEventsByFairUseCase apiUseCase) {
+                apiUseCase.executeRequest(fairId);
+            }
+
+            @Override
+            public void onProcessResponseData(Response<Document<FairEvent>> response) {
+                // Empty
+            }
+        };
     }
 
     @Test
     public void it_successfully_fetches_fair_events_by_fair() {
 
-        String fairId                   = "1";
         Document<FairEvent> document    = new Document<>();
-        int statusCode                  = 200;
-        Map<String, String> parameters  = new HashMap<>();
-
-        Call<Document<FairEvent>> call                                  = networkMockHelper.getCallMock();
-        Response<Document<FairEvent>> response                          = networkMockHelper.getResponseMock();
-        ArgumentCaptor<Callback<Document<FairEvent>>> argumentCaptor    = networkMockHelper.getResponseCallbackCaptor();
-
-        when(apiClientMock.getFairEventsByFair(fairId, parameters)).thenReturn(call);
-
-        when(response.body()).thenReturn(document);
-        when(response.code()).thenReturn(statusCode);
-        when(response.isSuccessful()).thenReturn(true);
-
-        getEventsByFairUseCase.addParameters(parameters);
-        getEventsByFairUseCase.registerListener(listener);
-        getEventsByFairUseCase.executeRequest(fairId);
-
-        verify(call).enqueue(argumentCaptor.capture());
-        argumentCaptor.getValue().onResponse(call, response);
-
-        verify(listener).onResponse(statusCode, document);
+        executeSuccessExpectations(getEventsByFairUseCase, listener, document, genericCallback);
     }
 
     @Test
     public void it_propagates_error() throws IOException {
 
-        String fairId                   = "1";
-        String errorBody                = "foo";
-        int statusCode                  = 400;
-        Map<String, String> parameters  = new HashMap<>();
-        ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
-        ResponseBody responseBodyMock   = PowerMockito.mock(ResponseBody.class);
-
-        Call<Document<FairEvent>> call                                  = networkMockHelper.getCallMock();
-        Response<Document<FairEvent>> response                          = networkMockHelper.getResponseMock();
-        ArgumentCaptor<Callback<Document<FairEvent>>> argumentCaptor    = networkMockHelper.getResponseCallbackCaptor();
-
-        when(response.errorBody()).thenReturn(responseBodyMock);
-        when(response.code()).thenReturn(statusCode);
-        when(response.isSuccessful()).thenReturn(false);
-
-        when(responseBodyMock.string()).thenReturn(errorBody);
-
-        when(apiClientMock.getFairEventsByFair(fairId, parameters)).thenReturn(call);
-
-        when(moshiMock.adapter(eq(ApiErrorWrapper.class))).thenReturn(errorApiJsonAdapterMock);
-
-        when(errorApiJsonAdapterMock.fromJson(errorBody)).thenReturn(apiErrorWrapper);
-
-        getEventsByFairUseCase.addParameters(parameters);
-        getEventsByFairUseCase.registerListener(listener);
-        getEventsByFairUseCase.executeRequest(fairId);
-
-        verify(call).enqueue(argumentCaptor.capture());
-
-        argumentCaptor.getValue().onResponse(call, response);
-
-        verify(listener).onError(statusCode, apiErrorWrapper);
+        executeErrorExpectations(getEventsByFairUseCase, listener, genericCallback);
     }
 
     @Test
     public void it_propagates_error_on_invalid_json() throws IOException {
 
-        String fairId                   = "1";
-        String errorBody                = "foo";
-        int statusCode                  = 400;
-        Map<String, String> parameters  = new HashMap<>();
-        ResponseBody responseBodyMock   = PowerMockito.mock(ResponseBody.class);
-        IOException exception           = new IOException();
-
-        Call<Document<FairEvent>> call                                  = networkMockHelper.getCallMock();
-        Response<Document<FairEvent>> response                          = networkMockHelper.getResponseMock();
-        ArgumentCaptor<Callback<Document<FairEvent>>> argumentCaptor    = networkMockHelper.getResponseCallbackCaptor();
-
-        when(response.errorBody()).thenReturn(responseBodyMock);
-        when(response.code()).thenReturn(statusCode);
-        when(response.isSuccessful()).thenReturn(false);
-
-        when(responseBodyMock.string()).thenReturn(errorBody);
-
-        when(apiClientMock.getFairEventsByFair(fairId, parameters)).thenReturn(call);
-
-        when(moshiMock.adapter(eq(ApiErrorWrapper.class))).thenReturn(errorApiJsonAdapterMock);
-
-        when(errorApiJsonAdapterMock.fromJson(errorBody)).thenThrow(exception);
-
-        getEventsByFairUseCase.addParameters(parameters);
-        getEventsByFairUseCase.registerListener(listener);
-        getEventsByFairUseCase.executeRequest(fairId);
-
-        verify(call).enqueue(argumentCaptor.capture());
-
-        argumentCaptor.getValue().onResponse(call, response);
-
-        verify(listener).onFailure(exception);
+        executeFailureExpectation(getEventsByFairUseCase, listener, true, genericCallback);
     }
 
     @Test
     public void it_propagates_error_on_library_failure() throws IOException {
 
-        String fairId                   = "1";
-        Map<String, String> parameters  = new HashMap<>();
-        IOException exception           = new IOException();
-
-        Call<Document<FairEvent>> call                                  = networkMockHelper.getCallMock();
-        ArgumentCaptor<Callback<Document<FairEvent>>> argumentCaptor    = networkMockHelper.getResponseCallbackCaptor();
-
-        when(apiClientMock.getFairEventsByFair(fairId, parameters)).thenReturn(call);
-
-        getEventsByFairUseCase.addParameters(parameters);
-        getEventsByFairUseCase.registerListener(listener);
-        getEventsByFairUseCase.executeRequest(fairId);
-
-        verify(call).enqueue(argumentCaptor.capture());
-
-        argumentCaptor.getValue().onFailure(call, exception);
-
-        verify(listener).onFailure(exception);
-
+        executeFailureExpectation(getEventsByFairUseCase, listener, true, genericCallback);
     }
 }
