@@ -11,9 +11,14 @@
 
     <!-- Auxiliary Colors -->
     <color name="colorTranslucentBlack">#cc000000</color>
+    <color name="colorTransparentBlack">#66000000</color>
+    <color name="colorPlaceholderGray">#ccc</color>
 
     <!-- Text Colors -->
     <color name="colorSubTitleText">#878787</color>
     <color name="colorBodyText">#323232</color>
+    <color name="diamondSponsorColor">#4db6ac</color>
+    <color name="goldSponsorColor">#ffb74d</color>
+    <color name="silverSponsorColor">#90a4ae</color>
 
 </resources>

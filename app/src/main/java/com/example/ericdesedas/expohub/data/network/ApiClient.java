@@ -3,6 +3,7 @@ package com.example.ericdesedas.expohub.data.network;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.models.News;
+import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.data.models.Stand;
 import com.example.ericdesedas.expohub.data.models.Unknown;
 import com.example.ericdesedas.expohub.data.models.User;
@@ -80,4 +81,9 @@ public interface ApiClient {
 
     @GET("users/{id}")
     Call<Document<User>> getUser(@Path("id") String id, @QueryMap Map<String, String> parameters);
+
+    // ========================================= Sponsors ==================================== //
+
+    @GET("fairs/{fairId}/sponsors")
+    Call<Document<Sponsor>> getSponsorsByFair(@Path("fairId") String id, @QueryMap Map<String, String> parameters);
 }

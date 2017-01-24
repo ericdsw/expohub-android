@@ -7,11 +7,14 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
 
+import com.example.ericdesedas.expohub.data.models.Sponsor;
+import com.example.ericdesedas.expohub.presentation.activities.AboutActivity;
 import com.example.ericdesedas.expohub.presentation.activities.EventsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivity;
 import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
+import com.example.ericdesedas.expohub.presentation.activities.SponsorsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
@@ -73,6 +76,15 @@ public class Navigator {
         executeNavigation(intent);
     }
 
+    public void navigateToSponsorsByFairActivity(String fairId, String fairName) {
+
+        Intent intent = new Intent(activity, SponsorsByFairActivity.class);
+        intent.putExtra(SponsorsByFairActivity.KEY_FAIR_ID, fairId);
+        intent.putExtra(SponsorsByFairActivity.KEY_FAIR_NAME, fairName);
+
+        executeNavigation(intent);
+    }
+
     public void navigateToLoginRegisterActivity() {
 
         Intent intent = new Intent(activity, LoginRegisterActivity.class);
@@ -82,6 +94,12 @@ public class Navigator {
     public void navigateToProfileActivity() {
 
         Intent intent = new Intent(activity, ProfileActivity.class);
+        executeNavigation(intent);
+    }
+
+    public void navigateToAboutActivity() {
+
+        Intent intent = new Intent(activity, AboutActivity.class);
         executeNavigation(intent);
     }
 

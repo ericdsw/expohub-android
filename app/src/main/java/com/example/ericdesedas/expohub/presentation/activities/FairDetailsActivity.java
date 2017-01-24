@@ -142,7 +142,7 @@ public class FairDetailsActivity extends BaseActivity implements
 
     @OnClick(R.id.sponsors_button)
     public void onSponsorsClick() {
-
+        navigator.navigateToSponsorsByFairActivity(currentFair.getId(), currentFair.name);
     }
 
     // View callback methods

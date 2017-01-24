@@ -10,6 +10,7 @@ import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetSponsorsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LoginUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
@@ -20,6 +21,7 @@ import com.example.ericdesedas.expohub.presentation.presenters.LoginRegisterPres
 import com.example.ericdesedas.expohub.presentation.presenters.MainScreenPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsByFairPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.ProfilePresenter;
+import com.example.ericdesedas.expohub.presentation.presenters.SponsorsByFairPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
 import dagger.Module;
@@ -74,5 +76,11 @@ public class PresenterModule {
                                               SessionManager sessionManager) {
 
         return new ProfilePresenter(userUseCase, fairsByUserUseCase, getFairEventsByAttendingUserUseCase, logoutUseCase, sessionManager);
+    }
+
+    @Provides
+    @PerActivity
+    SponsorsByFairPresenter providesSponsorsByFairPresenter(GetSponsorsByFairUseCase useCase) {
+        return new SponsorsByFairPresenter(useCase);
     }
 }

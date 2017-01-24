@@ -206,6 +206,7 @@ public class MainActivity extends BaseActivity implements
                 break;
 
             case R.id.action_about:
+                navigator.navigateToAboutActivity();
                 break;
 
             default:

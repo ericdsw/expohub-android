@@ -48,11 +48,20 @@ public class RecyclerAdapterFactory {
     }
 
     /**
-     * StandListAdapter
+     * Creates StandListAdapter
      *
      * @return a {@link StandListAdapter} instance
      */
     public StandListAdapter createStandListAdapter() {
         return new StandListAdapter(imageDownloader);
+    }
+
+    /**
+     * Creates SponsorListAdapter
+     *
+     * @return a {@link SponsorListAdapter} instance
+     */
+    public SponsorListAdapter createSponsorListAdapter() {
+        return new SponsorListAdapter(imageDownloader);
     }
 }

@@ -1,9 +1,9 @@
 package com.example.ericdesedas.expohub.unit.domain.interactors;
 
-import com.example.ericdesedas.expohub.data.models.User;
+import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
-import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetSponsorsByFairUseCase;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
@@ -26,43 +26,43 @@ import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( { Response.class, Moshi.class, ResponseBody.class, JsonAdapter.class })
-public class GetSingleUserUseCaseTest extends BaseApiUseCaseTest {
+public class GetSponsorsByFairUseCaseTest extends BaseApiUseCaseTest {
 
     @Mock
-    ApiUseCase.Listener<Document<User>> listener;
+    ApiUseCase.Listener<Document<Sponsor>> listener;
 
-    private GetSingleUserUseCase useCase;
-    private ApiClientRequestCallback<Document<User>, GetSingleUserUseCase> genericCallback;
-    private String userId = "1";
+    private GetSponsorsByFairUseCase useCase;
+    private ApiClientRequestCallback<Document<Sponsor>, GetSponsorsByFairUseCase> genericCallback;
+    private String fairId = "1";
 
     @Before
     public void setUp() {
 
         super.setUp();
 
-        useCase         = new GetSingleUserUseCase(apiClientMock, moshiMock);
-        genericCallback = new ApiClientRequestCallback<Document<User>, GetSingleUserUseCase>() {
+        useCase         = new GetSponsorsByFairUseCase(apiClientMock, moshiMock);
+        genericCallback = new ApiClientRequestCallback<Document<Sponsor>, GetSponsorsByFairUseCase>() {
             @Override
-            public void setupExecutedApiRequest(ApiClient apiClient, Map<String, String> parameters, Call<Document<User>> call) {
-                when(apiClient.getUser(userId, parameters)).thenReturn(call);
+            public void setupExecutedApiRequest(ApiClient apiClient, Map<String, String> parameters, Call<Document<Sponsor>> call) {
+                when(apiClient.getSponsorsByFair(fairId, parameters)).thenReturn(call);
             }
 
             @Override
-            public void triggerRequest(GetSingleUserUseCase apiUseCase) {
-                apiUseCase.executeRequest(userId);
+            public void triggerRequest(GetSponsorsByFairUseCase apiUseCase) {
+                apiUseCase.executeRequest(fairId);
             }
 
             @Override
-            public void onProcessResponseData(Response<Document<User>> response) {
-                // Empty
+            public void onProcessResponseData(Response<Document<Sponsor>> response) {
+                //
             }
         };
     }
 
     @Test
-    public void it_successfully_fetches_user() {
+    public void it_successfully_fetches_sponsors_by_fair() {
 
-        Document<User> document = new Document<>();
+        Document<Sponsor> document = new Document<>();
         executeSuccessExpectations(useCase, listener, document, genericCallback);
     }
 

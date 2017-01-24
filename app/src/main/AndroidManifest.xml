@@ -78,6 +78,17 @@
                 android:value=".presentation.activities.FairDetailsActivity"/>
         </activity>
 
+        <!-- Sponsors By Fair Activity -->
+        <activity
+            android:name=".presentation.activities.SponsorsByFairActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.activities.FairDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activities.FairDetailsActivity"/>
+        </activity>
+
         <!-- Login/Register Activity -->
         <activity
             android:name=".presentation.activities.LoginRegisterActivity"
@@ -92,6 +103,17 @@
         <!-- ProfileActivity -->
         <activity
             android:name=".presentation.activities.ProfileActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activities.MainActivity"/>
+        </activity>
+
+        <!-- AboutActivity -->
+        <activity
+            android:name=".presentation.activities.AboutActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:parentActivityName=".presentation.activities.MainActivity">
