@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ericdesedas.expohub.R;
+import com.example.ericdesedas.expohub.data.events.FairEventListClickEvent;
 import com.example.ericdesedas.expohub.data.events.FairEventListRefreshEvent;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
@@ -131,7 +132,9 @@ public class FairEventListFragment extends Fragment implements
 
     @Override
     public void onEventCellClick(FairEvent fairEvent) {
-
+        FairEventListClickEvent event = new FairEventListClickEvent();
+        event.fairEventId = fairEvent.getId();
+        eventBus.post(event);
     }
 
     private void setupUI() {

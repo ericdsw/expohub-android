@@ -102,6 +102,9 @@ public class ProfileActivity extends BaseActivity implements
             case R.id.action_logout:
                 presenter.onLogoutCommand();
                 break;
+            case android.R.id.home:
+                finish();
+                break;
         }
 
         return true;

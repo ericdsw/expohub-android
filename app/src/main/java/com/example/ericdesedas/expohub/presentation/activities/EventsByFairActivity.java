@@ -16,6 +16,7 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
+import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
 
 import javax.inject.Inject;
@@ -38,6 +39,7 @@ public class EventsByFairActivity extends BaseActivity implements
 
     @Inject RecyclerAdapterFactory recyclerAdapterFactory;
     @Inject EventsByFairPresenter presenter;
+    @Inject Navigator navigator;
 
     private String fairId;
     private String fairName;
@@ -117,7 +119,7 @@ public class EventsByFairActivity extends BaseActivity implements
 
     @Override
     public void onEventCellClick(FairEvent fairEvent) {
-        Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+        navigator.navigateToFairEventDetailsActivity(fairEvent.getId());
     }
 
     private void setupUI() {

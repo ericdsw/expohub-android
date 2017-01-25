@@ -45,6 +45,14 @@
                 android:value=".presentation.activities.MainActivity"/>
         </activity>
 
+        <!-- FairEvent Details Activity -->
+        <activity
+            android:name=".presentation.activities.FairEventDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <!-- Events By Fair Activity -->
         <activity
             android:name=".presentation.activities.EventsByFairActivity"

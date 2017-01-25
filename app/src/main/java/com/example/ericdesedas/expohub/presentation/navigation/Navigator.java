@@ -11,6 +11,7 @@ import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.presentation.activities.AboutActivity;
 import com.example.ericdesedas.expohub.presentation.activities.EventsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivity;
+import com.example.ericdesedas.expohub.presentation.activities.FairEventDetailsActivity;
 import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
@@ -45,6 +46,14 @@ public class Navigator {
 
         Intent intent = new Intent(activity, FairDetailsActivity.class);
         intent.putExtra(FairDetailsActivity.KEY_FAIR_ID, fairId);
+
+        executeNavigation(intent);
+    }
+
+    public void navigateToFairEventDetailsActivity(String fairEventId) {
+
+        Intent intent = new Intent(activity, FairEventDetailsActivity.class);
+        intent.putExtra(FairEventDetailsActivity.KEY_FAIR_EVENT_ID, fairEventId);
 
         executeNavigation(intent);
     }

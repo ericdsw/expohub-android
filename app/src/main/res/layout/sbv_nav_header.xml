@@ -27,7 +27,7 @@
             android:id="@+id/user_image"
             android:layout_width="62dp"
             android:layout_height="62dp"
-            android:src="@drawable/user_profile"
+            android:src="@drawable/profile_placeholder"
             android:layout_marginTop="24dp"
             android:layout_marginLeft="16dp"
             android:layout_alignParentTop="true"

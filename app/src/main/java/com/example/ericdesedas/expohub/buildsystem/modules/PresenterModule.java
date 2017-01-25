@@ -8,6 +8,7 @@ import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsByUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairEventUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSponsorsByFairUseCase;
@@ -17,6 +18,7 @@ import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.RegisterUseCase;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.FairDetailsPresenter;
+import com.example.ericdesedas.expohub.presentation.presenters.FairEventDetailsPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.LoginRegisterPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.MainScreenPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsByFairPresenter;
@@ -82,5 +84,11 @@ public class PresenterModule {
     @PerActivity
     SponsorsByFairPresenter providesSponsorsByFairPresenter(GetSponsorsByFairUseCase useCase) {
         return new SponsorsByFairPresenter(useCase);
+    }
+
+    @Provides
+    @PerActivity
+    FairEventDetailsPresenter providesFairEventDetailsPresenter(GetSingleFairEventUseCase singleFairEventUseCase) {
+        return new FairEventDetailsPresenter(singleFairEventUseCase);
     }
 }

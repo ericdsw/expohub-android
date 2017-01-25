@@ -97,7 +97,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/user_profile"
+        android:src="@drawable/profile_placeholder"
         android:elevation="16dp"
         android:background="@android:color/transparent"
         app:layout_scrollFlags="scroll"

@@ -194,7 +194,11 @@ public class FairDetailsActivity extends BaseActivity implements
     public void showError(int code, String error) {
 
         errorWrapper.setVisibility(View.VISIBLE);
-        errorTextView.setText(error);
+        if (code == 500) {
+            errorTextView.setText(getString(R.string.generic_network_error));
+        } else {
+            errorTextView.setText(error);
+        }
     }
 
     // Google Maps Methods

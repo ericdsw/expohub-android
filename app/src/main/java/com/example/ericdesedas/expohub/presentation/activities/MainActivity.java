@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
+import com.example.ericdesedas.expohub.data.events.FairEventListClickEvent;
 import com.example.ericdesedas.expohub.data.events.FairEventListRefreshEvent;
 import com.example.ericdesedas.expohub.data.events.FairListClickEvent;
 import com.example.ericdesedas.expohub.data.events.FairListRefreshEvent;
@@ -142,6 +143,11 @@ public class MainActivity extends BaseActivity implements
     public void onFairListClickEvent(FairListClickEvent event) {
         navigator.setTransitioningElements(event.transitioningElements)
                 .navigateToFairDetailsActivity(event.fairId);
+    }
+
+    @Subscribe
+    public void onFairEventListClickEvent(FairEventListClickEvent eventListClickEvent) {
+        navigator.navigateToFairEventDetailsActivity(eventListClickEvent.fairEventId);
     }
 
     @Subscribe

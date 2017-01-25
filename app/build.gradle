@@ -1,13 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply from: 'env.gradle'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
 
+    signingConfigs {
+        release {
+            storeFile file("expo_hub_key.jks")
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
     defaultConfig {
 
-        applicationId "com.example.ericdesedas.expohub"
+        applicationId "com.ericdesedas.expohub"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -37,6 +47,7 @@ android {
             minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }

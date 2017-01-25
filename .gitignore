@@ -1,5 +1,6 @@
 # Env files
 app/env.gradle
+app/expo_hub_key.jks
 
 # GCM services json file
 app/google-services.json

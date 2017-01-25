@@ -45,6 +45,7 @@
                 android:background="@android:color/white"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
+                android:paddingRight="16dp"
                 android:layout_gravity="center_vertical">
 
                 <TextView
@@ -72,8 +73,8 @@
                     style="@style/BodyTextStyle"
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/fair_dates"
-                    tools:text="This is a short description defined for this fair. Here all general data will appear"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    tools:text="This is a short description defined for this fair. Here all general data will appear"/>
 
             </RelativeLayout>
 

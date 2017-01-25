@@ -22,6 +22,8 @@
     <string name="action_about">About</string>
     <string name="action_trending">Trending</string>
     <string name="action_view_repo">Visit Github Repo</string>
+    <string name="action_share">Share</string>
+    <string name="action_favorite">Favorite</string>
 
     <!-- Labels -->
     <string name="label_dates">%1$s - %2$s</string>
@@ -65,6 +67,7 @@
     <string name="empty_email_param">Please provide an email</string>
     <string name="empty_password_param_register">Please provide a password</string>
     <string name="internal_auth_error">Couldn\'t validate credentials, please login again</string>
+    <string name="empty_speakers_error">No speakers found</string>
 
     <!-- Drawer Layout toggle titles -->
     <string name="drawer_open">Open Drawer</string>
@@ -75,6 +78,13 @@
     <string name="about_disclaimer">
         This application demonstrates a simple client implementation that can consume the main ExpoHub\'s API. \n
         It is part of the \"ExpoHub\" thesis project.
+    </string>
+
+    <!-- Extras -->
+    <string name="placeholder_long_string">
+        Donec blandit sit amet erat a ornare. Vestibulum a massa at odio fringilla faucibus et vitae eros.
+        Quisque cursus vitae lorem ac scelerisque. Donec ut justo orci. Phasellus fringilla tempus sapien quis mattis.
+        Mauris a arcu gravida, sodales urna vitae, vestibulum ante. Cras elementum pretium egestas.
     </string>
 
     <!-- Below this line there should only be meta-data defined -->
