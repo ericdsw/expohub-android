@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.FairListClickEvent;
@@ -40,7 +40,8 @@ public class FairListFragment extends Fragment implements
     private FairListAdapter adapter;
     private EventBus eventBus;
 
-    private boolean canUpdate = false;
+    private boolean canUpdate   = false;
+    private int adapterViewType = FairListAdapter.VIEW_TYPE_LARGE;
 
     public FairListFragment() {
         // Required empty constructor
@@ -50,6 +51,14 @@ public class FairListFragment extends Fragment implements
         FairListFragment fragment = new FairListFragment();
         fragment.setAdapter(adapter);
         fragment.setEventBus(eventBus);
+        return fragment;
+    }
+
+    public static FairListFragment newInstance(FairListAdapter adapter, EventBus eventBus, int adapterViewType) {
+        FairListFragment fragment = new FairListFragment();
+        fragment.setAdapter(adapter);
+        fragment.setEventBus(eventBus);
+        fragment.setAdapterViewType(adapterViewType);
         return fragment;
     }
 
@@ -96,6 +105,10 @@ public class FairListFragment extends Fragment implements
         this.eventBus = eventBus;
     }
 
+    public void setAdapterViewType(int adapterViewType) {
+        this.adapterViewType = adapterViewType;
+    }
+
     public void toggleLoading(boolean showLoading) {
 
         if (canUpdate) {
@@ -136,9 +149,14 @@ public class FairListFragment extends Fragment implements
     private void setupUI() {
 
         adapter.setListener(this);
+        adapter.setViewSize(this.adapterViewType);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        if (adapterViewType == FairListAdapter.VIEW_TYPE_CONDENSED) {
+            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

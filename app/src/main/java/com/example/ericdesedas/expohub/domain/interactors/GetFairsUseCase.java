@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetFairsUseCase extends ApiUseCase<Fair[]> {
+import moe.banana.jsonapi2.Document;
+
+public class GetFairsUseCase extends ApiUseCase<Document<Fair>> {
 
     /**
      * Constructor

@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetSingleFairUseCase extends ApiUseCase<Fair> {
+import moe.banana.jsonapi2.Document;
+
+public class GetSingleFairUseCase extends ApiUseCase<Document<Fair>> {
 
     /**
      * Constructor
@@ -18,7 +20,8 @@ public class GetSingleFairUseCase extends ApiUseCase<Fair> {
 
     /**
      * Fetches a single fair
-     * @param id
+     *
+     * @param id a {@link String} instance containing the desired fair id
      */
     public void executeRequest(String id) {
         apiClient.getFair(id, apiParameters).enqueue(callback);

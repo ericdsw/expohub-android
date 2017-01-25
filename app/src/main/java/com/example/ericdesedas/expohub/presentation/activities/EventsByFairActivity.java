@@ -2,6 +2,7 @@ package com.example.ericdesedas.expohub.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +17,10 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
+import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,18 +40,16 @@ public class EventsByFairActivity extends BaseActivity implements
     @BindView(R.id.network_progress)        ProgressBar networkProgressBar;
     @BindView(R.id.error_text)              TextView errorText;
 
-    String fairId;
-    String fairName;
-    EventListAdapter adapter;
+    @Inject RecyclerAdapterFactory recyclerAdapterFactory;
+    @Inject EventsByFairPresenter presenter;
+    @Inject Navigator navigator;
 
-    @Inject
-    RecyclerAdapterFactory recyclerAdapterFactory;
-
-    @Inject
-    EventsByFairPresenter presenter;
+    private String fairId;
+    private String fairName;
+    private EventListAdapter adapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fair_events);
@@ -119,8 +121,9 @@ public class EventsByFairActivity extends BaseActivity implements
     }
 
     @Override
-    public void onEventCellClick(FairEvent fairEvent) {
-        Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+    public void onEventCellClick(FairEvent fairEvent, List<Pair<View, String>> transitioningElements) {
+        navigator.setTransitioningElements(transitioningElements)
+                .navigateToFairEventDetailsActivity(fairEvent.getId());
     }
 
     private void setupUI() {

@@ -5,25 +5,33 @@ import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
 
+import java.util.List;
+
+import moe.banana.jsonapi2.Document;
+
 public class EventsByFairPresenter extends Presenter {
 
     private GetEventsByFairUseCase useCase;
     private View view;
 
-    private ApiUseCase.Listener<FairEvent[]> listener = new ApiUseCase.Listener<FairEvent[]>() {
+    private ApiUseCase.Listener<Document<FairEvent>> listener = new ApiUseCase.Listener<Document<FairEvent>>() {
         @Override
-        public void onResponse(int statusCode, FairEvent[] result) {
+        public void onResponse(int statusCode, Document<FairEvent> result) {
+
+            List<FairEvent> fairEvents  = generateArrayFromDocument(result);
+            FairEvent[] fairEventsArray = fairEvents.toArray(new FairEvent[fairEvents.size()]);
+
             view.toggleLoading(false);
-            view.updateEventList(result);
+            view.updateEventList(fairEventsArray);
         }
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
             view.toggleLoading(false);
             if (apiError.hasUniqueError()) {
-                view.showError(statusCode, apiError.getUniqueError().message);
+                view.showError(statusCode, apiError.getUniqueError().getDetail());
             } else {
-                String errorString = concatenateErrorString(apiError.errorList);
+                String errorString = concatenateErrorString(apiError.getErrorList());
                 view.showError(statusCode, errorString);
             }
         }

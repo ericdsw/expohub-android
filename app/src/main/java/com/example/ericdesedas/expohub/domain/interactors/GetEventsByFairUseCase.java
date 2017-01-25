@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetEventsByFairUseCase extends ApiUseCase<FairEvent[]> {
+import moe.banana.jsonapi2.Document;
+
+public class GetEventsByFairUseCase extends ApiUseCase<Document<FairEvent>> {
 
     /**
      * Constructor
@@ -18,7 +20,8 @@ public class GetEventsByFairUseCase extends ApiUseCase<FairEvent[]> {
 
     /**
      * Executes the apiClient's request
-     * @param fairId
+     *
+     * @param fairId the {@link String} reference containing the relate fair's id
      */
     public void executeRequest(String fairId) {
         apiClient.getFairEventsByFair(fairId, apiParameters).enqueue(callback);

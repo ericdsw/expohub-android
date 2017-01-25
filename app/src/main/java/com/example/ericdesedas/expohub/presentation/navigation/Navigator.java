@@ -7,9 +7,15 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
 
+import com.example.ericdesedas.expohub.data.models.Sponsor;
+import com.example.ericdesedas.expohub.presentation.activities.AboutActivity;
 import com.example.ericdesedas.expohub.presentation.activities.EventsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivity;
+import com.example.ericdesedas.expohub.presentation.activities.FairEventDetailsActivity;
+import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
+import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
+import com.example.ericdesedas.expohub.presentation.activities.SponsorsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
@@ -23,7 +29,6 @@ import java.util.List;
 public class Navigator {
 
     private Activity activity;
-
     private List<Pair<View, String>> transitioningElements;
 
     /**
@@ -35,12 +40,20 @@ public class Navigator {
         this.transitioningElements = new ArrayList<>();
     }
 
-    // Navigation Endpoints
+    // ======================================== Navigation ======================================== //
 
     public void navigateToFairDetailsActivity(String fairId) {
 
         Intent intent = new Intent(activity, FairDetailsActivity.class);
         intent.putExtra(FairDetailsActivity.KEY_FAIR_ID, fairId);
+
+        executeNavigation(intent);
+    }
+
+    public void navigateToFairEventDetailsActivity(String fairEventId) {
+
+        Intent intent = new Intent(activity, FairEventDetailsActivity.class);
+        intent.putExtra(FairEventDetailsActivity.KEY_FAIR_EVENT_ID, fairEventId);
 
         executeNavigation(intent);
     }
@@ -72,7 +85,34 @@ public class Navigator {
         executeNavigation(intent);
     }
 
-    // Transition logic
+    public void navigateToSponsorsByFairActivity(String fairId, String fairName) {
+
+        Intent intent = new Intent(activity, SponsorsByFairActivity.class);
+        intent.putExtra(SponsorsByFairActivity.KEY_FAIR_ID, fairId);
+        intent.putExtra(SponsorsByFairActivity.KEY_FAIR_NAME, fairName);
+
+        executeNavigation(intent);
+    }
+
+    public void navigateToLoginRegisterActivity() {
+
+        Intent intent = new Intent(activity, LoginRegisterActivity.class);
+        executeNavigation(intent);
+    }
+
+    public void navigateToProfileActivity() {
+
+        Intent intent = new Intent(activity, ProfileActivity.class);
+        executeNavigation(intent);
+    }
+
+    public void navigateToAboutActivity() {
+
+        Intent intent = new Intent(activity, AboutActivity.class);
+        executeNavigation(intent);
+    }
+
+    // ======================================== Transition ======================================== //
 
     /**
      * Adds an element to the transition animation logic

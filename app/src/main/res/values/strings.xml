@@ -8,11 +8,22 @@
     <string name="title_my_events_fragment">My Events</string>
     <string name="title_drawer_open">Opened</string>
     <string name="title_drawer_closed">Closed</string>
+    <string name="title_my_fairs_fragment">My Fairs</string>
+    <string name="title_my_attending_events">Attending Events</string>
+    <string name="title_trending">Trending</string>
 
     <!-- Actions -->
     <string name="action_retry">Retry</string>
     <string name="action_maps">Maps</string>
     <string name="action_login">Login</string>
+    <string name="action_register">Register</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+    <string name="action_trending">Trending</string>
+    <string name="action_view_repo">Visit Github Repo</string>
+    <string name="action_share">Share</string>
+    <string name="action_favorite">Favorite</string>
 
     <!-- Labels -->
     <string name="label_dates">%1$s - %2$s</string>
@@ -21,9 +32,26 @@
     <string name="label_events">Events</string>
     <string name="label_news">News</string>
     <string name="label_stands">Stands</string>
+    <string name="label_email_username">Email / Username</string>
+    <string name="label_password">Password</string>
+    <string name="label_name">Name</string>
+    <string name="label_email">Email</string>
+    <string name="label_username">Username</string>
+    <string name="label_username_profile">\@%1$s</string>
+    <string name="label_sponsor_type">%1$s Sponsor</string>
 
     <!-- Messages -->
     <string name="login_call_to_action">Nothing to see here\n Login to view your saved events</string>
+    <string name="drawer_login_call_to_action">Login to see your profile</string>
+    <string name="login_process_message">Authenticating&#8230;</string>
+    <string name="register_process_message">Creating Account&#8230;</string>
+    <string name="welcome_back_message">Welcome back, %1$s</string>
+    <string name="welcome_message">Welcome, %1$s</string>
+    <string name="register_from_login">Don\'t have an account? Create one</string>
+    <string name="login_from_register">Already have an account? Login here</string>
+    <string name="fetching_user_data">Fetching user data&#8230;</string>
+    <string name="logging_out_message">Logging out&#8230;</string>
+    <string name="logged_out_message">Logged out successfully</string>
 
     <!-- Errors -->
     <string name="generic_network_error">Network Error</string>
@@ -31,10 +59,42 @@
     <string name="empty_events_error">No events found</string>
     <string name="empty_news_error">No news found</string>
     <string name="empty_stands_error">No stands found</string>
+    <string name="empty_sponsors_error">No sponsors found</string>
+    <string name="empty_login_param">Please provide either your email or your username</string>
+    <string name="empty_password_param">Please provide your password</string>
+    <string name="empty_name_param">Please provide a name</string>
+    <string name="empty_username_param">Please provide a username</string>
+    <string name="empty_email_param">Please provide an email</string>
+    <string name="empty_password_param_register">Please provide a password</string>
+    <string name="internal_auth_error">Couldn\'t validate credentials, please login again</string>
+    <string name="empty_speakers_error">No speakers found</string>
+    <string name="unidentified_error">Please login to perform this action</string>
+    <string name="not_implemented">Not implemented yet</string>
+
+    <!-- Drawer Layout toggle titles -->
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+    <!-- About Section -->
+    <string name="about_app_name">ExpoHub v1.0.0</string>
+    <string name="about_disclaimer">
+        This application demonstrates a simple client implementation that can consume the main ExpoHub\'s API. \n
+        It is part of the \"ExpoHub\" thesis project.
+    </string>
+
+    <!-- Extras -->
+    <string name="placeholder_long_string">
+        Donec blandit sit amet erat a ornare. Vestibulum a massa at odio fringilla faucibus et vitae eros.
+        Quisque cursus vitae lorem ac scelerisque. Donec ut justo orci. Phasellus fringilla tempus sapien quis mattis.
+        Mauris a arcu gravida, sodales urna vitae, vestibulum ante. Cras elementum pretium egestas.
+    </string>
 
     <!-- Below this line there should only be meta-data defined -->
     <!-- Transition Names -->
     <string name="transition_fair_card_image">transition:fair_card_image</string>
     <string name="transition_fair_card_content">transition:fair_card_content</string>
+    <string name="transition_profile_image">transition:profile_image</string>
+    <string name="transition_profile_name">transition:profile_name</string>
+    <string name="transition_fair_event_card">transition:fair_event_card</string>
 
 </resources>

@@ -15,4 +15,8 @@ public class Map extends Resource {
 
     // Relationships
     @Json(name = "fair")    public HasOne<Fair> fair;
+
+    public Fair getFair() {
+        return fair.get(getContext());
+    }
 }

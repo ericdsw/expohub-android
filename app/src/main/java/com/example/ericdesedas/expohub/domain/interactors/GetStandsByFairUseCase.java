@@ -4,7 +4,9 @@ import com.example.ericdesedas.expohub.data.models.Stand;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
 
-public class GetStandsByFairUseCase extends ApiUseCase<Stand[]> {
+import moe.banana.jsonapi2.Document;
+
+public class GetStandsByFairUseCase extends ApiUseCase<Document<Stand>> {
 
     /**
      * Constructor
@@ -18,7 +20,8 @@ public class GetStandsByFairUseCase extends ApiUseCase<Stand[]> {
 
     /**
      * Executes the request
-     * @param fairId
+     *
+     * @param fairId the {@link String} reference containing the related fair's id
      */
     public void executeRequest(String fairId) {
         apiClient.getStandsByFair(fairId, apiParameters).enqueue(callback);

@@ -16,4 +16,8 @@ public class Speaker extends Resource {
 
     // Relationships
     @Json(name = "fairEvent") public HasOne<FairEvent> fairEvent;
+
+    public FairEvent getFairEvent() {
+        return fairEvent.get(getContext());
+    }
 }

@@ -13,6 +13,8 @@ import com.example.ericdesedas.expohub.buildsystem.modules.NavigationModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.PresenterModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.UseCaseModule;
 
+import icepick.Icepick;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
     private ActivityComponent activityComponent;
@@ -30,6 +32,14 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .presenterModule(new PresenterModule())
                 .useCaseModule(new UseCaseModule())
                 .build();
+
+        Icepick.restoreInstanceState(this, savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 
     /**

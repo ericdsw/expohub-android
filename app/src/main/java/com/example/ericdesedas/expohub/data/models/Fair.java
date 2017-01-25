@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import moe.banana.jsonapi2.HasMany;
@@ -39,6 +40,42 @@ public class Fair extends Resource {
     @Json(name = "fairEvents")      public HasMany<FairEvent> fairEvents;
     @Json(name = "news")            public HasMany<News> news;
     @Json(name = "stands")          public HasMany<Stand> stands;
+
+    public User getUser() {
+        return user.get(getContext());
+    }
+
+    public List<User> getBannedUsers() {
+        return bannedUsers.get(getContext());
+    }
+
+    public List<User> getHelperUsers() {
+        return helperUsers.get(getContext());
+    }
+
+    public List<Sponsor> getSponsors() {
+        return sponsors.get(getContext());
+    }
+
+    public List<Map> getMaps() {
+        return maps.get(getContext());
+    }
+
+    public List<Category> getCategories() {
+        return categories.get(getContext());
+    }
+
+    public List<FairEvent> getFairEvents() {
+        return fairEvents.get(getContext());
+    }
+
+    public List<News> getNewses() {
+        return news.get(getContext());
+    }
+
+    public List<Stand> getStands() {
+        return stands.get(getContext());
+    }
 
     public String getImage() {
         return image;

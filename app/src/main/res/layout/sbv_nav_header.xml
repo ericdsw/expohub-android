@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.example.ericdesedas.expohub.presentation.widgets.AspectRatioImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:heightRatio="0.57"
+        android:scaleType="centerCrop"
+        android:src="@drawable/material_background"/>
+
+    <RelativeLayout
+        android:id="@+id/logged_user_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/background_image"
+        android:layout_alignTop="@id/background_image"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:src="@drawable/profile_placeholder"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:transitionName="@string/transition_profile_image"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="102dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:transitionName="@string/transition_profile_name"
+            tools:text="John Doe" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/unidentified_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Medium"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="@string/drawer_login_call_to_action"/>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="@string/action_login"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            style="@style/AltButtonTheme" />
+
+    </LinearLayout>
+
+</RelativeLayout>

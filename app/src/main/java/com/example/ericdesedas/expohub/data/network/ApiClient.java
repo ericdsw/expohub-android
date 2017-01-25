@@ -3,12 +3,20 @@ package com.example.ericdesedas.expohub.data.network;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.models.News;
+import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.data.models.Stand;
+import com.example.ericdesedas.expohub.data.models.Unknown;
+import com.example.ericdesedas.expohub.data.models.User;
 
 import java.util.Map;
 
+import moe.banana.jsonapi2.Document;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
@@ -23,29 +31,65 @@ public interface ApiClient {
     // ======================================== Fairs ======================================== //
 
     @GET("fairs")
-    Call<Fair[]> getFairs(@QueryMap Map<String, String> parameters);
+    Call<Document<Fair>> getFairs(@QueryMap Map<String, String> parameters);
 
     @GET("fairs/{id}")
-    Call<Fair> getFair(@Path("id") String id, @QueryMap Map<String, String> parameters);
+    Call<Document<Fair>> getFair(@Path("id") String id, @QueryMap Map<String, String> parameters);
+
+    @GET("users/{userId}/fairs")
+    Call<Document<Fair>> getFairsByUser(@Path("userId") String userId, @QueryMap Map<String, String> parameters);
 
     // ======================================= FairEvents =================================== //
 
     @GET("fairEvents")
-    Call<FairEvent[]> getFairEvents(@QueryMap Map<String, String> parameters);
+    Call<Document<FairEvent>> getFairEvents(@QueryMap Map<String, String> parameters);
 
     @GET("fairEvents/{id}")
-    Call<FairEvent> getFairEvent(@Path("id") String id, @QueryMap Map<String, String> parameters);
+    Call<Document<FairEvent>> getFairEvent(@Path("id") String id, @QueryMap Map<String, String> parameters);
 
     @GET("fairs/{fairId}/fairEvents")
-    Call<FairEvent[]> getFairEventsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+    Call<Document<FairEvent>> getFairEventsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+
+    @GET("users/{userId}/attendingFairEvents")
+    Call<Document<FairEvent>> getFairEventsByAttendingUser(@Path("userId") String userId, @QueryMap Map<String, String> parameters);
+
+    @POST("fairEvents/{id}/attend")
+    Call<ResponseBody> attendFairEvent(@Path("id") String id);
+
+    @POST("fairEvents/{id}/unAttend")
+    Call<ResponseBody> unAttendFairEvent(@Path("id") String id);
 
     // ========================================== News ====================================== //
 
     @GET("fairs/{fairId}/news")
-    Call<News[]> getNewsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+    Call<Document<News>> getNewsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
 
     // ========================================== Stands ===================================== //
 
     @GET("fairs/{fairId}/stands")
-    Call<Stand[]> getStandsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+    Call<Document<Stand>>getStandsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+
+    // =========================================== Auth ====================================== //
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<Document<User>> login(@Field("login_param") String loginParam, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<Document<User>> register(@Field("name") String name, @Field("username") String username,
+                                  @Field("email") String email, @Field("password") String password);
+
+    @POST("logout")
+    Call<ResponseBody> logout();
+
+    // =========================================== User ====================================== //
+
+    @GET("users/{id}")
+    Call<Document<User>> getUser(@Path("id") String id, @QueryMap Map<String, String> parameters);
+
+    // ========================================= Sponsors ==================================== //
+
+    @GET("fairs/{fairId}/sponsors")
+    Call<Document<Sponsor>> getSponsorsByFair(@Path("fairId") String id, @QueryMap Map<String, String> parameters);
 }

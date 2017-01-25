@@ -13,18 +13,18 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import moe.banana.jsonapi2.Document;
+
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class FairDetailsPresenterTest {
+public class FairDetailsPresenterTest extends BasePresenterTest {
 
-    FairDetailsPresenter fairDetailsPresenter;
+    // System under test
+    private FairDetailsPresenter fairDetailsPresenter;
 
-    @Mock
-    GetSingleFairUseCase getSingleFairUseCaseMock;
-
-    @Mock
-    FairDetailsPresenter.View viewMock;
+    @Mock GetSingleFairUseCase getSingleFairUseCaseMock;
+    @Mock FairDetailsPresenter.View viewMock;
 
     @Before
     public void setUp() {
@@ -34,12 +34,14 @@ public class FairDetailsPresenterTest {
     @Test
     public void it_updates_views_on_success() {
 
-        String fairId   = "1";
-        Fair fair       = new Fair();
-        int statusCode  = 200;
+        String fairId           = "1";
+        Fair fair               = new Fair();
+        Document<Fair> document = new Document();
+        int statusCode          = 200;
+        document.add(fair);
 
-        Class<ApiUseCase.Listener<Fair>> listenerClass              = (Class<ApiUseCase.Listener<Fair>>) (Class) ApiUseCase.Listener.class;
-        ArgumentCaptor<ApiUseCase.Listener<Fair>> argumentCaptor    = ArgumentCaptor.forClass(listenerClass);
+        Class<ApiUseCase.Listener<Document<Fair>>> listenerClass            = (Class<ApiUseCase.Listener<Document<Fair>>>) (Class) ApiUseCase.Listener.class;
+        ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
         fairDetailsPresenter.initialize();
@@ -49,7 +51,7 @@ public class FairDetailsPresenterTest {
 
         verify(viewMock).toggleLoading(true);
 
-        argumentCaptor.getValue().onResponse(statusCode, fair);
+        argumentCaptor.getValue().onResponse(statusCode, document);
 
         verify(viewMock).toggleLoading(false);
         verify(viewMock).updateFair(fair);
@@ -62,10 +64,10 @@ public class FairDetailsPresenterTest {
         int statusCode  = 400;
 
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
-        apiErrorWrapper.errorList.add(new ApiErrorWrapper.Error("fooTitle", "fooMessage", statusCode));
+        apiErrorWrapper.addError(createError("fooTitle", "fooDetail", "fooCode", "400"));
 
-        Class<ApiUseCase.Listener<Fair>> listenerClass              = (Class<ApiUseCase.Listener<Fair>>) (Class) ApiUseCase.Listener.class;
-        ArgumentCaptor<ApiUseCase.Listener<Fair>> argumentCaptor    = ArgumentCaptor.forClass(listenerClass);
+        Class<ApiUseCase.Listener<Document<Fair>>> listenerClass            = (Class<ApiUseCase.Listener<Document<Fair>>>) (Class) ApiUseCase.Listener.class;
+        ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
         fairDetailsPresenter.initialize();
@@ -78,7 +80,7 @@ public class FairDetailsPresenterTest {
         argumentCaptor.getValue().onError(statusCode, apiErrorWrapper);
 
         verify(viewMock).toggleLoading(false);
-        verify(viewMock).showError(statusCode, "fooMessage");
+        verify(viewMock).showError(statusCode, "fooDetail");
     }
 
     @Test
@@ -88,11 +90,11 @@ public class FairDetailsPresenterTest {
         int statusCode  = 400;
 
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
-        apiErrorWrapper.errorList.add(new ApiErrorWrapper.Error("fooTitle", "fooMessage", statusCode));
-        apiErrorWrapper.errorList.add(new ApiErrorWrapper.Error("barTitle", "barMessage", statusCode));
+        apiErrorWrapper.addError(createError("fooTitle", "fooDetail", "fooCode", "400"));
+        apiErrorWrapper.addError(createError("barTitle", "barDetail", "barCode", "400"));
 
-        Class<ApiUseCase.Listener<Fair>> listenerClass              = (Class<ApiUseCase.Listener<Fair>>) (Class) ApiUseCase.Listener.class;
-        ArgumentCaptor<ApiUseCase.Listener<Fair>> argumentCaptor    = ArgumentCaptor.forClass(listenerClass);
+        Class<ApiUseCase.Listener<Document<Fair>>> listenerClass            = (Class<ApiUseCase.Listener<Document<Fair>>>) (Class) ApiUseCase.Listener.class;
+        ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
         fairDetailsPresenter.initialize();
@@ -105,7 +107,7 @@ public class FairDetailsPresenterTest {
         argumentCaptor.getValue().onError(statusCode, apiErrorWrapper);
 
         verify(viewMock).toggleLoading(false);
-        verify(viewMock).showError(statusCode, "fooMessage, barMessage");
+        verify(viewMock).showError(statusCode, "fooDetail, barDetail");
     }
 
     @Test
@@ -114,8 +116,8 @@ public class FairDetailsPresenterTest {
         String fairId       = "1";
         Exception exception = new Exception();
 
-        Class<ApiUseCase.Listener<Fair>> listenerClass              = (Class<ApiUseCase.Listener<Fair>>) (Class) ApiUseCase.Listener.class;
-        ArgumentCaptor<ApiUseCase.Listener<Fair>> argumentCaptor    = ArgumentCaptor.forClass(listenerClass);
+        Class<ApiUseCase.Listener<Document<Fair>>> listenerClass            = (Class<ApiUseCase.Listener<Document<Fair>>>) (Class) ApiUseCase.Listener.class;
+        ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
         fairDetailsPresenter.initialize();

@@ -18,4 +18,12 @@ public class Sponsor extends Resource {
     // Relationships
     @Json(name = "fair")        public HasOne<Fair> fair;
     @Json(name = "sponsorRank") public HasOne<SponsorRank> sponsorRank;
+
+    public Fair getFair() {
+        return fair.get(getContext());
+    }
+
+    public SponsorRank getSponsorRank() {
+        return sponsorRank.get(getContext());
+    }
 }

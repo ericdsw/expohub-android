@@ -55,20 +55,15 @@ public class FairDetailsActivity extends BaseActivity implements
     @BindView(R.id.error_wrapper)       View errorWrapper;
     @BindView(R.id.content_options)     View contentOptionsWrapper;
 
-    String fairId;
-    SupportMapFragment mapFragment;
-    Fair currentFair;
+    @Inject FairDetailsPresenter presenter;
+    @Inject ImageDownloader imageDownloader;
+    @Inject Navigator navigator;
 
-    boolean isMapReady = false;
+    private String fairId;
+    private SupportMapFragment mapFragment;
+    private Fair currentFair;
 
-    @Inject
-    FairDetailsPresenter presenter;
-
-    @Inject
-    ImageDownloader imageDownloader;
-
-    @Inject
-    Navigator navigator;
+    private boolean isMapReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +92,9 @@ public class FairDetailsActivity extends BaseActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
             case R.id.action_map:
                 break;
             default:
@@ -147,7 +145,7 @@ public class FairDetailsActivity extends BaseActivity implements
 
     @OnClick(R.id.sponsors_button)
     public void onSponsorsClick() {
-
+        navigator.navigateToSponsorsByFairActivity(currentFair.getId(), currentFair.name);
     }
 
     // View callback methods
@@ -199,7 +197,11 @@ public class FairDetailsActivity extends BaseActivity implements
     public void showError(int code, String error) {
 
         errorWrapper.setVisibility(View.VISIBLE);
-        errorTextView.setText(error);
+        if (code == 500) {
+            errorTextView.setText(getString(R.string.generic_network_error));
+        } else {
+            errorTextView.setText(error);
+        }
     }
 
     // Google Maps Methods

@@ -15,4 +15,12 @@ public class Comment extends Resource {
     // Relationships
     @Json(name = "ownerNews")   public HasOne<News> ownerNews;
     @Json(name = "user")        public HasOne<User> user;
+
+    public News getOwnerNews() {
+        return ownerNews.get(getContext());
+    }
+
+    public User getUser() {
+        return user.get(getContext());
+    }
 }

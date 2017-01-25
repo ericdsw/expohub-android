@@ -5,25 +5,33 @@ import com.example.ericdesedas.expohub.data.models.News;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 
+import java.util.List;
+
+import moe.banana.jsonapi2.Document;
+
 public class NewsByFairPresenter extends Presenter {
 
     private GetNewsByFairUseCase newsByFairUseCase;
     private View view;
 
-    private ApiUseCase.Listener<News[]> listener = new ApiUseCase.Listener<News[]>() {
+    private ApiUseCase.Listener<Document<News>> listener = new ApiUseCase.Listener<Document<News>>() {
         @Override
-        public void onResponse(int statusCode, News[] result) {
+        public void onResponse(int statusCode, Document<News> result) {
+
+            List<News> newsList = generateArrayFromDocument(result);
+            News[] newsArray = newsList.toArray(new News[newsList.size()]);
+
             view.toggleLoading(false);
-            view.updateList(result);
+            view.updateList(newsArray);
         }
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
             view.toggleLoading(false);
             if (apiError.hasUniqueError()) {
-                view.showError(statusCode, apiError.getUniqueError().message);
+                view.showError(statusCode, apiError.getUniqueError().getDetail());
             } else {
-                String errorString = concatenateErrorString(apiError.errorList);
+                String errorString = concatenateErrorString(apiError.getErrorList());
                 view.showError(statusCode, errorString);
             }
         }

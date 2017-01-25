@@ -1,28 +1,41 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply from: 'env.gradle'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
 
+    signingConfigs {
+        release {
+            storeFile file("expo_hub_key.jks")
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
     defaultConfig {
 
-        applicationId "com.example.ericdesedas.expohub"
+        applicationId "com.ericdesedas.expohub"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        // String Parameters
+        // Google Api Key
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+
+        // General Api Parameters
         resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
         resValue "string", "base_url", (project.findProperty("BASE_URL") ?: "")
         resValue "string", "api_base_url", (project.findProperty("API_BASE_URL") ?: "")
-        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
-
-        // Integer Parameters
         resValue "integer", "read_timeout", (project.findProperty("READ_TIMEOUT") ?: "")
         resValue "integer", "write_timeout", (project.findProperty("WRITE_TIMEOUT") ?: "")
+
+        // App Specific Parameters
+        resValue "string", "shared_pref_file", (project.findProperty("SHARED_PREF_FILE") ?: "")
     }
 
     buildTypes {
@@ -34,6 +47,7 @@ android {
             minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -66,11 +80,9 @@ dependencies {
     compile 'frankiesardo:icepick:3.2.0'
     provided 'frankiesardo:icepick-processor:3.2.0'
 
-    // Moshi
-    compile 'moe.banana:moshi-jsonapi:2.2.1'
+    // Moshi / Retrofit
+    compile 'moe.banana:moshi-jsonapi:3.0.4'
     compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
-
-    // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
 
     // Picasso
@@ -78,6 +90,7 @@ dependencies {
 
     // Apache Commons
     compile 'commons-io:commons-io:2.4'
+    compile 'org.apache.commons:commons-lang3:3.5'
 
     // Dagger
     compile 'com.google.dagger:dagger:2.0.1'

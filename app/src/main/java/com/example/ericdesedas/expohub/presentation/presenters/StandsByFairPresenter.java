@@ -5,25 +5,33 @@ import com.example.ericdesedas.expohub.data.models.Stand;
 import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
 
+import java.util.List;
+
+import moe.banana.jsonapi2.Document;
+
 public class StandsByFairPresenter extends Presenter {
 
     private GetStandsByFairUseCase getStandsByFairUseCase;
     private View view;
 
-    private ApiUseCase.Listener<Stand[]> listener = new ApiUseCase.Listener<Stand[]>() {
+    private ApiUseCase.Listener<Document<Stand>> listener = new ApiUseCase.Listener<Document<Stand>>() {
         @Override
-        public void onResponse(int statusCode, Stand[] result) {
+        public void onResponse(int statusCode, Document<Stand> result) {
+
+            List<Stand> standList   = generateArrayFromDocument(result);
+            Stand[] standsArray     = standList.toArray(new Stand[standList.size()]);
+
             view.toggleLoading(false);
-            view.updateList(result);
+            view.updateList(standsArray);
         }
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
             view.toggleLoading(false);
             if (apiError.hasUniqueError()) {
-                view.showError(statusCode, apiError.getUniqueError().message);
+                view.showError(statusCode, apiError.getUniqueError().getDetail());
             } else {
-                String errorString = concatenateErrorString(apiError.errorList);
+                String errorString = concatenateErrorString(apiError.getErrorList());
                 view.showError(statusCode, errorString);
             }
         }

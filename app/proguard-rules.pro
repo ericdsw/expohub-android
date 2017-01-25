@@ -19,3 +19,29 @@
 
 # Any network library depending on OkHttp
 -dontwarn com.squareup.okhttp.**
+
+# Moshi
+-keep class com.squareup.moshi.** { *; }
+-keep interface com.squareup.moshi.** { *; }
+-dontwarn com.squareup.moshi.**
+-keepclassmembers class ** {
+    @com.squareup.moshi.FromJson *;
+    @com.squareup.moshi.ToJson *;
+}
+
+-keep class com.example.ericdesedas.expohub.data.models.** { *; }
+-keepattributes *Annotation*
+
+# EventBus
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Google Support Library
+-keep class android.support.** { *; }
+-keep interface android.support.** { *; }
+
+# Okio
+-dontwarn okio.**

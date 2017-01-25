@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import moe.banana.jsonapi2.Document;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,21 +32,15 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+//TODO: Refactor with new implementation
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( { Response.class, Moshi.class, ResponseBody.class, JsonAdapter.class })
 public class GetFairsUseCaseTest {
 
-    @Mock
-    ApiClient apiClientMock;
-
-    @Mock
-    Moshi moshiMock;
-
-    @Mock
-    JsonAdapter<ApiErrorWrapper> errorApiJsonAdapterMock;
-
-    @Mock
-    ApiUseCase.Listener<Fair[]> listener;
+    @Mock ApiClient apiClientMock;
+    @Mock Moshi moshiMock;
+    @Mock JsonAdapter<ApiErrorWrapper> errorApiJsonAdapterMock;
+    @Mock ApiUseCase.Listener<Document<Fair>> listener;
 
     private NetworkMockHelper networkMockHelper;
     private GetFairsUseCase getFairsUseCase;
@@ -59,13 +54,13 @@ public class GetFairsUseCaseTest {
     @Test
     public void it_successfully_fetches_fairs() {
 
-        Fair[] fairs                        = new Fair[] {};
+        Document<Fair> fairs                = new Document<>();
         int statusCode                      = 200;
         Map<String, String> apiParameters   = new HashMap<>();
 
-        Call<Fair[]> call                               = networkMockHelper.getCallMock();
-        Response<Fair[]> response                       = networkMockHelper.getResponseMock();
-        ArgumentCaptor<Callback<Fair[]>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
+        Call<Document<Fair>> call                               = networkMockHelper.getCallMock();
+        Response<Document<Fair>> response                       = networkMockHelper.getResponseMock();
+        ArgumentCaptor<Callback<Document<Fair>>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
 
         when(apiClientMock.getFairs(apiParameters)).thenReturn(call);
 
@@ -92,9 +87,9 @@ public class GetFairsUseCaseTest {
         ApiErrorWrapper apiErrorWrapper     = new ApiErrorWrapper();
         ResponseBody responseBodyMock       = PowerMockito.mock(ResponseBody.class);
 
-        Call<Fair[]> call                               = networkMockHelper.getCallMock();
-        Response<Fair[]> response                       = networkMockHelper.getResponseMock();
-        ArgumentCaptor<Callback<Fair[]>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
+        Call<Document<Fair>> call                               = networkMockHelper.getCallMock();
+        Response<Document<Fair>> response                       = networkMockHelper.getResponseMock();
+        ArgumentCaptor<Callback<Document<Fair>>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
 
         when(response.code()).thenReturn(statusCode);
         when(response.errorBody()).thenReturn(responseBodyMock);
@@ -131,9 +126,9 @@ public class GetFairsUseCaseTest {
 
         IOException exception               = new IOException();
 
-        Call<Fair[]> call                               = networkMockHelper.getCallMock();
-        Response<Fair[]> response                       = networkMockHelper.getResponseMock();
-        ArgumentCaptor<Callback<Fair[]>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
+        Call<Document<Fair>> call                               = networkMockHelper.getCallMock();
+        Response<Document<Fair>> response                       = networkMockHelper.getResponseMock();
+        ArgumentCaptor<Callback<Document<Fair>>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
 
         when(response.code()).thenReturn(statusCode);
         when(response.errorBody()).thenReturn(responseBodyMock);
@@ -166,8 +161,8 @@ public class GetFairsUseCaseTest {
         Map<String, String> apiParameters   = new HashMap<>();
         IOException exception               = new IOException();
 
-        Call<Fair[]> call                               = networkMockHelper.getCallMock();
-        ArgumentCaptor<Callback<Fair[]>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
+        Call<Document<Fair>> call                               = networkMockHelper.getCallMock();
+        ArgumentCaptor<Callback<Document<Fair>>> argumentCaptor = networkMockHelper.getResponseCallbackCaptor();
 
         when(apiClientMock.getFairs(apiParameters)).thenReturn(call);
 

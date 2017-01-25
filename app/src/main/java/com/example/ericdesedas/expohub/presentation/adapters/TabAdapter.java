@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class TabAdapter extends FragmentPagerAdapter {
 
-    List<Fragment> fragments;
-    List<String> fragmentTitles;
+    private List<Fragment> fragments;
+    private List<String> fragmentTitles;
 
     public TabAdapter(FragmentManager fm) {
         super(fm);
