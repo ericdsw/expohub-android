@@ -68,6 +68,8 @@
     <string name="empty_password_param_register">Please provide a password</string>
     <string name="internal_auth_error">Couldn\'t validate credentials, please login again</string>
     <string name="empty_speakers_error">No speakers found</string>
+    <string name="unidentified_error">Please login to perform this action</string>
+    <string name="not_implemented">Not implemented yet</string>
 
     <!-- Drawer Layout toggle titles -->
     <string name="drawer_open">Open Drawer</string>
@@ -93,5 +95,6 @@
     <string name="transition_fair_card_content">transition:fair_card_content</string>
     <string name="transition_profile_image">transition:profile_image</string>
     <string name="transition_profile_name">transition:profile_name</string>
+    <string name="transition_fair_event_card">transition:fair_event_card</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.ericdesedas.expohub.presentation.adapters;
 
 import android.content.Context;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +74,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
      * Listener interface
      */
     public interface Listener {
-        void onEventCellClick(FairEvent fairEvent);
+        void onEventCellClick(FairEvent fairEvent, List<Pair<View, String>> transitioningElements);
     }
 
     /**
@@ -78,6 +82,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
      */
     public class EventListViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.root_view)       View rootView;
         @BindView(R.id.event_title)     TextView eventTitle;
         @BindView(R.id.event_date)      TextView eventDate;
         @BindView(R.id.event_image)     ImageView eventImage;
@@ -108,7 +113,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
         @OnClick(R.id.root_view)
         public void onCellClick() {
             if (listener != null) {
-                listener.onEventCellClick(fairEvent);
+
+                List<Pair<View, String>> transitioningElements = new ArrayList<>();
+                transitioningElements.add(new Pair<>(rootView, context.getString(R.string.transition_fair_event_card)));
+
+                listener.onEventCellClick(fairEvent, transitioningElements);
             }
         }
     }

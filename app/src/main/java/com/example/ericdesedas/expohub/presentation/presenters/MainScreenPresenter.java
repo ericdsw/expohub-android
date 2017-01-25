@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.presentation.presenters;
 
-import android.util.Log;
-
 import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
@@ -12,8 +10,12 @@ import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
+import com.example.ericdesedas.expohub.helpers.preferences.PreferenceHelper;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import moe.banana.jsonapi2.Document;
@@ -23,6 +25,8 @@ public class MainScreenPresenter extends Presenter {
     private GetFairsUseCase getFairsUseCase;
     private GetSingleUserUseCase getSingleUserUseCase;
     private GetFairEventsUseCase getFairEventsUseCase;
+
+    private PreferenceHelper preferenceHelper;
     private SessionManager sessionManager;
     private View view;
 
@@ -62,9 +66,26 @@ public class MainScreenPresenter extends Presenter {
         public void onResponse(int statusCode, Document<User> result) {
 
             User user = result.get();
+
             try {
+
+                // Show user data
+
                 sessionManager.refreshUserData(user);
                 view.showIdentifiedUser(sessionManager.getLoggedUser());
+
+                // Write attending fairEvents
+
+                List<FairEvent> fairEventList   = user.getAttendingFairEvents();
+                FairEvent[] fairEvents          = fairEventList.toArray(new FairEvent[fairEventList.size()]);
+
+                List<String> eventIds = new ArrayList<>();
+                for (FairEvent fairEvent : fairEvents) {
+                    eventIds.add(fairEvent.getId());
+                }
+
+                preferenceHelper.writeStringPref(PreferenceHelper.ATTENDING_FAIR_EVENTS, StringUtils.join(eventIds, ","));
+
             } catch (IOException e) {
                 sessionManager.logout();
                 view.showUnidentifiedUser();
@@ -73,12 +94,12 @@ public class MainScreenPresenter extends Presenter {
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
-            Log.d("MainScreenPresenter", "error on user request: " + apiError.getUniqueError().getDetail());
+
         }
 
         @Override
         public void onFailure(Throwable throwable) {
-            Log.d("MainScreenPresenter", "request crashed");
+
         }
     };
 
@@ -120,14 +141,19 @@ public class MainScreenPresenter extends Presenter {
      * @param getFairsUseCase       the {@link GetFairsUseCase} reference
      * @param getSingleUserUseCase  the {@link GetSingleUserUseCase} reference
      * @param getFairEventsUseCase  the {@link GetFairEventsUseCase} reference
+     * @param preferenceHelper      the {@link PreferenceHelper} reference
      * @param sessionManager        the {@link SessionManager} reference
      */
-    public MainScreenPresenter(GetFairsUseCase getFairsUseCase, GetSingleUserUseCase getSingleUserUseCase,
-                               GetFairEventsUseCase getFairEventsUseCase, SessionManager sessionManager) {
+    public MainScreenPresenter(GetFairsUseCase getFairsUseCase,
+                               GetSingleUserUseCase getSingleUserUseCase,
+                               GetFairEventsUseCase getFairEventsUseCase,
+                               PreferenceHelper preferenceHelper,
+                               SessionManager sessionManager) {
 
         this.getFairsUseCase        = getFairsUseCase;
         this.getSingleUserUseCase   = getSingleUserUseCase;
         this.getFairEventsUseCase   = getFairEventsUseCase;
+        this.preferenceHelper       = preferenceHelper;
         this.sessionManager         = sessionManager;
         this.view                   = null;
     }
@@ -147,6 +173,9 @@ public class MainScreenPresenter extends Presenter {
         } else {
             view.showUnidentifiedUser();
         }
+
+        // Attending events
+        getSingleUserUseCase.addParameter("include", "attendingFairEvents");
 
         // Trending event formatting
         getFairEventsUseCase.addParameter("sort", "-attendance");

@@ -2,6 +2,7 @@ package com.example.ericdesedas.expohub.buildsystem.modules;
 
 import com.example.ericdesedas.expohub.buildsystem.scopes.PerActivity;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
+import com.example.ericdesedas.expohub.domain.interactors.AttendFairEventUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
@@ -16,6 +17,8 @@ import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase
 import com.example.ericdesedas.expohub.domain.interactors.LoginUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.RegisterUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.UnAttendFairEventUseCase;
+import com.example.ericdesedas.expohub.helpers.preferences.PreferenceHelper;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.FairDetailsPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.FairEventDetailsPresenter;
@@ -34,9 +37,13 @@ public class PresenterModule {
 
     @Provides
     @PerActivity
-    MainScreenPresenter providesMainScreenPresenter(GetFairsUseCase useCase, GetSingleUserUseCase userUseCase,
-                                                    GetFairEventsUseCase getFairEventsUseCase, SessionManager sessionManager) {
-        return new MainScreenPresenter(useCase, userUseCase, getFairEventsUseCase, sessionManager);
+    MainScreenPresenter providesMainScreenPresenter(GetFairsUseCase useCase,
+                                                    GetSingleUserUseCase userUseCase,
+                                                    GetFairEventsUseCase getFairEventsUseCase,
+                                                    PreferenceHelper preferenceHelper,
+                                                    SessionManager sessionManager) {
+
+        return new MainScreenPresenter(useCase, userUseCase, getFairEventsUseCase, preferenceHelper, sessionManager);
     }
 
     @Provides
@@ -74,10 +81,12 @@ public class PresenterModule {
     ProfilePresenter providesProfilePresenter(GetSingleUserUseCase userUseCase,
                                               GetFairsByUserUseCase fairsByUserUseCase,
                                               GetFairEventsByAttendingUserUseCase getFairEventsByAttendingUserUseCase,
+                                              PreferenceHelper preferenceHelper,
                                               LogoutUseCase logoutUseCase,
                                               SessionManager sessionManager) {
 
-        return new ProfilePresenter(userUseCase, fairsByUserUseCase, getFairEventsByAttendingUserUseCase, logoutUseCase, sessionManager);
+        return new ProfilePresenter(userUseCase, fairsByUserUseCase, getFairEventsByAttendingUserUseCase,
+                preferenceHelper, logoutUseCase, sessionManager);
     }
 
     @Provides
@@ -88,7 +97,13 @@ public class PresenterModule {
 
     @Provides
     @PerActivity
-    FairEventDetailsPresenter providesFairEventDetailsPresenter(GetSingleFairEventUseCase singleFairEventUseCase) {
-        return new FairEventDetailsPresenter(singleFairEventUseCase);
+    FairEventDetailsPresenter providesFairEventDetailsPresenter(GetSingleFairEventUseCase singleFairEventUseCase,
+                                                                AttendFairEventUseCase attendFairEventUseCase,
+                                                                UnAttendFairEventUseCase unAttendFairEventUseCase,
+                                                                PreferenceHelper preferenceHelper,
+                                                                SessionManager sessionManager) {
+
+        return new FairEventDetailsPresenter(singleFairEventUseCase, attendFairEventUseCase, unAttendFairEventUseCase,
+                                             preferenceHelper, sessionManager);
     }
 }

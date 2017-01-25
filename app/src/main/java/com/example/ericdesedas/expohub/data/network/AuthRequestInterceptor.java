@@ -26,7 +26,7 @@ public class AuthRequestInterceptor implements Interceptor {
                         .build();
                 return chain.proceed(request);
             } catch (IOException e) {
-                //
+                sessionManager.logout();
             }
         }
 

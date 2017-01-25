@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
+import com.example.ericdesedas.expohub.data.events.FairEventListClickEvent;
 import com.example.ericdesedas.expohub.data.events.FairEventListRefreshEvent;
+import com.example.ericdesedas.expohub.data.events.FairListClickEvent;
 import com.example.ericdesedas.expohub.data.events.FairListRefreshEvent;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
@@ -24,6 +26,7 @@ import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFact
 import com.example.ericdesedas.expohub.presentation.adapters.TabAdapter;
 import com.example.ericdesedas.expohub.presentation.fragments.FairEventListFragment;
 import com.example.ericdesedas.expohub.presentation.fragments.FairListFragment;
+import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.ProfilePresenter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,6 +36,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProfileActivity extends BaseActivity implements
     AppBarLayout.OnOffsetChangedListener,
@@ -51,6 +55,7 @@ public class ProfileActivity extends BaseActivity implements
     @Inject ProfilePresenter presenter;
     @Inject RecyclerAdapterFactory recyclerAdapterFactory;
     @Inject EventBus eventBus;
+    @Inject Navigator navigator;
 
     private ProgressDialog fetchingDataDialog;
     private ProgressDialog logoutProgressDialog;
@@ -113,12 +118,14 @@ public class ProfileActivity extends BaseActivity implements
     @Override
     protected void onStart() {
         super.onStart();
+        eventBus.register(this);
         presenter.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        eventBus.unregister(this);
         presenter.onStop();
     }
 
@@ -236,11 +243,29 @@ public class ProfileActivity extends BaseActivity implements
         presenter.onFetchUserAttendingFairEventsCommand();
     }
 
+    @Subscribe
+    public void onFairEventListClickEvent(FairEventListClickEvent event) {
+        navigator.setTransitioningElements(event.transitioningElements)
+                .navigateToFairEventDetailsActivity(event.fairEventId);
+    }
+
+    @Subscribe
+    public void onFairListClickEvent(FairListClickEvent event) {
+        navigator.setTransitioningElements(event.transitioningElements)
+                .navigateToFairDetailsActivity(event.fairId);
+    }
+
+    @OnClick(R.id.add_fair_button)
+    public void onAddFairButtonClick() {
+        Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_LONG).show();
+    }
+
     // Private methods
 
     private void setupUI() {
 
         presenter.setView(this);
+        presenter.initialize();
 
         fairListFragment = FairListFragment.newInstance(recyclerAdapterFactory.createFairListAdapter(),
                 eventBus, FairListAdapter.VIEW_TYPE_CONDENSED);

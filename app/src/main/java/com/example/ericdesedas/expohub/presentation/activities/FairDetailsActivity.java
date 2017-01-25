@@ -92,6 +92,9 @@ public class FairDetailsActivity extends BaseActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
             case R.id.action_map:
                 break;
             default:

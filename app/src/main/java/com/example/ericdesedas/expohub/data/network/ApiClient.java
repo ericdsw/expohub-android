@@ -53,6 +53,12 @@ public interface ApiClient {
     @GET("users/{userId}/attendingFairEvents")
     Call<Document<FairEvent>> getFairEventsByAttendingUser(@Path("userId") String userId, @QueryMap Map<String, String> parameters);
 
+    @POST("fairEvents/{id}/attend")
+    Call<ResponseBody> attendFairEvent(@Path("id") String id);
+
+    @POST("fairEvents/{id}/unAttend")
+    Call<ResponseBody> unAttendFairEvent(@Path("id") String id);
+
     // ========================================== News ====================================== //
 
     @GET("fairs/{fairId}/news")

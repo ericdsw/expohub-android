@@ -12,8 +12,12 @@ import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendi
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsByUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
+import com.example.ericdesedas.expohub.helpers.preferences.PreferenceHelper;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import moe.banana.jsonapi2.Document;
@@ -25,6 +29,8 @@ public class ProfilePresenter extends Presenter {
     private GetFairsByUserUseCase getFairsByUserUseCase;
     private GetFairEventsByAttendingUserUseCase getFairEventsByAttendingUserUseCase;
     private LogoutUseCase logoutUseCase;
+
+    private PreferenceHelper preferenceHelper;
     private SessionManager sessionManager;
     private View view;
 
@@ -102,9 +108,16 @@ public class ProfilePresenter extends Presenter {
 
             view.toggleFairEventsLoading(false);
 
-            List<FairEvent> fairEventList = generateArrayFromDocument(result);
-            FairEvent[] fairEvents = fairEventList.toArray(new FairEvent[fairEventList.size()]);
+            List<FairEvent> fairEventList   = generateArrayFromDocument(result);
+            FairEvent[] fairEvents          = fairEventList.toArray(new FairEvent[fairEventList.size()]);
 
+            // Write attending to shared preferences
+            List<String> eventIds = new ArrayList<>();
+            for (FairEvent fairEvent : fairEvents) {
+                eventIds.add(fairEvent.getId());
+            }
+
+            preferenceHelper.writeStringPref(PreferenceHelper.ATTENDING_FAIR_EVENTS, StringUtils.join(eventIds, ","));
             view.showAttendingFairEvents(fairEvents);
         }
 
@@ -132,37 +145,38 @@ public class ProfilePresenter extends Presenter {
         @Override
         public void onResponse(int statusCode, ResponseBody result) {
             view.toggleLoggingOutLoading(false);
+            sessionManager.logout();
             view.loggedOut();
         }
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
-            view.toggleLoggingOutLoading(false);
 
-            if (apiError.hasUniqueError()) {
-                view.showError(statusCode, apiError.getUniqueError().getDetail());
-            } else {
-                String errorString = concatenateErrorString(apiError.getErrorList());
-                view.showError(statusCode, errorString);
-            }
+            view.toggleLoggingOutLoading(false);
+            sessionManager.logout();
+            view.loggedOut();
         }
 
         @Override
         public void onFailure(Throwable throwable) {
+
             view.toggleLoggingOutLoading(false);
-            view.showError(500, "");
+            sessionManager.logout();
+            view.loggedOut();
         }
     };
 
     public ProfilePresenter(GetSingleUserUseCase getSingleUserUseCase,
                             GetFairsByUserUseCase getFairsByUserUseCase,
                             GetFairEventsByAttendingUserUseCase fairEventsByAttendingUserUseCase,
+                            PreferenceHelper preferenceHelper,
                             LogoutUseCase logoutUseCase,
                             SessionManager sessionManager) {
 
         this.getSingleUserUseCase                   = getSingleUserUseCase;
         this.getFairsByUserUseCase                  = getFairsByUserUseCase;
         this.getFairEventsByAttendingUserUseCase    = fairEventsByAttendingUserUseCase;
+        this.preferenceHelper                       = preferenceHelper;
         this.logoutUseCase                          = logoutUseCase;
         this.sessionManager                         = sessionManager;
         this.view                                   = null;
@@ -188,6 +202,10 @@ public class ProfilePresenter extends Presenter {
 
     public void setView(View view) {
         this.view = view;
+    }
+
+    public void initialize() {
+        getFairEventsByAttendingUserUseCase.addParameter("include", "eventType");
     }
 
     // Commands

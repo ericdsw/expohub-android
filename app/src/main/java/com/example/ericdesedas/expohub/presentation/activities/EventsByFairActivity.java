@@ -2,6 +2,7 @@ package com.example.ericdesedas.expohub.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,8 @@ import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
 import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -118,8 +121,9 @@ public class EventsByFairActivity extends BaseActivity implements
     }
 
     @Override
-    public void onEventCellClick(FairEvent fairEvent) {
-        navigator.navigateToFairEventDetailsActivity(fairEvent.getId());
+    public void onEventCellClick(FairEvent fairEvent, List<Pair<View, String>> transitioningElements) {
+        navigator.setTransitioningElements(transitioningElements)
+                .navigateToFairEventDetailsActivity(fairEvent.getId());
     }
 
     private void setupUI() {

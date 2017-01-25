@@ -147,7 +147,8 @@ public class MainActivity extends BaseActivity implements
 
     @Subscribe
     public void onFairEventListClickEvent(FairEventListClickEvent eventListClickEvent) {
-        navigator.navigateToFairEventDetailsActivity(eventListClickEvent.fairEventId);
+        navigator.setTransitioningElements(eventListClickEvent.transitioningElements)
+                .navigateToFairEventDetailsActivity(eventListClickEvent.fairEventId);
     }
 
     @Subscribe

@@ -2,6 +2,7 @@ package com.example.ericdesedas.expohub.buildsystem.modules;
 
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
+import com.example.ericdesedas.expohub.domain.interactors.AttendFairEventUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
@@ -16,6 +17,7 @@ import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase
 import com.example.ericdesedas.expohub.domain.interactors.LoginUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.LogoutUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.RegisterUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.UnAttendFairEventUseCase;
 import com.squareup.moshi.Moshi;
 
 import dagger.Module;
@@ -92,5 +94,15 @@ public class UseCaseModule {
     @Provides
     GetSingleFairEventUseCase providesSingleFairEventUseCase(ApiClient apiClient, Moshi moshi) {
         return new GetSingleFairEventUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    AttendFairEventUseCase providesAttendFairEventUseCase(ApiClient apiClient, Moshi moshi) {
+        return new AttendFairEventUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    UnAttendFairEventUseCase providesUnAttendFairEventUseCase(ApiClient apiClient, Moshi moshi) {
+        return new UnAttendFairEventUseCase(apiClient, moshi);
     }
 }

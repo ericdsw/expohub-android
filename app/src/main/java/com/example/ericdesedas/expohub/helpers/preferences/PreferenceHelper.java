@@ -4,8 +4,9 @@ import android.content.SharedPreferences;
 
 public class PreferenceHelper {
 
-    public static final String FIRST_VISIT  = "first-visit";
-    public static final String SESSION_DATA = "session-data";
+    public static final String FIRST_VISIT              = "first-visit";
+    public static final String SESSION_DATA             = "session-data";
+    public static final String ATTENDING_FAIR_EVENTS    = "attending-fair-events";
 
     private SharedPreferences preferences;
 

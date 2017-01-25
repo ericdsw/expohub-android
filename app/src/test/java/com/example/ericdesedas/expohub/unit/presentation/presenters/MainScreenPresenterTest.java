@@ -7,6 +7,7 @@ import com.example.ericdesedas.expohub.domain.interactors.ApiUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
+import com.example.ericdesedas.expohub.helpers.preferences.PreferenceHelper;
 import com.example.ericdesedas.expohub.presentation.presenters.MainScreenPresenter;
 
 import org.junit.Before;
@@ -29,13 +30,14 @@ public class MainScreenPresenterTest extends BasePresenterTest {
     @Mock GetFairsUseCase getFairsUseCase;
     @Mock GetSingleUserUseCase getSingleUserUseCase;
     @Mock GetFairEventsUseCase getFairEventsUseCase;
+    @Mock PreferenceHelper preferenceHelper;
     @Mock SessionManager sessionManager;
     @Mock MainScreenPresenter.View view;
 
     @Before
     public void setUp() {
         mainScreenPresenter = new MainScreenPresenter(getFairsUseCase, getSingleUserUseCase,
-                                                      getFairEventsUseCase, sessionManager);
+                getFairEventsUseCase, preferenceHelper, sessionManager);
     }
 
     @Test

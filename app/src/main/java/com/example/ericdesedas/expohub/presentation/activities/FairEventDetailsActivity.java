@@ -2,6 +2,7 @@ package com.example.ericdesedas.expohub.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
@@ -46,6 +48,7 @@ public class FairEventDetailsActivity extends BaseActivity implements
 
     private String fairEventId;
     private FairEvent currentFairEvent;
+    private Menu menu;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class FairEventDetailsActivity extends BaseActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_fair_event_details, menu);
         return true;
     }
@@ -78,6 +82,15 @@ public class FairEventDetailsActivity extends BaseActivity implements
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.action_share:
+                break;
+            case R.id.action_favorite:
+                if (presenter.onCheckForIsFavorite(currentFairEvent.getId())) {
+                    presenter.onUnAttendFairEventCommand(currentFairEvent.getId());
+                } else {
+                    presenter.onAttendFairEventCommand(currentFairEvent.getId());
+                }
                 break;
         }
 
@@ -124,6 +137,12 @@ public class FairEventDetailsActivity extends BaseActivity implements
 
         speakersArea.removeAllViews();
 
+        if (presenter.onCheckForIsFavorite(fairEvent.getId())) {
+            showAttending(true);
+        } else {
+            showAttending(false);
+        }
+
         if (fairEvent.getSpeakers().isEmpty()) {
             View emptyView = LayoutInflater.from(this).inflate(R.layout.sbv_cell_speakers_empty, speakersArea, false);
             speakersArea.addView(emptyView);
@@ -151,6 +170,20 @@ public class FairEventDetailsActivity extends BaseActivity implements
             errorText.setText(getString(R.string.generic_network_error));
         } else {
             errorText.setText(error);
+        }
+    }
+
+    @Override
+    public void showUnidentifiedError() {
+        Toast.makeText(this, getString(R.string.unidentified_error), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showAttending(boolean isAttending) {
+        if (isAttending) {
+            menu.findItem(R.id.action_favorite).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp));
+        } else {
+            menu.findItem(R.id.action_favorite).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp));
         }
     }
 

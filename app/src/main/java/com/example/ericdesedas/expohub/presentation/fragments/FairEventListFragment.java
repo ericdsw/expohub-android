@@ -3,6 +3,7 @@ package com.example.ericdesedas.expohub.presentation.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,8 @@ import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,9 +134,11 @@ public class FairEventListFragment extends Fragment implements
     // Adapter Listener
 
     @Override
-    public void onEventCellClick(FairEvent fairEvent) {
+    public void onEventCellClick(FairEvent fairEvent, List<Pair<View, String>> transitioningElements) {
+        
         FairEventListClickEvent event = new FairEventListClickEvent();
-        event.fairEventId = fairEvent.getId();
+        event.fairEventId           = fairEvent.getId();
+        event.transitioningElements = transitioningElements;
         eventBus.post(event);
     }
 
