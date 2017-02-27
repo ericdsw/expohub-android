@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
 import com.example.ericdesedas.expohub.presentation.adapters.SponsorListAdapter;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.SponsorsByFairPresenter;
 
 import javax.inject.Inject;
@@ -63,6 +66,12 @@ public class SponsorsByFairActivity extends BaseActivity implements
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sponsors_by_fair, menu);
+        return true;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         presenter.onStart();
@@ -74,10 +83,21 @@ public class SponsorsByFairActivity extends BaseActivity implements
         presenter.onStop();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}/sponsors?include=sponsorRank&sort=sponsor_rank_id");
+                routeDialogFragment.show(getSupportFragmentManager(), "");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setupUI() {
 
         presenter.setView(this);
-        presenter.initialize();
 
         recyclerView.setAdapter(sponsorListAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));

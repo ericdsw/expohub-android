@@ -48,6 +48,12 @@ public class FairDetailsPresenter extends Presenter {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        getSingleFairUseCase.registerListener(getSingleFairsUseCaseListener);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         getSingleFairUseCase.unregisterListener(getSingleFairsUseCaseListener);
@@ -57,16 +63,14 @@ public class FairDetailsPresenter extends Presenter {
         this.view = view;
     }
 
-    public void initialize() {
-        this.getSingleFairUseCase.registerListener(getSingleFairsUseCaseListener);
-    }
-
     // Commands
 
     public void onLoadFairCommand(String fairId) {
         view.toggleLoading(true);
         getSingleFairUseCase.executeRequest(fairId);
     }
+
+    // View Interface
 
     public interface View {
         void toggleLoading(boolean showLoading);

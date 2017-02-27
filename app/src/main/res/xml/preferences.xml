@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/title_general"
+        android:key="general_group">
+
+        <!--<CheckBoxPreference-->
+            <!--android:key="pref_key_show_url"-->
+            <!--android:title="Show target URL on screens"/>-->
+
+        <Preference
+            android:key="pref_key_reset_warning"
+            android:title="Reset Messages"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

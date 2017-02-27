@@ -19,6 +19,7 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.models.Speaker;
 import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.FairEventDetailsPresenter;
 
 import javax.inject.Inject;
@@ -83,7 +84,9 @@ public class FairEventDetailsActivity extends BaseActivity implements
             case android.R.id.home:
                 finish();
                 break;
-            case R.id.action_share:
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairEvents/{id}?include=speakers");
+                routeDialogFragment.show(getSupportFragmentManager(), "");
                 break;
             case R.id.action_favorite:
                 if (presenter.onCheckForIsFavorite(currentFairEvent.getId())) {

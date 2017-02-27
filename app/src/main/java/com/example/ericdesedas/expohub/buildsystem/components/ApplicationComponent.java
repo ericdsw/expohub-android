@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.buildsystem.components;
 
-import android.content.SharedPreferences;
-
 import com.example.ericdesedas.expohub.buildsystem.modules.AppModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.EventModule;
 import com.example.ericdesedas.expohub.buildsystem.modules.ImageDownloaderModule;

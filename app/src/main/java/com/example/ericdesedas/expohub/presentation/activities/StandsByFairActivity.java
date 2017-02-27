@@ -6,6 +6,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.Stand;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
 import com.example.ericdesedas.expohub.presentation.adapters.StandListAdapter;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
 import javax.inject.Inject;
@@ -64,6 +67,36 @@ public class StandsByFairActivity extends BaseActivity implements
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_stands_by_fair, menu);
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.onStop();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}/stands");
+                routeDialogFragment.show(getSupportFragmentManager(), "");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onStandCardClick(Stand stand) {
         Toast.makeText(this, "Not Implemented", Toast.LENGTH_LONG).show();
     }
@@ -109,7 +142,6 @@ public class StandsByFairActivity extends BaseActivity implements
     private void setupUI() {
 
         presenter.setView(this);
-        presenter.initialize();
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

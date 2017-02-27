@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.LoginEvent;
+import com.example.ericdesedas.expohub.data.events.ShowLoginRegisterRoute;
 import com.example.ericdesedas.expohub.data.events.SwapToRegisterEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,12 +20,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
 
     @BindView(R.id.login_param_field)   EditText loginParamField;
     @BindView(R.id.password_field)      EditText passwordField;
 
-    private Unbinder unbinder;
     private EventBus eventBus;
 
     public static LoginFragment newInstance(EventBus eventBus) {
@@ -32,6 +32,8 @@ public class LoginFragment extends Fragment {
         loginFragment.setEventBus(eventBus);
         return loginFragment;
     }
+
+    // Lifecycle Methods
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,11 +43,7 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+    // Click Methods
 
     @OnClick(R.id.login_button)
     public void onLoginButtonClick() {
@@ -71,6 +69,13 @@ public class LoginFragment extends Fragment {
     public void onGoToRegisterTextClick() {
         eventBus.post(new SwapToRegisterEvent());
     }
+
+    @OnClick(R.id.route_info_button)
+    public void onRouteInfoButtonClick() {
+        eventBus.post(new ShowLoginRegisterRoute("POST", "/login"));
+    }
+
+    // Public Methods
 
     public void setEventBus(EventBus eventBus) {
         this.eventBus = eventBus;

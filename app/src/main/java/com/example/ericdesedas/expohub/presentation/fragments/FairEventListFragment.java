@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class FairEventListFragment extends Fragment implements
+public class FairEventListFragment extends BaseFragment implements
         EventListAdapter.Listener {
 
     @BindView(R.id.swipe_refresh_layout)    SwipeRefreshLayout swipeRefreshLayout;
@@ -36,7 +36,6 @@ public class FairEventListFragment extends Fragment implements
     @BindView(R.id.network_progress)        ProgressBar networkProgress;
     @BindView(R.id.error_text)              TextView errorText;
 
-    private Unbinder unbinder;
     private EventListAdapter adapter;
     private EventBus eventBus;
 
@@ -80,10 +79,15 @@ public class FairEventListFragment extends Fragment implements
         canUpdate = false;
     }
 
+    // EventListAdapter.Listener methods
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    public void onEventCellClick(FairEvent fairEvent, List<Pair<View, String>> transitioningElements) {
+
+        FairEventListClickEvent event = new FairEventListClickEvent();
+        event.fairEventId           = fairEvent.getId();
+        event.transitioningElements = transitioningElements;
+        eventBus.post(event);
     }
 
     // Public methods
@@ -131,16 +135,7 @@ public class FairEventListFragment extends Fragment implements
         }
     }
 
-    // Adapter Listener
-
-    @Override
-    public void onEventCellClick(FairEvent fairEvent, List<Pair<View, String>> transitioningElements) {
-        
-        FairEventListClickEvent event = new FairEventListClickEvent();
-        event.fairEventId           = fairEvent.getId();
-        event.transitioningElements = transitioningElements;
-        eventBus.post(event);
-    }
+    // Private Methods
 
     private void setupUI() {
 

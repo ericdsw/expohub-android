@@ -130,6 +130,17 @@
                 android:value=".presentation.activities.MainActivity"/>
         </activity>
 
+        <!-- SettingsActivity -->
+        <activity
+            android:name=".presentation.activities.SettingsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activities.MainActivity"/>
+        </activity>
+
     </application>
 
 </manifest>

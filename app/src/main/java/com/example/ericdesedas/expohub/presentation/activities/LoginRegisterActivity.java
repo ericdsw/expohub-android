@@ -7,11 +7,13 @@ import android.widget.Toast;
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.events.LoginEvent;
 import com.example.ericdesedas.expohub.data.events.RegisterEvent;
+import com.example.ericdesedas.expohub.data.events.ShowLoginRegisterRoute;
 import com.example.ericdesedas.expohub.data.events.SwapToLoginEvent;
 import com.example.ericdesedas.expohub.data.events.SwapToRegisterEvent;
 import com.example.ericdesedas.expohub.data.models.User;
 import com.example.ericdesedas.expohub.presentation.fragments.LoginFragment;
 import com.example.ericdesedas.expohub.presentation.fragments.RegisterFragment;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.LoginRegisterPresenter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,7 +57,6 @@ public class LoginRegisterActivity extends BaseActivity implements
         registerProgressDialog.setMessage(getString(R.string.register_process_message));
 
         presenter.setView(this);
-        presenter.initialize();
 
         displayLoginFragment();
     }
@@ -92,6 +93,12 @@ public class LoginRegisterActivity extends BaseActivity implements
     @Subscribe
     public void onSwapToLoginEvent(SwapToLoginEvent event) {
         displayLoginFragment();
+    }
+
+    @Subscribe
+    public void onShowRoute(ShowLoginRegisterRoute event) {
+        RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance(event.method, event.route);
+        routeDialogFragment.show(getSupportFragmentManager(), "");
     }
 
     // View methods

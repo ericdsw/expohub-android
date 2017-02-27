@@ -48,6 +48,12 @@ public class NewsByFairPresenter extends Presenter {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        newsByFairUseCase.registerListener(listener);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         newsByFairUseCase.unregisterListener(listener);
@@ -57,9 +63,6 @@ public class NewsByFairPresenter extends Presenter {
         this.view = view;
     }
 
-    public void initialize() {
-        newsByFairUseCase.registerListener(listener);
-    }
 
     public void onLoadEventsCommand(String fairId) {
         view.toggleLoading(true);

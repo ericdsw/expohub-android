@@ -1,22 +1,23 @@
 package com.example.ericdesedas.expohub.presentation.activities;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.presentation.adapters.EventListAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.EventsByFairPresenter;
 
@@ -71,6 +72,12 @@ public class EventsByFairActivity extends BaseActivity implements
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_events_by_fair, menu);
+        return true;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         presenter.onStart();
@@ -80,6 +87,21 @@ public class EventsByFairActivity extends BaseActivity implements
     protected void onStop() {
         super.onStop();
         presenter.onStop();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}/fairEvents?include=eventType");
+                routeDialogFragment.show(getSupportFragmentManager(), "");
+                break;
+        }
+        return true;
     }
 
     @Override
@@ -129,7 +151,6 @@ public class EventsByFairActivity extends BaseActivity implements
     private void setupUI() {
 
         presenter.setView(this);
-        presenter.initialize();
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

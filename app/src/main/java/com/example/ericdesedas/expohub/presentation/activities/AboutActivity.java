@@ -30,7 +30,7 @@ public class AboutActivity extends BaseActivity {
 
     @OnClick(R.id.go_to_repo_button)
     public void onGoToRepoCLick() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ericdsw/expohub-android"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.repo_url)));
         startActivity(browserIntent);
     }
 }

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.Sponsor;
-import com.example.ericdesedas.expohub.helpers.Constants.SponsorRankTypes;
+import com.example.ericdesedas.expohub.helpers.constants.SponsorRankTypes;
 import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
 
 import butterknife.BindView;

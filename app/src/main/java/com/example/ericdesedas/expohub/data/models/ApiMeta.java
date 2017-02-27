@@ -22,8 +22,6 @@ public class ApiMeta {
         @Override
         public ApiMeta fromJson(JsonReader reader) throws IOException {
 
-            Log.d("FOO", reader.toString());
-
             ApiMeta apiMeta = new ApiMeta();
 
             reader.beginObject();

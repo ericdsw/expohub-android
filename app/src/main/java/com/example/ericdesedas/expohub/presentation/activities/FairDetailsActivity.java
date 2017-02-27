@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.FairDetailsPresenter;
 import com.google.android.gms.maps.GoogleMap;
@@ -96,6 +97,10 @@ public class FairDetailsActivity extends BaseActivity implements
                 finish();
                 break;
             case R.id.action_map:
+                break;
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}");
+                routeDialogFragment.show(getSupportFragmentManager(), "");
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -222,7 +227,6 @@ public class FairDetailsActivity extends BaseActivity implements
         collapsingToolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
 
         presenter.setView(this);
-        presenter.initialize();
 
         presenter.onLoadFairCommand(fairId);
     }

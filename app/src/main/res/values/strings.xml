@@ -10,7 +10,11 @@
     <string name="title_drawer_closed">Closed</string>
     <string name="title_my_fairs_fragment">My Fairs</string>
     <string name="title_my_attending_events">Attending Events</string>
-    <string name="title_trending">Trending</string>
+    <string name="title_my_favorite_events">Favorite Events</string>
+    <string name="title_trending">Popular Events</string>
+    <string name="title_general">General</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_current_url">Current URL</string>
 
     <!-- Actions -->
     <string name="action_retry">Retry</string>
@@ -24,6 +28,9 @@
     <string name="action_view_repo">Visit Github Repo</string>
     <string name="action_share">Share</string>
     <string name="action_favorite">Favorite</string>
+    <string name="action_dont_show_again">Don\'t show again</string>
+    <string name="action_close">Close</string>
+    <string name="action_route_info">Route Info</string>
 
     <!-- Labels -->
     <string name="label_dates">%1$s - %2$s</string>
@@ -52,6 +59,7 @@
     <string name="fetching_user_data">Fetching user data&#8230;</string>
     <string name="logging_out_message">Logging out&#8230;</string>
     <string name="logged_out_message">Logged out successfully</string>
+    <string name="messages_reset">All application messages have been restored</string>
 
     <!-- Errors -->
     <string name="generic_network_error">Network Error</string>
@@ -77,6 +85,10 @@
 
     <!-- About Section -->
     <string name="about_app_name">ExpoHub v1.0.0</string>
+    <string name="repo_url">https://github.com/ericdsw/expohub-android</string>
+
+    <!-- Disclaimer -->
+    <string name="disclaimer">Disclaimer</string>
     <string name="about_disclaimer">
         This application demonstrates a simple client implementation that can consume the main ExpoHub\'s API. \n
         It is part of the \"ExpoHub\" thesis project.
@@ -89,7 +101,14 @@
         Mauris a arcu gravida, sodales urna vitae, vestibulum ante. Cras elementum pretium egestas.
     </string>
 
-    <!-- Below this line there should only be meta-data defined -->
+    <!-- Initial Disclaimer Dialog -->
+    <string name="initial_disclaimer_dialog">
+        This app is part of a larger service called ExpoHub, a thesis project used to demonstrate how to consume data provided by the server\'s API
+        using standard client-server transaction methods adjusted to the JSON API specification. Considering this, some functionality might be missing
+        or usability bugs might arise.
+    </string>
+
+    <!-- Below this line there should only be meta-data definitions -->
     <!-- Transition Names -->
     <string name="transition_fair_card_image">transition:fair_card_image</string>
     <string name="transition_fair_card_content">transition:fair_card_content</string>
