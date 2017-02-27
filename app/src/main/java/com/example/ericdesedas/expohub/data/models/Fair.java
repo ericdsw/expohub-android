@@ -4,12 +4,7 @@ import com.squareup.moshi.Json;
 
 import org.joda.time.format.DateTimeFormat;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.HasOne;

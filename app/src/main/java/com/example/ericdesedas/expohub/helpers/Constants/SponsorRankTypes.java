@@ -1,4 +1,4 @@
-package com.example.ericdesedas.expohub.helpers.Constants;
+package com.example.ericdesedas.expohub.helpers.constants;
 
 public class SponsorRankTypes {
     public static final String DIAMOND  = "2";

@@ -15,6 +15,7 @@ import com.example.ericdesedas.expohub.presentation.activities.FairEventDetailsA
 import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
+import com.example.ericdesedas.expohub.presentation.activities.SettingsActivity;
 import com.example.ericdesedas.expohub.presentation.activities.SponsorsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
@@ -112,6 +113,12 @@ public class Navigator {
         executeNavigation(intent);
     }
 
+    public void navigateToSettingsActivity() {
+
+        Intent intent = new Intent(activity, SettingsActivity.class);
+        executeNavigation(intent);
+    }
+
     // ======================================== Transition ======================================== //
 
     /**
@@ -146,18 +153,22 @@ public class Navigator {
      */
     private void executeNavigation(Intent intent) {
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        //TODO: Fix transitions and enable this section
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP || false) {
+//
+//            Pair<View, String>[] transitionPairs = (Pair[]) transitioningElements.toArray(new Pair[transitioningElements.size()]);
+//
+//            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                    activity, transitionPairs
+//            );
+//            activity.startActivity(intent, optionsCompat.toBundle());
+//
+//        } else {
+//            activity.startActivity(intent);
+//        }
 
-            Pair<View, String>[] transitionPairs = (Pair[]) transitioningElements.toArray(new Pair[transitioningElements.size()]);
-
-            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    activity, transitionPairs
-            );
-            activity.startActivity(intent, optionsCompat.toBundle());
-
-        } else {
-            activity.startActivity(intent);
-        }
+        //TODO: Remove once the previous section is fixed
+        activity.startActivity(intent);
 
         transitioningElements.clear();
     }

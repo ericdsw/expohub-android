@@ -382,9 +382,20 @@ public class JsonApiConverterTest {
         assertThat("Checking that conversion returned null", randomDocument.get(), is(nullValue()));
     }
 
+    /**
+     * Returns a document representation from the provided string
+     *
+     * @param json          a {@link String} reference with the string to transform
+     * @param tClass        the {@link Class<T>} related to the return parameter
+     * @param <T>           the class reference that extends
+     * @return              a {@link Document<T>} instance containing transformed data
+     * @throws IOException  when the json is invalid
+     */
     private <T extends ResourceIdentifier> Document<T> parseToDocument(String json, Class<T> tClass) throws IOException {
-        Type type = Types.newParameterizedType(Document.class, tClass);
-        JsonAdapter<Document<T>> adapter = moshi.adapter(type);
+
+        Type type                           = Types.newParameterizedType(Document.class, tClass);
+        JsonAdapter<Document<T>> adapter    = moshi.adapter(type);
+
         return adapter.fromJson(json);
     }
 }

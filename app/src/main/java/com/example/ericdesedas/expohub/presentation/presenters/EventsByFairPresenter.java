@@ -45,6 +45,13 @@ public class EventsByFairPresenter extends Presenter {
 
     public EventsByFairPresenter(GetEventsByFairUseCase useCase) {
         this.useCase = useCase;
+        useCase.addParameter("include", "eventType");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        useCase.registerListener(listener);
     }
 
     @Override
@@ -57,18 +64,14 @@ public class EventsByFairPresenter extends Presenter {
         this.view = view;
     }
 
-    /**
-     * Initializes use cases
-     */
-    public void initialize() {
-        useCase.registerListener(listener);
-        useCase.addParameter("include", "eventType");
-    }
+    // Commands
 
     public void onLoadEventsCommand(String fairId) {
         view.toggleLoading(true);
         useCase.executeRequest(fairId);
     }
+
+    // View Interface
 
     public interface View {
         void toggleLoading(boolean showLoading);

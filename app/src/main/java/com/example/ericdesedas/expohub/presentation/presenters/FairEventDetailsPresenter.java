@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.presentation.presenters;
 
-import android.util.Log;
-
 import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;

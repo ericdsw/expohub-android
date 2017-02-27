@@ -46,7 +46,11 @@ public class SponsorsByFairPresenter extends Presenter {
     };
 
     public SponsorsByFairPresenter(GetSponsorsByFairUseCase useCase) {
+
         this.useCase = useCase;
+
+        this.useCase.addParameter("include", "sponsorRank");
+        this.useCase.addParameter("sort", "sponsor_rank_id");
     }
 
     @Override
@@ -65,11 +69,6 @@ public class SponsorsByFairPresenter extends Presenter {
         this.view = view;
     }
 
-    public void initialize() {
-
-        useCase.addParameter("include", "sponsorRank");
-        useCase.addParameter("sort", "sponsor_rank_id");
-    }
 
     // Commands
 

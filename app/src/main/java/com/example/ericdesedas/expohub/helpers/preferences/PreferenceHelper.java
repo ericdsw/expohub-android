@@ -7,6 +7,8 @@ public class PreferenceHelper {
     public static final String FIRST_VISIT              = "first-visit";
     public static final String SESSION_DATA             = "session-data";
     public static final String ATTENDING_FAIR_EVENTS    = "attending-fair-events";
+    public static final String DO_NOT_SHOW_DISCLAIMER   = "do-not-show-disclaimer";
+    public static final String SHOW_URL                 = "pref_key_show_url";
 
     private SharedPreferences preferences;
 
@@ -14,7 +16,7 @@ public class PreferenceHelper {
         this.preferences = preferences;
     }
 
-    // Write
+    // WriteO
 
     public void writeStringPreference(String key) {
         this.writeStringPref(key, "");

@@ -9,4 +9,10 @@
         android:icon="@drawable/ic_action_maps"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/action_route_info"
+        android:title="@string/action_route_info"
+        android:icon="@drawable/ic_info_outline_white_24dp"
+        app:showAsAction="ifRoom"/>
+
 </menu>

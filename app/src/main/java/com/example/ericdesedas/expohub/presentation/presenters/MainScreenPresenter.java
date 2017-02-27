@@ -144,10 +144,8 @@ public class MainScreenPresenter extends Presenter {
      * @param preferenceHelper      the {@link PreferenceHelper} reference
      * @param sessionManager        the {@link SessionManager} reference
      */
-    public MainScreenPresenter(GetFairsUseCase getFairsUseCase,
-                               GetSingleUserUseCase getSingleUserUseCase,
-                               GetFairEventsUseCase getFairEventsUseCase,
-                               PreferenceHelper preferenceHelper,
+    public MainScreenPresenter(GetFairsUseCase getFairsUseCase, GetSingleUserUseCase getSingleUserUseCase,
+                               GetFairEventsUseCase getFairEventsUseCase, PreferenceHelper preferenceHelper,
                                SessionManager sessionManager) {
 
         this.getFairsUseCase        = getFairsUseCase;
@@ -156,6 +154,15 @@ public class MainScreenPresenter extends Presenter {
         this.preferenceHelper       = preferenceHelper;
         this.sessionManager         = sessionManager;
         this.view                   = null;
+
+        // Attending events
+        getSingleUserUseCase.addParameter("include", "attendingFairEvents");
+
+        // Trending event formatting
+        getFairEventsUseCase.addParameter("sort", "-attendance");
+        getFairEventsUseCase.addParameter("include", "eventType");
+        getFairEventsUseCase.addParameter("page[cursor]", "0");
+        getFairEventsUseCase.addParameter("page[limit]", "7");
     }
 
     /**
@@ -173,15 +180,6 @@ public class MainScreenPresenter extends Presenter {
         } else {
             view.showUnidentifiedUser();
         }
-
-        // Attending events
-        getSingleUserUseCase.addParameter("include", "attendingFairEvents");
-
-        // Trending event formatting
-        getFairEventsUseCase.addParameter("sort", "-attendance");
-        getFairEventsUseCase.addParameter("include", "eventType");
-        getFairEventsUseCase.addParameter("page[cursor]", "0");
-        getFairEventsUseCase.addParameter("page[limit]", "7");
     }
 
     @Override

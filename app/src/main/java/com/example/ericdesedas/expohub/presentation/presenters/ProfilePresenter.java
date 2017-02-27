@@ -180,6 +180,8 @@ public class ProfilePresenter extends Presenter {
         this.logoutUseCase                          = logoutUseCase;
         this.sessionManager                         = sessionManager;
         this.view                                   = null;
+
+        getFairEventsByAttendingUserUseCase.addParameter("include", "eventType");
     }
 
     @Override
@@ -202,10 +204,6 @@ public class ProfilePresenter extends Presenter {
 
     public void setView(View view) {
         this.view = view;
-    }
-
-    public void initialize() {
-        getFairEventsByAttendingUserUseCase.addParameter("include", "eventType");
     }
 
     // Commands

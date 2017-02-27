@@ -48,6 +48,12 @@ public class StandsByFairPresenter extends Presenter {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        getStandsByFairUseCase.registerListener(listener);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         getStandsByFairUseCase.unregisterListener(listener);
@@ -55,10 +61,6 @@ public class StandsByFairPresenter extends Presenter {
 
     public void setView(View view) {
         this.view = view;
-    }
-
-    public void initialize() {
-        getStandsByFairUseCase.registerListener(listener);
     }
 
     public void onLoadStandsCommand(String fairId) {

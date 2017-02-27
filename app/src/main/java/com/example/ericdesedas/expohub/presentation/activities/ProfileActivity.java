@@ -26,6 +26,7 @@ import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFact
 import com.example.ericdesedas.expohub.presentation.adapters.TabAdapter;
 import com.example.ericdesedas.expohub.presentation.fragments.FairEventListFragment;
 import com.example.ericdesedas.expohub.presentation.fragments.FairListFragment;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.ProfilePresenter;
 
@@ -64,6 +65,8 @@ public class ProfileActivity extends BaseActivity implements
     private boolean isAvatarShown = true;
     private int maxScrollSize;
     private TabAdapter tabAdapter;
+
+    private int currentFragmentOffset = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +113,20 @@ public class ProfileActivity extends BaseActivity implements
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = null;
+                switch (currentFragmentOffset) {
+                    case 0:
+                        routeDialogFragment = RouteDialogFragment.newInstance("GET", "/users/{id}/fairs");
+                        break;
+                    case 1:
+                        routeDialogFragment = RouteDialogFragment.newInstance("GET", "/users/{id}/attendingFairEvents?include=eventType");
+                        break;
+                }
+                if (routeDialogFragment != null) {
+                    routeDialogFragment.show(getSupportFragmentManager(), "");
+                }
+                break;
         }
 
         return true;
@@ -120,6 +137,8 @@ public class ProfileActivity extends BaseActivity implements
         super.onStart();
         eventBus.register(this);
         presenter.onStart();
+
+        presenter.onFetchUserDataCommand();
     }
 
     @Override
@@ -265,7 +284,6 @@ public class ProfileActivity extends BaseActivity implements
     private void setupUI() {
 
         presenter.setView(this);
-        presenter.initialize();
 
         fairListFragment = FairListFragment.newInstance(recyclerAdapterFactory.createFairListAdapter(),
                 eventBus, FairListAdapter.VIEW_TYPE_CONDENSED);
@@ -273,11 +291,26 @@ public class ProfileActivity extends BaseActivity implements
         fairEventListFragment = FairEventListFragment.newInstance(recyclerAdapterFactory.createEventListAdapter(), eventBus);
 
         tabAdapter.addFragment(getString(R.string.title_my_fairs_fragment), fairListFragment);
-        tabAdapter.addFragment(getString(R.string.title_my_attending_events), fairEventListFragment);
+        tabAdapter.addFragment(getString(R.string.title_my_favorite_events), fairEventListFragment);
 
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        presenter.onFetchUserDataCommand();
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentFragmentOffset = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }

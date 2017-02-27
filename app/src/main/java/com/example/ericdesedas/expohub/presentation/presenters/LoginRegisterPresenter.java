@@ -75,7 +75,9 @@ public class LoginRegisterPresenter extends Presenter {
         this.view = view;
     }
 
-    public void initialize() {
+    @Override
+    public void onStart() {
+        super.onStart();
         loginUseCase.registerListener(loginUseCaseListener);
         registerUseCase.registerListener(registerUseCaseListener);
     }

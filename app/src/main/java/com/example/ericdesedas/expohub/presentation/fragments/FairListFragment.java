@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class FairListFragment extends Fragment implements
+public class FairListFragment extends BaseFragment implements
     FairListAdapter.Listener {
 
     @BindView(R.id.swipe_refresh_layout)    SwipeRefreshLayout swipeRefreshLayout;
@@ -36,7 +36,6 @@ public class FairListFragment extends Fragment implements
     @BindView(R.id.network_progress)        ProgressBar networkProgress;
     @BindView(R.id.error_text)              TextView errorText;
 
-    private Unbinder unbinder;
     private FairListAdapter adapter;
     private EventBus eventBus;
 
@@ -61,6 +60,8 @@ public class FairListFragment extends Fragment implements
         fragment.setAdapterViewType(adapterViewType);
         return fragment;
     }
+
+    // Lifecycle Methods
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,10 +90,17 @@ public class FairListFragment extends Fragment implements
         canUpdate = false;
     }
 
+    // FairListAdapter.Listener methods
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    public void onFairCardClick(Fair fair, List<Pair<View, String>> transitioningElements) {
+
+        FairListClickEvent event = new FairListClickEvent();
+
+        event.fairId                = fair.getId();
+        event.transitioningElements = transitioningElements;
+
+        eventBus.post(event);
     }
 
     // Public Methods
@@ -165,16 +173,5 @@ public class FairListFragment extends Fragment implements
                 errorText.setVisibility(View.GONE);
             }
         });
-    }
-
-    @Override
-    public void onFairCardClick(Fair fair, List<Pair<View, String>> transitioningElements) {
-
-        FairListClickEvent event = new FairListClickEvent();
-
-        event.fairId                = fair.getId();
-        event.transitioningElements = transitioningElements;
-
-        eventBus.post(event);
     }
 }
