@@ -72,6 +72,8 @@ public class Fair extends Resource {
         return stands.get(getContext());
     }
 
+    // Utility Methods
+
     public String getImage() {
         return image;
     }

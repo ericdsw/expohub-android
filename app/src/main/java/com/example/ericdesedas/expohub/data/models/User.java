@@ -12,9 +12,9 @@ import moe.banana.jsonapi2.Resource;
 public class User extends Resource {
 
     // Properties
-    @Json(name = "name")        public String name;
-    @Json(name = "username")    public String username;
-    @Json(name = "email")       public String email;
+    @Json(name = "name")                public String name;
+    @Json(name = "username")            public String username;
+    @Json(name = "email")               public String email;
 
     // Relationships
     @Json(name = "fairs")               public HasMany<Fair> fairs;

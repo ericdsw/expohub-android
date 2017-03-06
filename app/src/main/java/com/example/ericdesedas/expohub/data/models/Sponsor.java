@@ -10,10 +10,10 @@ import moe.banana.jsonapi2.Resource;
 public class Sponsor extends Resource {
 
     // Properties
-    @Json(name = "name")    public String name;
-    @Json(name = "logo")    public String logo;
-    @Json(name = "slogan")  public String slogan;
-    @Json(name = "website") public String website;
+    @Json(name = "name")        public String name;
+    @Json(name = "logo")        public String logo;
+    @Json(name = "slogan")      public String slogan;
+    @Json(name = "website")     public String website;
 
     // Relationships
     @Json(name = "fair")        public HasOne<Fair> fair;

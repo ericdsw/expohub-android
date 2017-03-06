@@ -15,11 +15,11 @@ import moe.banana.jsonapi2.Resource;
 public class FairEvent extends Resource {
 
     // Properties
-    @Json(name = "title")       public String title;
-    @Json(name = "image")       public String image;
-    @Json(name = "description") public String description;
-    @Json(name = "date")        public String date;
-    @Json(name = "location")    public String location;
+    @Json(name = "title")           public String title;
+    @Json(name = "image")           public String image;
+    @Json(name = "description")     public String description;
+    @Json(name = "date")            public String date;
+    @Json(name = "location")        public String location;
 
     // Relationships
     @Json(name = "fair")            public HasOne<Fair> fair;

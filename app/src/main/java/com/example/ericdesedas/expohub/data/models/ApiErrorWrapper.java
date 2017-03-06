@@ -11,15 +11,12 @@ public class ApiErrorWrapper {
 
     @Json(name = "errors") public List<Error> errorList;
 
-    /**
-     * Constructor
-     */
     public ApiErrorWrapper() {
         errorList = new ArrayList<>();
     }
 
     /**
-     * @return whether the wrapper contains only one error
+     * @return Whether the wrapper contains only one error
      */
     public boolean hasUniqueError() {
         return errorList.size() == 1;

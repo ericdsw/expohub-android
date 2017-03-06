@@ -13,7 +13,7 @@ import moe.banana.jsonapi2.Resource;
 public class Category extends Resource {
 
     // Properties
-    @Json(name = "name")   public String name;
+    @Json(name = "name")        public String name;
 
     // Relationships
     @Json(name = "fair")        public HasOne<Fair> fair;
