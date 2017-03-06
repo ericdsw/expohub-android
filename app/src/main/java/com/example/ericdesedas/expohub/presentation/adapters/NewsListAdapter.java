@@ -90,7 +90,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
             newsCreationDate.setText(this.news.formattedCreatedAt());
 
             imageDownloader.setMaxImageSize(500)
-                    .setImage(this.news.image, newsImage);
+                    .setImage(this.news.getImage(), newsImage);
         }
 
         @OnClick(R.id.root_view)

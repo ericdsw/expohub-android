@@ -64,6 +64,9 @@ public interface ApiClient {
     @GET("fairs/{fairId}/news")
     Call<Document<News>> getNewsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
 
+    @GET("news/{newsId}")
+    Call<Document<News>> getNewsById(@Path("newsId") String newsId, @QueryMap Map<String, String> parameters);
+
     // ========================================== Stands ===================================== //
 
     @GET("fairs/{fairId}/stands")

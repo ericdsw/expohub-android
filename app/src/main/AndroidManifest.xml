@@ -141,6 +141,17 @@
                 android:value=".presentation.activities.MainActivity"/>
         </activity>
 
+        <!-- News Detail Activity -->
+        <activity
+            android:name=".presentation.activities.NewsDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.activities.NewsByFairActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activities.NewsByFairActivity"/>
+        </activity>
+
     </application>
 
 </manifest>

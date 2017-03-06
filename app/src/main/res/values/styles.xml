@@ -51,6 +51,13 @@
         <item name="android:lineSpacingMultiplier">1.4</item>
     </style>
 
+    <!-- Comment Text -->
+    <style name="CommentText" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorBodyText</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
     <!-- Main Card Body Text -->
     <style name="CardBodyTextStyle" parent="BodyTextStyle">
         <item name="android:textSize">15sp</item>

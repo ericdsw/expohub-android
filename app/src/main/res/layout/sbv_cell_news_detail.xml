@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.ericdesedas.expohub.presentation.widgets.AspectRatioImageView
+        android:id="@+id/news_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:heightRatio="0.6"
+        android:scaleType="centerCrop"
+        tools:background="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TitleTextStyle"
+        android:layout_marginTop="@dimen/card_detail_top_margin"
+        android:layout_marginLeft="@dimen/card_detail_left_margin"
+        android:layout_marginRight="@dimen/card_detail_right_margin"
+        android:layout_marginStart="@dimen/card_detail_left_margin"
+        android:layout_marginEnd="@dimen/card_detail_right_margin"
+        tools:text="Generic News Title"/>
+
+    <TextView
+        android:id="@+id/news_creation_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SubTitleTextView"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="@dimen/card_detail_left_margin"
+        android:layout_marginRight="@dimen/card_detail_right_margin"
+        android:layout_marginStart="@dimen/card_detail_left_margin"
+        android:layout_marginEnd="@dimen/card_detail_right_margin"
+        tools:text="Jan 4, 2010"/>
+
+    <TextView
+        android:id="@+id/news_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/BodyTextStyle"
+        android:layout_marginLeft="@dimen/card_detail_left_margin"
+        android:layout_marginRight="@dimen/card_detail_right_margin"
+        android:layout_marginStart="@dimen/card_detail_left_margin"
+        android:layout_marginEnd="@dimen/card_detail_right_margin"
+        android:layout_marginTop="12dp"
+        tools:text="So, this is a long description to test some view properties that should be assigned elsewhere. By any means, do not define text here (i'm only doing it because it's via tools)"/>
+
+</LinearLayout>

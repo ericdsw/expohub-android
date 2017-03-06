@@ -64,4 +64,13 @@ public class RecyclerAdapterFactory {
     public SponsorListAdapter createSponsorListAdapter() {
         return new SponsorListAdapter(imageDownloader);
     }
+
+    /**
+     * Creates NewsDetailAdapter
+     *
+     * @return a {@link NewsDetailAdapter} instance
+     */
+    public NewsDetailAdapter createNewsDetailAdapter() {
+        return new NewsDetailAdapter(imageDownloader);
+    }
 }

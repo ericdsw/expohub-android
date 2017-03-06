@@ -11,6 +11,7 @@ import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairEventUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetSingleNewsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSponsorsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
@@ -104,5 +105,10 @@ public class UseCaseModule {
     @Provides
     UnAttendFairEventUseCase providesUnAttendFairEventUseCase(ApiClient apiClient, Moshi moshi) {
         return new UnAttendFairEventUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    GetSingleNewsUseCase providesGetSingleNewsUseCase(ApiClient apiClient, Moshi moshi) {
+        return new GetSingleNewsUseCase(apiClient, moshi);
     }
 }

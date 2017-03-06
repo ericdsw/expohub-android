@@ -12,6 +12,7 @@ import com.example.ericdesedas.expohub.presentation.activities.FairEventDetailsA
 import com.example.ericdesedas.expohub.presentation.activities.LoginRegisterActivity;
 import com.example.ericdesedas.expohub.presentation.activities.MainActivity;
 import com.example.ericdesedas.expohub.presentation.activities.NewsByFairActivity;
+import com.example.ericdesedas.expohub.presentation.activities.NewsDetailActivity;
 import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
 import com.example.ericdesedas.expohub.presentation.activities.SettingsActivity;
 import com.example.ericdesedas.expohub.presentation.activities.SponsorsByFairActivity;
@@ -40,4 +41,5 @@ public interface ActivityComponent {
     void inject(SponsorsByFairActivity activity);
     void inject(FairEventDetailsActivity activity);
     void inject(SettingsActivity activity);
+    void inject(NewsDetailActivity activity);
 }

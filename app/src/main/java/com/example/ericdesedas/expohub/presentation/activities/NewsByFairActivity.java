@@ -18,6 +18,7 @@ import com.example.ericdesedas.expohub.data.models.News;
 import com.example.ericdesedas.expohub.presentation.adapters.NewsListAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
 import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
+import com.example.ericdesedas.expohub.presentation.navigation.Navigator;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsByFairPresenter;
 
 import javax.inject.Inject;
@@ -40,6 +41,7 @@ public class NewsByFairActivity extends BaseActivity implements
 
     @Inject RecyclerAdapterFactory adapterFactory;
     @Inject NewsByFairPresenter presenter;
+    @Inject Navigator navigator;
 
     private String fairId;
     private String fairName;
@@ -136,7 +138,7 @@ public class NewsByFairActivity extends BaseActivity implements
 
     @Override
     public void onNewsCardClick(News news) {
-        Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+        navigator.navigateToNewsDetailActivity(news.getId());
     }
 
     private void setupUI() {
