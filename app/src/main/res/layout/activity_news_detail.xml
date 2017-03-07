@@ -52,4 +52,14 @@
 
     </RelativeLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_comment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_action_mode_comment"
+        app:layout_anchorGravity="bottom|right|end"
+        app:fabSize="normal"/>
+
 </android.support.design.widget.CoordinatorLayout>

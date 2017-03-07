@@ -90,7 +90,7 @@ public class StandListAdapter extends RecyclerView.Adapter<StandListAdapter.Stan
             standShortDescription.setText(stand.shortDescription());
 
             imageDownloader.setMaxImageSize(500)
-                    .setCircularImage(stand.image, standImage);
+                    .setCircularImage(stand.getImage(), standImage);
         }
 
         @OnClick(R.id.root_view)

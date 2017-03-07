@@ -111,7 +111,7 @@ public class NewsDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     .setImage(this.news.getImage(), newsImage);
 
             newsTitle.setText(this.news.title);
-            newsCreationDate.setText(this.news.formattedCreatedAt());
+            newsCreationDate.setText(String.format(itemView.getContext().getString(R.string.label_published_at), this.news.formattedCreatedAt()));
             newsContent.setText(this.news.content);
         }
     }

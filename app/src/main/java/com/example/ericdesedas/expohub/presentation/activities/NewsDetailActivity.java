@@ -24,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NewsDetailActivity extends BaseActivity implements
         NewsDetailPresenter.View {
@@ -111,6 +112,11 @@ public class NewsDetailActivity extends BaseActivity implements
     @Override
     public void showError(int code, String error) {
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.add_comment_button)
+    public void onAddCommentButtonClick() {
+
     }
 
     private void setupUI() {

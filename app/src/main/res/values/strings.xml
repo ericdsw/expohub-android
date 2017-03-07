@@ -46,6 +46,7 @@
     <string name="label_username">Username</string>
     <string name="label_username_profile">\@%1$s</string>
     <string name="label_sponsor_type">%1$s Sponsor</string>
+    <string name="label_published_at">Published: %1$s</string>
 
     <!-- Messages -->
     <string name="login_call_to_action">Nothing to see here\n Login to view your saved events</string>
