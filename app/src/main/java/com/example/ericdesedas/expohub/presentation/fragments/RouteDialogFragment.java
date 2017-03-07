@@ -2,9 +2,11 @@ package com.example.ericdesedas.expohub.presentation.fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -41,7 +43,11 @@ public class RouteDialogFragment extends DialogFragment {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_fragment_route, null);
         unbinder  = ButterKnife.bind(this, view);
 
-        textView.setText(routeString);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            textView.setText(Html.fromHtml(routeString, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            textView.setText(Html.fromHtml(routeString));
+        }
         routeMethodTextView.setText(routeMethod);
 
         return new AlertDialog.Builder(getActivity())

@@ -120,7 +120,8 @@ public class ProfileActivity extends BaseActivity implements
                         routeDialogFragment = RouteDialogFragment.newInstance("GET", "/users/{id}/fairs");
                         break;
                     case 1:
-                        routeDialogFragment = RouteDialogFragment.newInstance("GET", "/users/{id}/attendingFairEvents?include=eventType");
+                        routeDialogFragment = RouteDialogFragment.newInstance("GET",
+                                "/users/{id}/attendingFairEvents<br/><span style='color:red;'>?include=eventType</span>");
                         break;
                 }
                 if (routeDialogFragment != null) {

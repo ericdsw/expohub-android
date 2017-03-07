@@ -88,7 +88,8 @@ public class SponsorsByFairActivity extends BaseActivity implements
 
         switch (item.getItemId()) {
             case R.id.action_route_info:
-                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}/sponsors?include=sponsorRank&sort=sponsor_rank_id");
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET",
+                        "/fairs/{id}/sponsors<br/><span style='color:red;'>?include=sponsorRank&sort=sponsor_rank_id</span>");
                 routeDialogFragment.show(getSupportFragmentManager(), "");
                 return true;
         }

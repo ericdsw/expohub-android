@@ -73,7 +73,8 @@ public class NewsDetailActivity extends BaseActivity implements
                 finish();
                 break;
             case R.id.action_route_info:
-                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/news/{id}?include=comments,comments.user");
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET",
+                        "/news/{id}<br /><span style='color:red;'>?include=comments,comments.user</span>");
                 routeDialogFragment.show(getSupportFragmentManager(), "");
                 break;
         }

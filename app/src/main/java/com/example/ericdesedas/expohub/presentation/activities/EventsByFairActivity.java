@@ -97,7 +97,8 @@ public class EventsByFairActivity extends BaseActivity implements
                 finish();
                 break;
             case R.id.action_route_info:
-                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}/fairEvents?include=eventType");
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET",
+                        "/fairs/{id}/fairEvents<br /><span style='color:red;'>?include=eventType</span>");
                 routeDialogFragment.show(getSupportFragmentManager(), "");
                 break;
         }
