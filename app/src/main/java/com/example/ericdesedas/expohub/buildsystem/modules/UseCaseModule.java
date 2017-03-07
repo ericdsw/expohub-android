@@ -3,6 +3,7 @@ package com.example.ericdesedas.expohub.buildsystem.modules;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.domain.interactors.AttendFairEventUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.CreateCommentUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
@@ -110,5 +111,10 @@ public class UseCaseModule {
     @Provides
     GetSingleNewsUseCase providesGetSingleNewsUseCase(ApiClient apiClient, Moshi moshi) {
         return new GetSingleNewsUseCase(apiClient, moshi);
+    }
+
+    @Provides
+    CreateCommentUseCase providesCreateCommentUseCase(ApiClient apiClient, Moshi moshi) {
+        return new CreateCommentUseCase(apiClient, moshi);
     }
 }

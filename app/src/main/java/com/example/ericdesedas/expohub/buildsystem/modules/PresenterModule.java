@@ -3,6 +3,7 @@ package com.example.ericdesedas.expohub.buildsystem.modules;
 import com.example.ericdesedas.expohub.buildsystem.scopes.PerActivity;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.domain.interactors.AttendFairEventUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.CreateCommentUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
@@ -111,7 +112,7 @@ public class PresenterModule {
 
     @Provides
     @PerActivity
-    NewsDetailPresenter providesNewsDetailPresenter(GetSingleNewsUseCase useCase) {
-        return new NewsDetailPresenter(useCase);
+    NewsDetailPresenter providesNewsDetailPresenter(GetSingleNewsUseCase useCase, CreateCommentUseCase createCommentUseCase, SessionManager sessionManager) {
+        return new NewsDetailPresenter(useCase, createCommentUseCase, sessionManager);
     }
 }

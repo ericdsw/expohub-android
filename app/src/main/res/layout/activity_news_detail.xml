@@ -22,35 +22,40 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
-        android:id="@+id/root_view"
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/root_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+        <!---->
+
+    <!--</RelativeLayout>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <ProgressBar
+        android:id="@+id/network_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
-        <ProgressBar
-            android:id="@+id/network_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/error_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BodyTextStyle"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            tools:text="Network error"/>
-
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BodyTextStyle"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        tools:text="Network error"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_comment_button"
@@ -59,7 +64,9 @@
         android:layout_gravity="bottom|right|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_action_mode_comment"
+        app:layout_anchor="@+id/recycler_view"
         app:layout_anchorGravity="bottom|right|end"
+        app:layout_behavior="com.example.ericdesedas.expohub.helpers.behaviors.ScrollingFABBehavior"
         app:fabSize="normal"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -18,7 +18,7 @@
             android:id="@+id/comment_picture"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/profile_placeholder"/>
+            android:src="@drawable/gray_circle"/>
 
         <TextView
             android:id="@+id/comment_text"

@@ -1,7 +1,10 @@
 package com.example.ericdesedas.expohub.presentation.activities;
 
+import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +20,7 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.News;
 import com.example.ericdesedas.expohub.presentation.adapters.NewsDetailAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
+import com.example.ericdesedas.expohub.presentation.fragments.CreateCommentDialogFragment;
 import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsDetailPresenter;
 
@@ -27,20 +31,23 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NewsDetailActivity extends BaseActivity implements
-        NewsDetailPresenter.View {
+        NewsDetailPresenter.View,
+        CreateCommentDialogFragment.CreateCommentListener {
 
     public static final String KEY_NEWS_ID = "news-id";
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
-    @BindView(R.id.network_progress) ProgressBar networkProgressBar;
-    @BindView(R.id.error_text) TextView errorText;
+    @BindView(R.id.toolbar)             Toolbar toolbar;
+    @BindView(R.id.recycler_view)       RecyclerView recyclerView;
+    @BindView(R.id.network_progress)    ProgressBar networkProgressBar;
+    @BindView(R.id.error_text)          TextView errorText;
 
     @Inject NewsDetailPresenter newsDetailPresenter;
     @Inject RecyclerAdapterFactory recyclerAdapterFactory;
 
     private String newsId;
+    private News news;
     private NewsDetailAdapter newsDetailAdapter;
+    private ProgressDialog commentCreateProgressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +63,9 @@ public class NewsDetailActivity extends BaseActivity implements
         getActivityComponent().inject(this);
 
         newsId = getIntent().getStringExtra(KEY_NEWS_ID);
+
+        commentCreateProgressDialog = new ProgressDialog(this);
+        commentCreateProgressDialog.setMessage(getString(R.string.message_creating_comment));
 
         setupUI();
     }
@@ -96,7 +106,7 @@ public class NewsDetailActivity extends BaseActivity implements
 
     @Override
     public void toggleLoading(boolean showLoading) {
-        if (showLoading) {
+        if (showLoading && news == null) {
             networkProgressBar.setVisibility(View.VISIBLE);
         } else {
             networkProgressBar.setVisibility(View.GONE);
@@ -104,19 +114,61 @@ public class NewsDetailActivity extends BaseActivity implements
     }
 
     @Override
+    public void toggleCommentCreating(boolean isCreating) {
+        if (isCreating) {
+            if (! commentCreateProgressDialog.isShowing()) {
+                commentCreateProgressDialog.show();
+            }
+        } else {
+            if (commentCreateProgressDialog.isShowing()) {
+                commentCreateProgressDialog.dismiss();
+            }
+        }
+    }
+
+    @Override
+    public void showCommentCreationMessage() {
+        Toast.makeText(this, getString(R.string.message_comment_added), Toast.LENGTH_SHORT).show();
+        newsDetailPresenter.onLoadSingleNewsCommand(newsId);
+    }
+
+    @Override
+    public void showCommentCreationErrorMessage(int code, String message) {
+        if (code == 500) {
+            Toast.makeText(this, getString(R.string.generic_network_error), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public void updateNews(News news) {
+
+        errorText.setVisibility(View.GONE);
         newsDetailAdapter.setNews(news);
         newsDetailAdapter.notifyDataSetChanged();
+
+        this.news = news;
     }
 
     @Override
     public void showError(int code, String error) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+        errorText.setVisibility(View.VISIBLE);
+        if (code == 500) {
+            errorText.setText(getString(R.string.generic_network_error));
+        } else {
+            errorText.setText(error);
+        }
     }
 
     @OnClick(R.id.add_comment_button)
     public void onAddCommentButtonClick() {
-
+        if (newsDetailPresenter.canRequestNewComment()) {
+            CreateCommentDialogFragment fragment = CreateCommentDialogFragment.newInstance(this);
+            fragment.show(getSupportFragmentManager(), "");
+        } else {
+            Toast.makeText(this, getString(R.string.cannot_create_comment_auth), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setupUI() {
@@ -129,5 +181,10 @@ public class NewsDetailActivity extends BaseActivity implements
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         newsDetailPresenter.onLoadSingleNewsCommand(newsId);
+    }
+
+    @Override
+    public void onCreateComment(String commentText) {
+        newsDetailPresenter.onCreateCommentCommand(commentText, newsId);
     }
 }
