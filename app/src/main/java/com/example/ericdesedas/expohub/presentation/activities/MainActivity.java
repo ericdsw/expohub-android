@@ -120,7 +120,8 @@ public class MainActivity extends BaseActivity implements
                          routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs");
                         break;
                     case 1:
-                        routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairEvents?sort=-attendance\n&include=eventType&page[cursor]=0&page[limit]=7");
+                        routeDialogFragment = RouteDialogFragment.newInstance("GET",
+                                "/fairEvents<br/><span style='color:red;'>?sort=-attendance&include=eventType&page[cursor]=0&page[limit]=7</span>");
                         break;
                 }
                 if (routeDialogFragment != null) {

@@ -32,6 +32,10 @@ public class News extends Resource {
         return comments.get(getContext());
     }
 
+    public String getImage() {
+        return this.image + "?id=" + getId();
+    }
+
     public String formattedCreatedAt() {
         return DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")
                 .parseDateTime(createdAt)

@@ -3,6 +3,7 @@ package com.example.ericdesedas.expohub.buildsystem.modules;
 import com.example.ericdesedas.expohub.buildsystem.scopes.PerActivity;
 import com.example.ericdesedas.expohub.data.network.contracts.SessionManager;
 import com.example.ericdesedas.expohub.domain.interactors.AttendFairEventUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.CreateCommentUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetEventsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsByAttendingUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetFairEventsUseCase;
@@ -11,6 +12,7 @@ import com.example.ericdesedas.expohub.domain.interactors.GetFairsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetNewsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairEventUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleFairUseCase;
+import com.example.ericdesedas.expohub.domain.interactors.GetSingleNewsUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSingleUserUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetSponsorsByFairUseCase;
 import com.example.ericdesedas.expohub.domain.interactors.GetStandsByFairUseCase;
@@ -25,6 +27,7 @@ import com.example.ericdesedas.expohub.presentation.presenters.FairEventDetailsP
 import com.example.ericdesedas.expohub.presentation.presenters.LoginRegisterPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.MainScreenPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsByFairPresenter;
+import com.example.ericdesedas.expohub.presentation.presenters.NewsDetailPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.ProfilePresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.SponsorsByFairPresenter;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
@@ -105,5 +108,11 @@ public class PresenterModule {
 
         return new FairEventDetailsPresenter(singleFairEventUseCase, attendFairEventUseCase, unAttendFairEventUseCase,
                                              preferenceHelper, sessionManager);
+    }
+
+    @Provides
+    @PerActivity
+    NewsDetailPresenter providesNewsDetailPresenter(GetSingleNewsUseCase useCase, CreateCommentUseCase createCommentUseCase, SessionManager sessionManager) {
+        return new NewsDetailPresenter(useCase, createCommentUseCase, sessionManager);
     }
 }

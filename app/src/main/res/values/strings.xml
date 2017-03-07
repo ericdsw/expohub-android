@@ -15,6 +15,7 @@
     <string name="title_general">General</string>
     <string name="title_settings">Settings</string>
     <string name="title_current_url">Current URL</string>
+    <string name="title_create_comment">Create Comment</string>
 
     <!-- Actions -->
     <string name="action_retry">Retry</string>
@@ -31,6 +32,7 @@
     <string name="action_dont_show_again">Don\'t show again</string>
     <string name="action_close">Close</string>
     <string name="action_route_info">Route Info</string>
+    <string name="action_create">Create</string>
 
     <!-- Labels -->
     <string name="label_dates">%1$s - %2$s</string>
@@ -46,6 +48,7 @@
     <string name="label_username">Username</string>
     <string name="label_username_profile">\@%1$s</string>
     <string name="label_sponsor_type">%1$s Sponsor</string>
+    <string name="label_published_at">Published: %1$s</string>
 
     <!-- Messages -->
     <string name="login_call_to_action">Nothing to see here\n Login to view your saved events</string>
@@ -60,6 +63,8 @@
     <string name="logging_out_message">Logging out&#8230;</string>
     <string name="logged_out_message">Logged out successfully</string>
     <string name="messages_reset">All application messages have been restored</string>
+    <string name="message_comment_added">Comment added successfully</string>
+    <string name="message_creating_comment">Creating comment&#8230;</string>
 
     <!-- Errors -->
     <string name="generic_network_error">Network Error</string>
@@ -78,6 +83,8 @@
     <string name="empty_speakers_error">No speakers found</string>
     <string name="unidentified_error">Please login to perform this action</string>
     <string name="not_implemented">Not implemented yet</string>
+    <string name="empty_comments">No comments found</string>
+    <string name="cannot_create_comment_auth">Please login or register before creating a comment</string>
 
     <!-- Drawer Layout toggle titles -->
     <string name="drawer_open">Open Drawer</string>

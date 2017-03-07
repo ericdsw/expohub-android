@@ -6,7 +6,13 @@ This is a simple client implementation used to demonstrate the required steps to
 
 This project demonstrates the following concepts:
 * Dependency injection via Dagger2 (https://google.github.io/dagger/).
-* A simple implementation of the **Clean Architecture**.
+* A simple implementation of the **Clean Architecture**, dividing all app logic inside layers.
 * Adaptation to the JSONApi standard (using this library: https://github.com/kamikat/moshi-jsonapi).
 * Implementation of material design concepts.
 * MVP Pattern for the UI Layer.
+
+Copyright © 2016 [Eric De Sedas]
+
+For educational purposes only, commercial use or distribution
+is prohibited by any other parties other than the original creator, which is stated
+in the copyright claim.

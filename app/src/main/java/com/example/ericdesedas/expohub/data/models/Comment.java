@@ -10,7 +10,7 @@ import moe.banana.jsonapi2.Resource;
 public class Comment extends Resource {
 
     // Properties
-    @Json(name = "text")    public String text;
+    @Json(name = "text")        public String text;
 
     // Relationships
     @Json(name = "ownerNews")   public HasOne<News> ownerNews;

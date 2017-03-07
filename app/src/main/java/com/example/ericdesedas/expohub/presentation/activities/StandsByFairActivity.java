@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.Stand;
+import com.example.ericdesedas.expohub.helpers.image.ImageDownloader;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
 import com.example.ericdesedas.expohub.presentation.adapters.StandListAdapter;
 import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
+import com.example.ericdesedas.expohub.presentation.fragments.StandDetailsDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
 import javax.inject.Inject;
@@ -40,6 +42,7 @@ public class StandsByFairActivity extends BaseActivity implements
 
     @Inject RecyclerAdapterFactory adapterFactory;
     @Inject StandsByFairPresenter presenter;
+    @Inject ImageDownloader imageDownloader;
 
     private String fairId;
     private String fairName;
@@ -98,7 +101,8 @@ public class StandsByFairActivity extends BaseActivity implements
 
     @Override
     public void onStandCardClick(Stand stand) {
-        Toast.makeText(this, "Not Implemented", Toast.LENGTH_LONG).show();
+        StandDetailsDialogFragment fragment = StandDetailsDialogFragment.newInstance(stand, imageDownloader);
+        fragment.show(getSupportFragmentManager(), "");
     }
 
     @Override

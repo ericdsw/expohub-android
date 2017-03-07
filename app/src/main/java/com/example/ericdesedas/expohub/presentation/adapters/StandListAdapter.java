@@ -71,8 +71,9 @@ public class StandListAdapter extends RecyclerView.Adapter<StandListAdapter.Stan
 
     public class StandViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.stand_image) ImageView standImage;
-        @BindView(R.id.stand_name)  TextView standName;
+        @BindView(R.id.stand_image)             ImageView standImage;
+        @BindView(R.id.stand_name)              TextView standName;
+        @BindView(R.id.stand_short_description) TextView standShortDescription;
 
         private Stand stand;
 
@@ -86,9 +87,10 @@ public class StandListAdapter extends RecyclerView.Adapter<StandListAdapter.Stan
             this.stand = stand;
 
             standName.setText(stand.name);
+            standShortDescription.setText(stand.shortDescription());
 
             imageDownloader.setMaxImageSize(500)
-                    .setCircularImage(stand.image, standImage);
+                    .setCircularImage(stand.getImage(), standImage);
         }
 
         @OnClick(R.id.root_view)

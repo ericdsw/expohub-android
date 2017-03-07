@@ -1,7 +1,5 @@
 package com.example.ericdesedas.expohub.data.models;
 
-import android.util.Log;
-
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.JsonWriter;

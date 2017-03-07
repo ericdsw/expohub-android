@@ -12,10 +12,10 @@ import moe.banana.jsonapi2.Resource;
 public class SponsorRank extends Resource {
 
     // Properties
-    @Json(name = "name")    public String name;
+    @Json(name = "name")        public String name;
 
     // Relationships
-    @Json(name = "sponsors") public HasMany<Sponsor> sponsors;
+    @Json(name = "sponsors")    public HasMany<Sponsor> sponsors;
 
     public List<Sponsor> getSponsors() {
         return sponsors.get(getContext());

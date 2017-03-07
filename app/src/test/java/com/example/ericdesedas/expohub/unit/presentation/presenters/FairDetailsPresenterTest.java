@@ -44,7 +44,7 @@ public class FairDetailsPresenterTest extends BasePresenterTest {
         ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
-        fairDetailsPresenter.initialize();
+        fairDetailsPresenter.onStart();
         verify(getSingleFairUseCaseMock).registerListener(argumentCaptor.capture());
 
         fairDetailsPresenter.onLoadFairCommand(fairId);
@@ -70,7 +70,7 @@ public class FairDetailsPresenterTest extends BasePresenterTest {
         ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
-        fairDetailsPresenter.initialize();
+        fairDetailsPresenter.onStart();
         verify(getSingleFairUseCaseMock).registerListener(argumentCaptor.capture());
 
         fairDetailsPresenter.onLoadFairCommand(fairId);
@@ -97,7 +97,7 @@ public class FairDetailsPresenterTest extends BasePresenterTest {
         ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
-        fairDetailsPresenter.initialize();
+        fairDetailsPresenter.onStart();
         verify(getSingleFairUseCaseMock).registerListener(argumentCaptor.capture());
 
         fairDetailsPresenter.onLoadFairCommand(fairId);
@@ -120,7 +120,7 @@ public class FairDetailsPresenterTest extends BasePresenterTest {
         ArgumentCaptor<ApiUseCase.Listener<Document<Fair>>> argumentCaptor  = ArgumentCaptor.forClass(listenerClass);
 
         fairDetailsPresenter.setView(viewMock);
-        fairDetailsPresenter.initialize();
+        fairDetailsPresenter.onStart();
         verify(getSingleFairUseCaseMock).registerListener(argumentCaptor.capture());
 
         fairDetailsPresenter.onLoadFairCommand(fairId);

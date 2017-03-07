@@ -1,5 +1,6 @@
 package com.example.ericdesedas.expohub.data.network;
 
+import com.example.ericdesedas.expohub.data.models.Comment;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
 import com.example.ericdesedas.expohub.data.models.News;
@@ -63,6 +64,15 @@ public interface ApiClient {
 
     @GET("fairs/{fairId}/news")
     Call<Document<News>> getNewsByFair(@Path("fairId") String fairId, @QueryMap Map<String, String> parameters);
+
+    @GET("news/{newsId}")
+    Call<Document<News>> getNewsById(@Path("newsId") String newsId, @QueryMap Map<String, String> parameters);
+
+    // ========================================= Comments ==================================== //
+
+    @FormUrlEncoded
+    @POST("comments")
+    Call<Document<Comment>> createComment(@Field("text") String text, @Field("news_id") String newsId);
 
     // ========================================== Stands ===================================== //
 

@@ -20,4 +20,16 @@ public class Stand extends Resource {
     public Fair getFair() {
         return fair.get(getContext());
     }
+
+    public String shortDescription() {
+        if (description.length() > 40) {
+            return description.substring(0, 40) + "...";
+        } else {
+            return description;
+        }
+    }
+
+    public String getImage() {
+        return image + "?id=" + getId();
+    }
 }
