@@ -25,10 +25,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // Google Api Key
-        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        resValue "string", "google_maps_key", GOOGLE_MAPS_API_KEY
 
         // General Api Parameters
-        resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
+        resValue "string", "api_key", API_KEY
         resValue "string", "base_url", (project.findProperty("BASE_URL") ?: "")
         resValue "string", "api_base_url", (project.findProperty("API_BASE_URL") ?: "")
         resValue "integer", "read_timeout", (project.findProperty("READ_TIMEOUT") ?: "")
