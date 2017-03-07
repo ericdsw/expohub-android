@@ -2,28 +2,44 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:layout_marginLeft="@dimen/card_detail_left_margin"
-    android:layout_marginRight="@dimen/card_detail_right_margin"
-    android:layout_marginStart="@dimen/card_detail_left_margin"
-    android:layout_marginEnd="@dimen/card_detail_right_margin">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/comment_picture"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/profile_placeholder"/>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/comment_picture"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/profile_placeholder"/>
+
+        <TextView
+            android:id="@+id/comment_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            style="@style/CommentText"
+            tools:text="This is a text intended for a comment context, it doesn't make sense lol."/>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/comment_text"
-        android:layout_width="0dp"
+        android:id="@+id/comment_user_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="16dp"
-        style="@style/CommentText"
-        tools:text="This is a text intended for a comment context, it doesn't make sense lol."/>
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:layout_marginTop="4dp"
+        android:gravity="right"
+        tools:text="User Name"/>
 
 </LinearLayout>

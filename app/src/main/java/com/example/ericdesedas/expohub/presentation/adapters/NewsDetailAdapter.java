@@ -17,8 +17,9 @@ import butterknife.ButterKnife;
 
 public class NewsDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int VIEW_TYPE_NEWS_DETAIL     = 0;
-    public static final int VIEW_TYPE_NEWS_COMMENT    = 1;
+    private static final int VIEW_TYPE_NEWS_DETAIL      = 0;
+    private static final int VIEW_TYPE_NEWS_COMMENT     = 1;
+    private static final int VIEW_TYPE_NEWS_NO_COMMENT  = 2;
 
     private ImageDownloader imageDownloader;
     private News news;
@@ -36,6 +37,9 @@ public class NewsDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             case VIEW_TYPE_NEWS_COMMENT:
                 View newsCommentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.sbv_cell_news_comments, parent, false);
                 return new CommentsViewHolder(newsCommentView);
+            case VIEW_TYPE_NEWS_NO_COMMENT:
+                View newsNoCommentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.sbv_cell_news_no_comments, parent, false);
+                return new NoCommentsViewHolder(newsNoCommentView);
             default:
                 return null;
         }
@@ -47,16 +51,38 @@ public class NewsDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (position == 0) {
             ((NewsDetailViewHolder) holder).updateNews(news);
         } else {
-            ((CommentsViewHolder) holder).updateComment(news.getComments().get(position - 1));
+            if (news.getComments().size() <= 0) {
+                // Nothing
+            } else {
+                ((CommentsViewHolder) holder).updateComment(news.getComments().get(position - 1));
+            }
         }
     }
 
     @Override
     public int getItemCount() {
         if (news != null) {
-            return news.getComments().size() + 1;
+            if (news.getComments().size() <= 0) {
+                return 2;
+            } else {
+                return news.getComments().size() + 1;
+            }
         } else {
             return 0;
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        if (position == 0) {
+            return VIEW_TYPE_NEWS_DETAIL;
+        } else {
+            if (news.getComments().size() <= 0) {
+                return VIEW_TYPE_NEWS_NO_COMMENT;
+            } else {
+                return VIEW_TYPE_NEWS_COMMENT;
+            }
         }
     }
 
@@ -64,7 +90,7 @@ public class NewsDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.news = news;
     }
 
-    public class NewsDetailViewHolder extends RecyclerView.ViewHolder {
+    class NewsDetailViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.news_image)          ImageView newsImage;
         @BindView(R.id.news_title)          TextView newsTitle;
@@ -73,37 +99,46 @@ public class NewsDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         private News news;
 
-        public NewsDetailViewHolder(View itemView) {
+        NewsDetailViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void updateNews(News news) {
+        void updateNews(News news) {
             this.news = news;
 
             imageDownloader.setMaxImageSize(500)
-                    .setImage(news.getImage(), newsImage);
+                    .setImage(this.news.getImage(), newsImage);
 
-            newsTitle.setText(news.title);
-            newsCreationDate.setText(news.formattedCreatedAt());
-            newsContent.setText(news.content);
+            newsTitle.setText(this.news.title);
+            newsCreationDate.setText(this.news.formattedCreatedAt());
+            newsContent.setText(this.news.content);
         }
     }
 
-    public class CommentsViewHolder extends RecyclerView.ViewHolder {
+    class CommentsViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.comment_text) TextView commentText;
+        @BindView(R.id.comment_text)        TextView commentText;
+        @BindView(R.id.comment_user_name)   TextView commentUserNameText;
 
         private Comment comment;
 
-        public CommentsViewHolder(View itemView) {
+        CommentsViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void updateComment(Comment comment) {
+        void updateComment(Comment comment) {
             this.comment = comment;
-            commentText.setText(comment.text);
+            commentText.setText(this.comment.text);
+            commentUserNameText.setText(this.comment.getUser().name);
+        }
+    }
+
+    class NoCommentsViewHolder extends RecyclerView.ViewHolder {
+
+        public NoCommentsViewHolder(View itemView) {
+            super(itemView);
         }
     }
 }

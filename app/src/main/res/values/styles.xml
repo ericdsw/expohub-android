@@ -38,6 +38,13 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
+    <!-- Aux Title Text -->
+    <style name="AuxTitleText" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
     <!-- SubTitle Text -->
     <style name="SubTitleTextView" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:textSize">14sp</item>

@@ -78,6 +78,7 @@
     <string name="empty_speakers_error">No speakers found</string>
     <string name="unidentified_error">Please login to perform this action</string>
     <string name="not_implemented">Not implemented yet</string>
+    <string name="empty_comments">No comments found</string>
 
     <!-- Drawer Layout toggle titles -->
     <string name="drawer_open">Open Drawer</string>

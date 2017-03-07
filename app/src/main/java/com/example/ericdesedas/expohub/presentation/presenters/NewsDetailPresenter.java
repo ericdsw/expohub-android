@@ -40,7 +40,7 @@ public class NewsDetailPresenter extends Presenter {
 
     public NewsDetailPresenter(GetSingleNewsUseCase useCase) {
         this.useCase = useCase;
-        this.useCase.addParameter("include", "comments");
+        this.useCase.addParameter("include", "comments,comments.user");
     }
 
     @Override
