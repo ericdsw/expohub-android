@@ -90,6 +90,9 @@ public class NewsByFairActivity extends BaseActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
             case R.id.action_route_info:
                 RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/fairs/{id}/news");
                 routeDialogFragment.show(getSupportFragmentManager(), "");

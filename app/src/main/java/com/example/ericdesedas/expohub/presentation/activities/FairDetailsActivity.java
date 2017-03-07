@@ -75,6 +75,7 @@ public class FairDetailsActivity extends BaseActivity implements
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         getActivityComponent().inject(this);
 

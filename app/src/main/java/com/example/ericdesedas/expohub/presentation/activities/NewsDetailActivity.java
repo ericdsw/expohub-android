@@ -2,11 +2,12 @@ package com.example.ericdesedas.expohub.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.example.ericdesedas.expohub.R;
 import com.example.ericdesedas.expohub.data.models.News;
 import com.example.ericdesedas.expohub.presentation.adapters.NewsDetailAdapter;
 import com.example.ericdesedas.expohub.presentation.adapters.RecyclerAdapterFactory;
+import com.example.ericdesedas.expohub.presentation.fragments.RouteDialogFragment;
 import com.example.ericdesedas.expohub.presentation.presenters.NewsDetailPresenter;
 
 import javax.inject.Inject;
@@ -48,12 +50,34 @@ public class NewsDetailActivity extends BaseActivity implements
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         getActivityComponent().inject(this);
 
         newsId = getIntent().getStringExtra(KEY_NEWS_ID);
 
         setupUI();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_news_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_route_info:
+                RouteDialogFragment routeDialogFragment = RouteDialogFragment.newInstance("GET", "/news/{id}?include=comments,comments.user");
+                routeDialogFragment.show(getSupportFragmentManager(), "");
+                break;
+        }
+        return true;
     }
 
     @Override
