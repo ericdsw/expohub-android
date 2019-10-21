@@ -1,5 +1,7 @@
 package com.example.ericdesedas.expohub.domain.interactors;
 
+import android.util.Log;
+
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;

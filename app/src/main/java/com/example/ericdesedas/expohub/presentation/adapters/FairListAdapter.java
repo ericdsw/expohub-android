@@ -1,8 +1,8 @@
 package com.example.ericdesedas.expohub.presentation.adapters;
 
 import android.content.Context;
-import android.support.v4.util.Pair;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.util.Pair;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,7 +129,7 @@ public class FairListAdapter extends RecyclerView.Adapter<FairListAdapter.FairVi
             if (listener != null) {
 
                 List<Pair<View, String>> transitioningElements = new ArrayList<>();
-                transitioningElements.add(new Pair<View, String>(fairImage, context.getString(R.string.transition_fair_card_image)));
+                transitioningElements.add(new Pair<>(fairImage, context.getString(R.string.transition_fair_card_image)));
                 transitioningElements.add(new Pair<>(cardContentWrapper, context.getString(R.string.transition_fair_card_content)));
 
                 listener.onFairCardClick(fair, transitioningElements);

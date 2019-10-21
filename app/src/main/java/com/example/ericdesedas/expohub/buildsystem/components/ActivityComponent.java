@@ -23,9 +23,10 @@ import dagger.Component;
 
 @PerActivity
 @Component(
-        dependencies    = { ApplicationComponent.class },
-        modules         = {
-                NavigationModule.class, PresenterModule.class, UseCaseModule.class, ActivityModule.class, AdapterModule.class
+        dependencies = { ApplicationComponent.class },
+        modules = {
+                NavigationModule.class, PresenterModule.class, UseCaseModule.class,
+                ActivityModule.class, AdapterModule.class
         }
 )
 public interface ActivityComponent {
