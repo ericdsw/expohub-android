@@ -1,5 +1,7 @@
 package com.example.ericdesedas.expohub.presentation.presenters;
 
+import android.util.Log;
+
 import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
 import com.example.ericdesedas.expohub.data.models.Fair;
 import com.example.ericdesedas.expohub.data.models.FairEvent;
@@ -45,6 +47,7 @@ public class MainScreenPresenter extends Presenter {
 
         @Override
         public void onError(int statusCode, ApiErrorWrapper apiError) {
+
             view.toggleLoading(false);
             if (apiError.hasUniqueError()) {
                 view.showError(statusCode, apiError.getUniqueError().getDetail());

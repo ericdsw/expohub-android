@@ -1,13 +1,15 @@
 package com.example.ericdesedas.expohub.presentation.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+
+import androidx.core.util.Pair;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class FairListFragment extends BaseFragment implements
     FairListAdapter.Listener {
@@ -66,8 +67,8 @@ public class FairListFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view   = inflater.inflate(R.layout.fragment_fair_list, container, false);
-        unbinder    = ButterKnife.bind(this, view);
+        View view = inflater.inflate(R.layout.fragment_fair_list, container, false);
+        unbinder = ButterKnife.bind(this, view);
 
         return view;
     }
@@ -166,12 +167,9 @@ public class FairListFragment extends BaseFragment implements
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         }
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                eventBus.post(new FairListRefreshEvent());
-                errorText.setVisibility(View.GONE);
-            }
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            eventBus.post(new FairListRefreshEvent());
+            errorText.setVisibility(View.GONE);
         });
     }
 }

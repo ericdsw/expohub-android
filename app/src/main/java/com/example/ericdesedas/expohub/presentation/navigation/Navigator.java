@@ -2,12 +2,10 @@ package com.example.ericdesedas.expohub.presentation.navigation;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
+
+import androidx.core.util.Pair;
 import android.view.View;
 
-import com.example.ericdesedas.expohub.data.models.Sponsor;
 import com.example.ericdesedas.expohub.presentation.activities.AboutActivity;
 import com.example.ericdesedas.expohub.presentation.activities.EventsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.FairDetailsActivity;
@@ -19,7 +17,6 @@ import com.example.ericdesedas.expohub.presentation.activities.ProfileActivity;
 import com.example.ericdesedas.expohub.presentation.activities.SettingsActivity;
 import com.example.ericdesedas.expohub.presentation.activities.SponsorsByFairActivity;
 import com.example.ericdesedas.expohub.presentation.activities.StandsByFairActivity;
-import com.example.ericdesedas.expohub.presentation.presenters.StandsByFairPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

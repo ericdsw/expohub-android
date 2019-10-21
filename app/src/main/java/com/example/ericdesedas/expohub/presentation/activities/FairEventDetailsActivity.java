@@ -1,9 +1,10 @@
 package com.example.ericdesedas.expohub.presentation.activities;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -159,7 +160,7 @@ public class FairEventDetailsActivity extends BaseActivity implements
                 ((TextView) view.findViewById(R.id.speaker_description)).setText(speaker.description);
 
                 imageDownloader.setMaxImageSize(148)
-                        .setCircularImage(speaker.picture, ((ImageView) view.findViewById(R.id.speaker_image)));
+                        .setCircularImage(speaker.picture, (view.findViewById(R.id.speaker_image)));
 
                 speakersArea.addView(view);
             }

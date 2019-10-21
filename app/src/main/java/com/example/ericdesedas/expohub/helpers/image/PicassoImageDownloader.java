@@ -98,7 +98,7 @@ public class PicassoImageDownloader implements ImageDownloader {
 					}
 
 					@Override
-					public void onBitmapFailed(Drawable errorDrawable) {
+					public void onBitmapFailed(Exception exception, Drawable errorDrawable) {
 						Log.e("PicassoImageDownloader", "Bitmap failed");
 					}
 

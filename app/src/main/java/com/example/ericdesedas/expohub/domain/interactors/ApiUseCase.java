@@ -1,5 +1,7 @@
 package com.example.ericdesedas.expohub.domain.interactors;
 
+import android.util.Log;
+
 import com.example.ericdesedas.expohub.data.models.ApiErrorWrapper;
 import com.example.ericdesedas.expohub.data.network.ApiClient;
 import com.squareup.moshi.Moshi;
@@ -71,6 +73,7 @@ public abstract class ApiUseCase<T> {
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
+                Log.e(ApiUseCase.class.getName(), t.getMessage());
                 for (Listener listener : listeners) {
                     listener.onFailure(t);
                 }

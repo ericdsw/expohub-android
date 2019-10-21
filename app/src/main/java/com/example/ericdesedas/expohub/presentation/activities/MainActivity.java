@@ -1,12 +1,12 @@
 package com.example.ericdesedas.expohub.presentation.activities;
 
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -206,8 +206,8 @@ public class MainActivity extends BaseActivity implements
      */
     private void setupUI() {
 
-        fairListFragment        = FairListFragment.newInstance(adapterFactory.createFairListAdapter(), eventBus);
-        fairEventListFragment   = FairEventListFragment.newInstance(adapterFactory.createEventListAdapter(), eventBus);
+        fairListFragment = FairListFragment.newInstance(adapterFactory.createFairListAdapter(), eventBus);
+        fairEventListFragment = FairEventListFragment.newInstance(adapterFactory.createEventListAdapter(), eventBus);
 
         presenter.setView(this);
         presenter.initialize();
@@ -223,15 +223,11 @@ public class MainActivity extends BaseActivity implements
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
+        navigationView.setNavigationItemSelectedListener((MenuItem item) -> {
+            drawerLayout.closeDrawers();
+            handleDrawerSelection(item);
 
-                drawerLayout.closeDrawers();
-                handleDrawerSelection(item);
-
-                return false;
-            }
+            return false;
         });
 
         // Check for current Fragment offset

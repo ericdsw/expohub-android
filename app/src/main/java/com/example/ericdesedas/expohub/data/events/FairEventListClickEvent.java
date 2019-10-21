@@ -1,6 +1,6 @@
 package com.example.ericdesedas.expohub.data.events;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 import android.view.View;
 
 import java.util.List;
